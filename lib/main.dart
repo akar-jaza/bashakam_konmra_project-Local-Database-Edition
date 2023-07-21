@@ -1,11 +1,14 @@
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'Screens/home_page.dart';
-import 'constantes/systemUi_overlay_helper.dart';
+import 'helpers/hive_helper.dart';
 
-void main() {
-  SystemUiOverlayHelper uiOverlayFunc = SystemUiOverlayHelper();
-  uiOverlayFunc.setSystemUiOverlayStyle();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('departments');
+  await HiveHelper.importDataFromCsv('assets/data/CSV(2021-2022).csv');
   runApp(const MyApp());
 }
 
