@@ -23,16 +23,19 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
 
   List<Map<String, dynamic>> departments = [];
+
   List<String> university = [];
   List<String> collage = [];
   List<String> departmentName = [];
+
   List<String> pZankoline = [];
   List<String> pParallel = [];
   List<String> pEwaran = [];
-  
+
   List<String> gZankoline = [];
   List<String> gParallel = [];
   List<String> gEwaran = [];
+
   List<String> filteredDepartmentName = [];
 
   bool isLoading = false;
@@ -60,17 +63,32 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     try {
       departments =
           await HiveHelper.importDataFromCsv('assets/data/CSV(2021-2022).csv');
+
+      university =
+          departments.map((data) => data['university'] as String).toList();
+      collage = departments
+          .map((data) => data['collage_institute'] as String)
+          .toList();
       departmentName =
           departments.map((data) => data['department'] as String).toList();
+
       pZankoline =
           departments.map((data) => data['p_zankoline'] as String).toList();
-      gZankoline = departments.map((data) => data['g_zankoline'] as String).toList();
+      pParallel =
+          departments.map((data) => data['p_parallel'] as String).toList();
+      // pEwaran = departments.map((data) => data['p_ewaran'] as String).toList();
+
+      gZankoline =
+          departments.map((data) => data['g_zankoline'] as String).toList();
+      gParallel =
+          departments.map((data) => data['g_parallel'] as String).toList();
+      // gEwaran = departments.map((data) => data['g_ewaran'] as String).toList();
 
       setState(() {
         filteredDepartmentName = List.from(departmentName);
       });
     } catch (error) {
-      print('Error: $error');
+      print('fetch data error: $error');
       ConnectionDialog(string: error.toString());
     } finally {
       setState(() {
@@ -108,7 +126,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   @override
   Widget build(BuildContext context) {
-    print(departments);
+    print(collage);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(

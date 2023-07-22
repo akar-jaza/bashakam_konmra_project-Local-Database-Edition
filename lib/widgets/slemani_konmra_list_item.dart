@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 
-
 class SlemaniKonmraListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
   final int index;
@@ -25,9 +24,12 @@ class SlemaniKonmraListItem extends StatelessWidget {
         return const SizedBox.shrink();
       }
       final departmentData = departments[itemIndex];
+      final university = departmentData['university'] as String?;
+      final collage = departmentData['collage_institute'] as String?;
+      final department = departmentData['department'] as String?;
       return ListTile(
         title: Text(
-          departmentData['department'] as String,
+          '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
           style: const TextStyle(
             color: ThemeColors.kWhiteTextColor,
           ),
