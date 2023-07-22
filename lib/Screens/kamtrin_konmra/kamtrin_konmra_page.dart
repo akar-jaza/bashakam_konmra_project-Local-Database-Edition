@@ -1,12 +1,10 @@
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:csv/csv.dart'; // Import the csv package
+// ignore_for_file: avoid_print
+
+import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:unorm_dart/unorm_dart.dart';
 import 'package:connectivity/connectivity.dart';
-
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
@@ -25,9 +23,16 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
 
   List<Map<String, dynamic>> departments = [];
+  List<String> university = [];
+  List<String> collage = [];
   List<String> departmentName = [];
-  List<String> parezga = [];
-  List<String> gshty = [];
+  List<String> pZankoline = [];
+  List<String> pParallel = [];
+  List<String> pEwaran = [];
+  
+  List<String> gZankoline = [];
+  List<String> gParallel = [];
+  List<String> gEwaran = [];
   List<String> filteredDepartmentName = [];
 
   bool isLoading = false;
@@ -53,12 +58,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     isLoading = true;
 
     try {
-      departments = await HiveHelper.importDataFromCsv('assets/data.csv');
+      departments =
+          await HiveHelper.importDataFromCsv('assets/data/CSV(2021-2022).csv');
       departmentName =
           departments.map((data) => data['department'] as String).toList();
-      parezga =
+      pZankoline =
           departments.map((data) => data['p_zankoline'] as String).toList();
-      gshty = departments.map((data) => data['g_zankoline'] as String).toList();
+      gZankoline = departments.map((data) => data['g_zankoline'] as String).toList();
 
       setState(() {
         filteredDepartmentName = List.from(departmentName);
@@ -112,12 +118,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: TextField(
+              child: MyTextField(
+                textController: _textEditingController,
+                labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
                 onChanged: (value) => _runFilter(value),
-                controller: _textEditingController,
-                decoration: const InputDecoration(
-                  labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
-                ),
+                onPressed: () {},
               ),
             ),
             if (isLoading)

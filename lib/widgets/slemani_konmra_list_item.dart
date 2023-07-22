@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 
-import '../Models/department_data.dart';
 
 class SlemaniKonmraListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
