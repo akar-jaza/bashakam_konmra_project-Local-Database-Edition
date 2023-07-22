@@ -10,7 +10,7 @@ import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
 import '../../Models/department_data.dart';
 import '../../helpers/hive_helper.dart';
-import '../../widgets/slemani_konmra_list_item.dart';
+import '../../widgets/konmra_list_item.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
