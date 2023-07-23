@@ -4,13 +4,16 @@ import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
     required this.text,
+    this.cupertinoIconData,
+    this.materialIconData,
     super.key,
   });
   final String text;
+  final IconData? cupertinoIconData;
+  final IconData? materialIconData;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -33,12 +36,34 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pop(context);
               },
             ),
-      title: Align(
-        alignment: Alignment.centerRight,
-        child: Text(
-          text,
-          style: const TextStyle(color: ThemeColors.kWhiteTextColor),
-        ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Platform.isIOS
+              ? CupertinoButton(
+                  onPressed: () {},
+                  child: Icon(
+                    cupertinoIconData,
+                    color: ThemeColors.kblueColor,
+                  ),
+                )
+              : IconButton(
+                  icon: Icon(
+                    materialIconData,
+                    color: ThemeColors.kblueColor,
+                  ),
+                  onPressed: () {},
+                ),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                text,
+                style: const TextStyle(color: ThemeColors.kWhiteTextColor),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

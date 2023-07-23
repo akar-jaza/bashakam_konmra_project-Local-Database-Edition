@@ -28,7 +28,7 @@ class ConnectionDialog extends StatelessWidget {
     } else {
       return AlertDialog(
         title: const Text('Network Connection Required'),
-        content: Text(string),
+        content: const Text('Please connect to a network and try again.'),
         actions: <Widget>[
           TextButton(
             child: const Text(

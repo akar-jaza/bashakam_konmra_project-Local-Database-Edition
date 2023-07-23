@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,6 @@ import 'package:connectivity/connectivity.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
-import '../../Models/department_data.dart';
 import '../../helpers/hive_helper.dart';
 import '../../widgets/konmra_list_item.dart';
 
@@ -76,13 +77,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           departments.map((data) => data['p_zankoline'] as String).toList();
       pParallel =
           departments.map((data) => data['p_parallel'] as String).toList();
-      // pEwaran = departments.map((data) => data['p_ewaran'] as String).toList();
+      pEwaran = departments.map((data) => data['p_ewaran'] as String).toList();
 
       gZankoline =
           departments.map((data) => data['g_zankoline'] as String).toList();
       gParallel =
           departments.map((data) => data['g_parallel'] as String).toList();
-      // gEwaran = departments.map((data) => data['g_ewaran'] as String).toList();
+      gEwaran = departments.map((data) => data['g_ewaran'] as String).toList();
 
       setState(() {
         filteredDepartmentName = List.from(departmentName);
@@ -126,12 +127,15 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   @override
   Widget build(BuildContext context) {
-    print(collage);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: ThemeColors.kBodyColor,
-        appBar: const MyAppBar(text: 'کەمترین کۆنمرەی وەرگیراو'),
+        appBar: const MyAppBar(
+          text: 'کەمترین کۆنمرەی وەرگیراو',
+          // cupertinoIconData: CupertinoIcons.info_circle_fill,
+          // materialIconData: Icons.info,
+        ),
         body: Column(
           children: [
             Padding(
@@ -163,6 +167,20 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: ThemeColors.kBoldBlueTextColor,
+          onPressed: () {},
+          icon: Platform.isIOS
+              ? const Icon(
+                  CupertinoIcons.info_circle_fill,
+                  color: ThemeColors.kWhiteTextColor,
+                )
+              : const Icon(
+                  Icons.info,
+                  color: ThemeColors.kblueColor,
+                ),
+          label: const Text('تکایە بمخوێنەرەوە'),
         ),
       ),
     );

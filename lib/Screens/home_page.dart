@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../components/my_card.dart';
 import '../components/my_homepage_appbar.dart';
-import '../constantes/systemUi_overlay_helper.dart';
+import '../helpers/systemUi_overlay_helper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
