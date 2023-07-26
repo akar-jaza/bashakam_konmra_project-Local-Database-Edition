@@ -24,6 +24,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
 
   List<Map<String, dynamic>> departments = [];
+  List<Map<String, dynamic>> _foundUsers = [];
 
   List<String> university = [];
   List<String> collage = [];
@@ -37,8 +38,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   List<String> gParallel = [];
   List<String> gEwaran = [];
 
-  List<String> filteredDepartmentName = [];
-
   bool isLoading = false;
 
   final ScrollController _scrollController = ScrollController();
@@ -49,7 +48,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     checkConnectivity(context);
     _fetchData();
 
-    filteredDepartmentName = List.from(departmentName);
+    // setState(() {
+    //   _foundUsers = List.from(departments);
+    // });
   }
 
   @override
@@ -86,7 +87,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       gEwaran = departments.map((data) => data['g_ewaran'] as String).toList();
 
       setState(() {
-        filteredDepartmentName = List.from(departmentName);
+        _foundUsers = List.from(departments);
       });
     } catch (error) {
       print('fetch data error: $error');
@@ -106,22 +107,106 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   }
 
   void _runFilter(String enteredKeyword) {
-    // final normalizedQuery = nfc(enteredKeyword);
+    if (enteredKeyword.isEmpty) {
+      setState(() {
+        _foundUsers = List.from(departments);
+      });
+    } else {
+      // Escape special characters in the entered keyword
+      final escapedKeyword = RegExp.escape(enteredKeyword.trim());
 
-    // if (normalizedQuery.isEmpty) {
-    //   setState(() {
-    //     departments = List.from(originalDepartments);
-    //   });
-    //   return;
-    // }
+      // Create a regular expression pattern to match the entered keyword anywhere within the department name, regardless of spaces
+      final regexPattern = '(?=.*$escapedKeyword)';
 
-    // List<Map<String, dynamic>> filteredList = departments.where((data) {
-    //   final departmentName = data['department'] as String;
-    //   return nfc(departmentName).toLowerCase().contains(normalizedQuery.toLowerCase());
-    // }).toList();
-    // setState(() {
-    //   departments = filteredList;
-    // });
+      // Use the regular expression to match the department name
+      final regex = RegExp(regexPattern, caseSensitive: false);
+
+      List<Map<String, dynamic>> filteredList = departments.where((data) {
+        final departmentName = data['department'] as String;
+        return regex.hasMatch(normalizeKurdishText(departmentName.trim()));
+      }).toList();
+
+      setState(() {
+        _foundUsers =
+            filteredList; // Update the filtered list with the matching items.
+      });
+    }
+  }
+
+  String normalizeKurdishText(String text) {
+    Map<String, String> replacements = {
+      // Add more mappings as needed
+      'ﭘ': 'پ',
+      'ﭙ': 'پ',
+      'ﺰ': 'ز',
+      'ﯾ': 'ی',
+      'ﮑ': 'ک',
+      'ﺸ': 'ش',
+      'ﻪ': 'ە',
+      'ی': 'ی',
+      'ﯽ': 'ی',
+      'ﻜ': 'ک',
+      'ﻰ': 'ی',
+      'ﺎ': 'ا',
+      'ﺄ': 'ا',
+      'ﺮ': 'ر',
+      'ﻣ': 'م',
+      'ﯿ': 'ی',
+      'ى': 'ی',
+      'ﺪ': 'د',
+      'ﮏ': 'ک',
+      'ﺗ': 'ت',
+      'ﺖ': 'ت',
+      'ﻧ': 'ن',
+      'ﻚ': 'ک',
+      'ﻛ': 'ک',
+      'ﻤ': 'م',
+      'ﻓ': 'ف',
+      'ﮐ': 'ک',
+      'ﺳ': 'س',
+      'ﺴ': 'س',
+      'ﺷ': 'ش',
+      'ﺘ': 'ت',
+      'ﺑ': 'ب',
+      'ﺒ': 'ب',
+      'ﻦ': 'ن',
+      'ﻨ': 'ن',
+      'ﻫ': 'ه',
+      'ﺧ': 'خ',
+      'ﻗ': 'ق',
+      'ﻘ': 'ق',
+      'ﮕ': 'گ',
+      'ﮔ': 'گ',
+      'ﻮ': 'و',
+      'ﭼ': 'چ',
+      'ﺋ': 'ئ',
+      'ﻔ': 'ف',
+      'ﻼ': 'لا',
+      'ﻻ': 'لا',
+      'ﻠ': 'ل',
+      'ﻟ': 'ل',
+      'ﻞ': 'ل',
+      'ﺟ': 'ج',
+      'ﺠ': 'ج',
+      'ﺣ': 'ح',
+      'ﭽ': 'چ',
+      'ﺻ': 'ص',
+      'ﻋ': 'ع',
+      'ﮋ': 'ژ',
+    };
+
+    // Replace the characters using the mapping
+    // Replace the characters using the mapping
+    // Replace the characters using the mapping
+    String normalizedText = text.replaceAllMapped(
+      RegExp('(${replacements.keys.join('|')})'),
+      (match) => replacements[match.group(0)]!,
+    );
+
+    print('Original text: $text');
+    print('Normalized text: $normalizedText');
+
+    return normalizedText;
   }
 
   @override
@@ -159,10 +244,10 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
               child: ListView.builder(
                 controller: _scrollController,
                 itemBuilder: (context, index) => SlemaniKonmraListItem(
-                  departments: departments,
+                  departments: _foundUsers,
                   index: index,
                 ),
-                itemCount: departments.length,
+                itemCount: _foundUsers.length,
               ),
             ),
           ],

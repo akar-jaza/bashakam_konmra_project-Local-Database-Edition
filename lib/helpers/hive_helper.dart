@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart'; // Import the csv package
 
