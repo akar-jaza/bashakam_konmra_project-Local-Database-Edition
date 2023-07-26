@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../constantes/them_colors.dart';
 
 class ConnectionDialog extends StatelessWidget {
-  final String string;
-
-  const ConnectionDialog({required this.string, Key? key}) : super(key: key);
+  const ConnectionDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

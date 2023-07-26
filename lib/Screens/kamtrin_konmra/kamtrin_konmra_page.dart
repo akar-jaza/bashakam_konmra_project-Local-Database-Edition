@@ -90,7 +90,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       });
     } catch (error) {
       print('fetch data error: $error');
-      ConnectionDialog(string: error.toString());
+      const ConnectionDialog();
     } finally {
       setState(() {
         isLoading = false;
@@ -101,8 +101,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   Future<void> checkConnectivity(BuildContext context) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-      const ConnectionDialog(
-          string: 'Please connect to a network and try again.');
+      const ConnectionDialog();
     }
   }
 
