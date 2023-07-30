@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,9 @@ import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
 import '../../helpers/hive_helper.dart';
 import '../../widgets/konmra_list_item.dart';
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -112,18 +114,12 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         _foundUsers = List.from(departments);
       });
     } else {
-      // Escape special characters in the entered keyword
-      final escapedKeyword = RegExp.escape(enteredKeyword.trim());
-
-      // Create a regular expression pattern to match the entered keyword anywhere within the department name, regardless of spaces
-      final regexPattern = '(?=.*$escapedKeyword)';
-
-      // Use the regular expression to match the department name
-      final regex = RegExp(regexPattern, caseSensitive: false);
-
       List<Map<String, dynamic>> filteredList = departments.where((data) {
         final departmentName = data['department'] as String;
-        return regex.hasMatch(normalizeKurdishText(departmentName.trim()));
+        return departmentName
+            .trim()
+            .toLowerCase()
+            .contains(enteredKeyword.trim().toLowerCase());
       }).toList();
 
       setState(() {
@@ -131,82 +127,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             filteredList; // Update the filtered list with the matching items.
       });
     }
-  }
-
-  String normalizeKurdishText(String text) {
-    Map<String, String> replacements = {
-      // Add more mappings as needed
-      'ﭘ': 'پ',
-      'ﭙ': 'پ',
-      'ﺰ': 'ز',
-      'ﯾ': 'ی',
-      'ﮑ': 'ک',
-      'ﺸ': 'ش',
-      'ﻪ': 'ە',
-      'ی': 'ی',
-      'ﯽ': 'ی',
-      'ﻜ': 'ک',
-      'ﻰ': 'ی',
-      'ﺎ': 'ا',
-      'ﺄ': 'ا',
-      'ﺮ': 'ر',
-      'ﻣ': 'م',
-      'ﯿ': 'ی',
-      'ى': 'ی',
-      'ﺪ': 'د',
-      'ﮏ': 'ک',
-      'ﺗ': 'ت',
-      'ﺖ': 'ت',
-      'ﻧ': 'ن',
-      'ﻚ': 'ک',
-      'ﻛ': 'ک',
-      'ﻤ': 'م',
-      'ﻓ': 'ف',
-      'ﮐ': 'ک',
-      'ﺳ': 'س',
-      'ﺴ': 'س',
-      'ﺷ': 'ش',
-      'ﺘ': 'ت',
-      'ﺑ': 'ب',
-      'ﺒ': 'ب',
-      'ﻦ': 'ن',
-      'ﻨ': 'ن',
-      'ﻫ': 'ه',
-      'ﺧ': 'خ',
-      'ﻗ': 'ق',
-      'ﻘ': 'ق',
-      'ﮕ': 'گ',
-      'ﮔ': 'گ',
-      'ﻮ': 'و',
-      'ﭼ': 'چ',
-      'ﺋ': 'ئ',
-      'ﻔ': 'ف',
-      'ﻼ': 'لا',
-      'ﻻ': 'لا',
-      'ﻠ': 'ل',
-      'ﻟ': 'ل',
-      'ﻞ': 'ل',
-      'ﺟ': 'ج',
-      'ﺠ': 'ج',
-      'ﺣ': 'ح',
-      'ﭽ': 'چ',
-      'ﺻ': 'ص',
-      'ﻋ': 'ع',
-      'ﮋ': 'ژ',
-    };
-
-    // Replace the characters using the mapping
-    // Replace the characters using the mapping
-    // Replace the characters using the mapping
-    String normalizedText = text.replaceAllMapped(
-      RegExp('(${replacements.keys.join('|')})'),
-      (match) => replacements[match.group(0)]!,
-    );
-
-    print('Original text: $text');
-    print('Normalized text: $normalizedText');
-
-    return normalizedText;
   }
 
   @override
