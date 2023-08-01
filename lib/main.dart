@@ -25,6 +25,17 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: ThemeColors.kblueColor,
         ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
+            letterSpacing: 0.0,
+          ),
+          bodyMedium: TextStyle(
+            letterSpacing: 0.0,
+          ),
+          labelLarge: TextStyle(
+            letterSpacing: 0.0,
+          ),
+        ),
       ),
       home: const HomePage(),
     );

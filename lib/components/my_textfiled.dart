@@ -45,6 +45,7 @@ class _MyTextFieldState extends State<MyTextField> {
         style: const TextStyle(
           color: ThemeColors.kWhiteTextColor,
           fontFamily: 'Roboto',
+          letterSpacing: 0.0,
         ),
         decoration: InputDecoration(
           labelText: widget.labelText,

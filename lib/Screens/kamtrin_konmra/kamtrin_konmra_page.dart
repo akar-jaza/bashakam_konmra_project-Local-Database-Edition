@@ -12,9 +12,6 @@ import '../../components/my_show_dialog.dart';
 import '../../helpers/hive_helper.dart';
 import '../../widgets/konmra_list_item.dart';
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
 
@@ -49,10 +46,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     super.initState();
     checkConnectivity(context);
     _fetchData();
-
-    // setState(() {
-    //   _foundUsers = List.from(departments);
-    // });
   }
 
   @override
@@ -91,6 +84,12 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       setState(() {
         _foundUsers = List.from(departments);
       });
+
+      // Print the university, collage, and department names after processing by Hive
+      print('Processed Data:');
+      for (var i = 0; i < departmentName.length; i++) {
+        print('${university[i]} / ${collage[i]} / ${departmentName[i]}');
+      }
     } catch (error) {
       print('fetch data error: $error');
       const ConnectionDialog();
@@ -116,10 +115,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     } else {
       List<Map<String, dynamic>> filteredList = departments.where((data) {
         final departmentName = data['department'] as String;
-        return departmentName
-            .trim()
-            .toLowerCase()
-            .contains(enteredKeyword.trim().toLowerCase());
+        return departmentName.contains(enteredKeyword);
       }).toList();
 
       setState(() {
@@ -131,14 +127,17 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   @override
   Widget build(BuildContext context) {
+    final svgPicture = SvgPicture.asset(
+      'assets/images/ListIsEmpty.svg',
+      height: 350,
+    );
+    
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: ThemeColors.kBodyColor,
         appBar: const MyAppBar(
           text: 'کەمترین کۆنمرەی وەرگیراو',
-          // cupertinoIconData: CupertinoIcons.info_circle_fill,
-          // materialIconData: Icons.info,
         ),
         body: Column(
           children: [
@@ -161,14 +160,29 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                 ),
               ),
             Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                itemBuilder: (context, index) => SlemaniKonmraListItem(
-                  departments: _foundUsers,
-                  index: index,
-                ),
-                itemCount: _foundUsers.length,
-              ),
+              child: _foundUsers.isNotEmpty
+                  ? ListView.builder(
+                      controller: _scrollController,
+                      itemBuilder: (context, index) => SlemaniKonmraListItem(
+                        departments: _foundUsers,
+                        index: index,
+                      ),
+                      itemCount: _foundUsers.length,
+                    )
+                  : Center(
+                      child: Column(
+                        children: [
+                          svgPicture,
+                          const Text(
+                            '! هیچ بەشێک نەدۆزرایەوە',
+                            style: TextStyle(
+                              color: ThemeColors.kWhiteTextColor,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
             ),
           ],
         ),

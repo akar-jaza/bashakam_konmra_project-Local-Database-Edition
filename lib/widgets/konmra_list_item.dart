@@ -48,8 +48,11 @@ class SlemaniKonmraListItem extends StatelessWidget {
       return ListTile(
         title: Text(
           '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
-          style:
-              const TextStyle(color: ThemeColors.kWhiteTextColor, fontSize: 18),
+          style: const TextStyle(
+            color: ThemeColors.kWhiteTextColor,
+            fontSize: 19,
+            // letterSpacing: 0.0,
+          ),
           textAlign: TextAlign.center,
         ),
         subtitle: Column(
@@ -60,7 +63,8 @@ class SlemaniKonmraListItem extends StatelessWidget {
               'پارێزگا/ $pZankoline - $pParallel - $pEwaranText',
               style: const TextStyle(
                 color: ThemeColors.kGreyTextColor,
-                fontSize: 13,
+                fontSize: 13.5,
+                // letterSpacing: 0.0,
               ),
               textAlign: TextAlign.center,
             ),
@@ -69,7 +73,8 @@ class SlemaniKonmraListItem extends StatelessWidget {
               'گشتی/ $gZankoline - $gParallel - $gEwaranText',
               style: const TextStyle(
                 color: ThemeColors.kGreyTextColor,
-                fontSize: 13,
+                fontSize: 13.5,
+                // letterSpacing: 0.0,
               ),
               textAlign: TextAlign.center,
             ),
