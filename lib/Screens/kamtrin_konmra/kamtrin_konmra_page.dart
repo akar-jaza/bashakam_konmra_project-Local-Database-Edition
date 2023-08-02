@@ -189,21 +189,26 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         floatingActionButton: MyFloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
-                context: context,
-                builder: ((context) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                      color: ThemeColors.kBodyColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
+              context: context,
+              builder: ((context) {
+                return Container(
+                  decoration: const BoxDecoration(
+                    color: ThemeColors.kBodyColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    child: Scaffold(
-                      backgroundColor: Colors
-                          .transparent, // Set the Scaffold's background to transparent
-                      appBar: AppBar(
+                  ),
+                  child: Scaffold(
+                    extendBody: true,
+                    backgroundColor: Colors
+                        .transparent, // Set the Scaffold's background to transparent
+
+                    appBar: PreferredSize(
+                      preferredSize: const Size.fromHeight(25),
+                      child: AppBar(
                         automaticallyImplyLeading: false,
+                        leading: null,
                         title: Platform.isIOS
                             ? Image.asset(
                                 "assets/images/drag_handle_ios.png",
@@ -221,14 +226,16 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
                         // Remove the AppBar's shadow
                       ),
-                      body: const Column(
-                        children: [
-                          // Add your content here
-                        ],
-                      ),
                     ),
-                  );
-                }));
+                    body: const Column(
+                      children: [
+                        // Add your content here
+                      ],
+                    ),
+                  ),
+                );
+              }),
+            );
           },
         ),
       ),
