@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_print
-
-import 'dart:io';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:connectivity/connectivity.dart';
+import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
@@ -131,7 +130,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       'assets/images/ListIsEmpty.svg',
       height: 350,
     );
-    
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -186,21 +185,27 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: ThemeColors.kBoldBlueTextColor,
+        floatingActionButton: MyFloatingActionButton(
           onPressed: () {},
-          icon: Platform.isIOS
-              ? const Icon(
-                  CupertinoIcons.info_circle_fill,
-                  color: ThemeColors.kWhiteTextColor,
-                )
-              : const Icon(
-                  Icons.info,
-                  color: ThemeColors.kblueColor,
-                ),
-          label: const Text('تکایە بمخوێنەرەوە'),
         ),
       ),
     );
   }
 }
+
+
+
+/* FloatingActionButton.extended(
+      backgroundColor: ThemeColors.kBoldBlueTextColor,
+      onPressed: () {},
+      icon: Platform.isIOS
+          ? const Icon(
+              CupertinoIcons.info_circle_fill,
+              color: ThemeColors.kWhiteTextColor,
+            )
+          : const Icon(
+              Icons.info,
+              color: ThemeColors.kblueColor,
+            ),
+      label: const Text('تکایە بمخوێنەرەوە'),
+    );*/
