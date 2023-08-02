@@ -83,6 +83,8 @@ flutter:
     - assets/images/ilmy.svg
     - assets/images/wezhayIcon.svg
     - assets/images/departments.svg
+    - assets/images/drag_handle_ios.png
+    - assets/images/drag_handle_android.png
     - assets/data/CSV(2021-2022).csv
 
 

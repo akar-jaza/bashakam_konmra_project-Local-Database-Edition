@@ -10,6 +10,7 @@ import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
 import '../../helpers/hive_helper.dart';
 import '../../widgets/konmra_list_item.dart';
+import 'dart:io';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -186,26 +187,51 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           ],
         ),
         floatingActionButton: MyFloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: ((context) {
+                  return Container(
+                    decoration: const BoxDecoration(
+                      color: ThemeColors.kBodyColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                    child: Scaffold(
+                      backgroundColor: Colors
+                          .transparent, // Set the Scaffold's background to transparent
+                      appBar: AppBar(
+                        automaticallyImplyLeading: false,
+                        title: Platform.isIOS
+                            ? Image.asset(
+                                "assets/images/drag_handle_ios.png",
+                                width: 40,
+                              )
+                            : Center(
+                                child: Image.asset(
+                                  "assets/images/drag_handle_android.png",
+                                  width: 40,
+                                ),
+                              ),
+                        backgroundColor: Colors
+                            .transparent, // Set the AppBar's background to transparent
+                        elevation: 0,
+
+                        // Remove the AppBar's shadow
+                      ),
+                      body: const Column(
+                        children: [
+                          // Add your content here
+                        ],
+                      ),
+                    ),
+                  );
+                }));
+          },
         ),
       ),
     );
   }
 }
-
-
-
-/* FloatingActionButton.extended(
-      backgroundColor: ThemeColors.kBoldBlueTextColor,
-      onPressed: () {},
-      icon: Platform.isIOS
-          ? const Icon(
-              CupertinoIcons.info_circle_fill,
-              color: ThemeColors.kWhiteTextColor,
-            )
-          : const Icon(
-              Icons.info,
-              color: ThemeColors.kblueColor,
-            ),
-      label: const Text('تکایە بمخوێنەرەوە'),
-    );*/
