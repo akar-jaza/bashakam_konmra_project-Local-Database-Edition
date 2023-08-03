@@ -103,15 +103,13 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: uni
-      fonts:
-        - asset: assets/fonts/uni.ttf
     - family: rabarBold
       fonts:
         - asset: assets/fonts/rabarBold.ttf
-    - family: Roboto
+    - family: rabar_009
       fonts:
-        - asset: assets/fonts/RobotoFamily/Roboto-Medium.ttf
+        - asset: assets/fonts/Rabar_009.ttf
+    
     
         
     
