@@ -2,6 +2,7 @@
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:connectivity/connectivity.dart';
 import '../../components/my_floating_action_button.dart';
@@ -21,6 +22,7 @@ class KamtrinKonmra extends StatefulWidget {
 
 class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   List<Map<String, dynamic>> departments = [];
   List<Map<String, dynamic>> _foundUsers = [];
@@ -38,9 +40,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   List<String> gEwaran = [];
 
   bool isLoading = false;
-
-  final ScrollController _scrollController = ScrollController();
-
+  bool isFabVisible = false;
   @override
   void initState() {
     super.initState();
@@ -139,132 +139,154 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         appBar: const MyAppBar(
           text: 'کەمترین کۆنمرەی وەرگیراو',
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: MyTextField(
-                textController: _textEditingController,
-                labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
-                onChanged: (value) => _runFilter(value),
-                onPressed: () {},
-              ),
-            ),
-            if (isLoading)
-              const SizedBox(
-                height: 40,
-                child: Center(
-                  child: CupertinoActivityIndicator(
-                    color: ThemeColors.kWhiteTextColor,
-                  ),
+        body: NotificationListener<UserScrollNotification>(
+          onNotification: (notification) {
+            if (notification.direction == ScrollDirection.forward) {
+              setState(() {
+                isFabVisible = true;
+              });
+            } else if (notification.direction == ScrollDirection.reverse) {
+              setState(() {
+                isFabVisible = false;
+              });
+            }
+            return true;
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: MyTextField(
+                  textController: _textEditingController,
+                  labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
+                  onChanged: (value) => _runFilter(value),
+                  onPressed: () {},
                 ),
               ),
-            Expanded(
-              child: _foundUsers.isNotEmpty
-                  ? ListView.builder(
-                      controller: _scrollController,
-                      itemBuilder: (context, index) => SlemaniKonmraListItem(
-                        departments: _foundUsers,
-                        index: index,
-                      ),
-                      itemCount: _foundUsers.length,
-                    )
-                  : Center(
-                      child: Column(
-                        children: [
-                          svgPicture,
-                          const Text(
-                            '! هیچ بەشێک نەدۆزرایەوە',
-                            style: TextStyle(
-                              color: ThemeColors.kWhiteTextColor,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
+              if (isLoading)
+                const SizedBox(
+                  height: 40,
+                  child: Center(
+                    child: CupertinoActivityIndicator(
+                      color: ThemeColors.kWhiteTextColor,
                     ),
-            ),
-          ],
-        ),
-        floatingActionButton: MyFloatingActionButton(
-          onPressed: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: ((context) {
-                return FractionallySizedBox(
-                  heightFactor: 0.7,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: ThemeColors.kBodyColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    child: Scaffold(
-                      extendBody: true,
-                      backgroundColor: Colors
-                          .transparent, // Set the Scaffold's background to transparent
-
-                      appBar: PreferredSize(
-                        preferredSize: const Size.fromHeight(25),
-                        child: AppBar(
-                          automaticallyImplyLeading: false,
-                          leading: null,
-                          title: Platform.isIOS
-                              ? Image.asset(
-                                  "assets/images/drag_handle_ios.png",
-                                  width: 40,
-                                )
-                              : Center(
-                                  child: Image.asset(
-                                    "assets/images/drag_handle_android.png",
-                                    width: 45,
-                                  ),
-                                ),
-                          backgroundColor: Colors
-                              .transparent, // Set the AppBar's background to transparent
-                          elevation: 0,
+                  ),
+                ),
+              Expanded(
+                child: _foundUsers.isNotEmpty
+                    ? ListView.builder(
+                        controller: _scrollController,
+                        itemBuilder: (context, index) => SlemaniKonmraListItem(
+                          departments: _foundUsers,
+                          index: index,
                         ),
-                      ),
-                      body: const SingleChildScrollView(
+                        itemCount: _foundUsers.length,
+                      )
+                    : Center(
                         child: Column(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.all(25.0),
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Text(
-                                  "- ئەم لیستی کۆنمرە هی سالی (٢٠٢١-٢٠٢٢)ـە. ساڵانە نوێ دەکرێتەوە.\n\n"
-                                  "- وشەی (گشتی) واتە نمرەی پێویست بۆ قوتابیانی دەرەوی شار. ئەگەر تۆ لە سلێمانی دەژیت و دەتەوێت لە هەولێر یاخود دهۆک وەربگیرێیت ئەوا پێویستە سێری نمرەی (گشتی) بکەیت.\n\n"
-                                  "- وشەی (پارێزگا) واتە نمرەی پێویست بۆ قوتابیانی ئەو پارێزگایە(ئەو شارە). ئەگەر تۆ قوتابیەکی شاری سلێمانیت، وە خوودی بەشەکە لە سلێمانیە، ئەوا تۆ پێویستە سێری نمرەی (پارێزگا) بکەیت.\n\n"
-                                  "- ئەم ئەپڵیکەیشنە لە سەرەتای گەشەپێدان دایە، کاتێک بۆ بەشێک دەگەڕێیت تکایە چەند هەنگاوێک بگرە بەر:\n\n"
-                                  "• هەندێجار بۆ بەشێک دەگەڕێیت، وەک (ڕووپێوان)، ئەگەر بنووسیت (روبیوان) هیچ ئەنجامێک پیشان نادرێت.\n\n"
-                                  "• زیاتر لە ٥٠٠ بەش بوونی هەیە لەم ئەپڵیکەشینە، لە لایەن منی گەشەپێدەر نەنوسراون، من تەنها پیشانیان دەدەمەوە، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت لەناوی بەشەکاندا.\n\n"
-                                  "• هەندێ بەشی تێدایە، وەک تەکنەلۆجیای زانیاری، بە ناوی تریش تۆمارکراوە وەک IT. بۆیە ئاگاداری ئەوانەش بدە تکایە.\n\n"
-                                  "• هەندێ جار تۆ بۆ بەشی (پەرستاری پێنجوێن) دەگەڕێیت، کە دەنووسیت (پەرستاری) بەتەنها، هیچ دەرەنجامێکی نابێت. بەڵکوو بنووسە (پەرستاری پ) پیشان دەدرێت.\n\n"
-                                  "• ئەگەر بێزاربوویت لە سێرچ کردن(نوسینی بەشەکان) بە ڵام هیچ دەرەنجامێکی نەهێنا، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت، یاخود ئەو بەشە بە ڕێزمانێکی هەڵە نوسرابێت. پێشنیار دەکەم خۆت بگەڕێیت بەناو لیستەکەدا تاوەکوو بەشی دڵخوازت بدۆزیتەوە.\n\n"
-                                  "لەکاتی بوونی کێشە لە نمرە، ئپڵیکەیشن یاخود هەرشتێکی تر، پەیوەندی بە گەشەپێدەرەوە بکە.\n\n",
-                                  style: TextStyle(
-                                    color: ThemeColors.kWhiteTextColor,
-                                    fontFamily: "rabar_009",
-                                    fontSize: 16,
-                                  ),
-                                ),
+                            svgPicture,
+                            const Text(
+                              '! هیچ بەشێک نەدۆزرایەوە',
+                              style: TextStyle(
+                                color: ThemeColors.kWhiteTextColor,
+                                fontSize: 18,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                );
-              }),
-            );
-          },
+              ),
+            ],
+          ),
         ),
+        floatingActionButton: isFabVisible
+            ? MyFloatingActionButton(
+                onPressed: () {
+                  showCustomModalBottomSheet(context);
+                },
+              )
+            : null,
       ),
+    );
+  }
+
+  Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: ((context) {
+        return FractionallySizedBox(
+          heightFactor: 0.75,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: ThemeColors.kBodyColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: Scaffold(
+              extendBody: true,
+              backgroundColor: Colors
+                  .transparent, // Set the Scaffold's background to transparent
+
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(25),
+                child: AppBar(
+                  automaticallyImplyLeading: false,
+                  surfaceTintColor: ThemeColors.kBodyColor,
+                  leading: null,
+                  title: Platform.isIOS
+                      ? Image.asset(
+                          "assets/images/drag_handle_ios.png",
+                          width: 40,
+                        )
+                      : Center(
+                          child: Image.asset(
+                            "assets/images/drag_handle_android.png",
+                            width: 45,
+                          ),
+                        ),
+                  backgroundColor: Colors
+                      .transparent, // Set the AppBar's background to transparent
+                  elevation: 0,
+                ),
+              ),
+              body: const SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Text(
+                          "- ئەم لیستی کۆنمرە هی سالی (٢٠٢١-٢٠٢٢)ـە. ساڵانە نوێ دەکرێتەوە.\n\n"
+                          "- وشەی (گشتی) واتە نمرەی پێویست بۆ قوتابیانی دەرەوی شار. ئەگەر تۆ لە سلێمانی دەژیت و دەتەوێت لە هەولێر یاخود دهۆک وەربگیرێیت ئەوا پێویستە سێری نمرەی (گشتی) بکەیت.\n\n"
+                          "- وشەی (پارێزگا) واتە نمرەی پێویست بۆ قوتابیانی ئەو پارێزگایە(ئەو شارە). ئەگەر تۆ قوتابیەکی شاری سلێمانیت، وە خوودی بەشەکە لە سلێمانیە، ئەوا تۆ پێویستە سێری نمرەی (پارێزگا) بکەیت.\n\n"
+                          "- ئەم ئەپڵیکەیشنە لە سەرەتای گەشەپێدان دایە، کاتێک بۆ بەشێک دەگەڕێیت تکایە چەند هەنگاوێک بگرە بەر:\n\n"
+                          "• هەندێجار بۆ بەشێک دەگەڕێیت، وەک (ڕووپێوان)، ئەگەر بنووسیت (روبیوان) هیچ ئەنجامێک پیشان نادرێت.\n\n"
+                          "• زیاتر لە ٥٠٠ بەش بوونی هەیە لەم ئەپڵیکەشینە، لە لایەن منی گەشەپێدەر نەنوسراون، من تەنها پیشانیان دەدەمەوە، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت لەناوی بەشەکاندا.\n\n"
+                          "• هەندێ بەشی تێدایە، وەک تەکنەلۆجیای زانیاری، بە ناوی تریش تۆمارکراوە وەک (IT). بۆیە ئاگاداری ئەوانەش بدە تکایە.\n\n"
+                          "• هەندێ جار تۆ بۆ بەشی (پەرستاری پێنجوێن) دەگەڕێیت، کە دەنووسیت (پەرستاری) بەتەنها، هیچ دەرەنجامێکی نابێت. بەڵکوو بنووسە (پەرستاری پ) پیشان دەدرێت.\n\n"
+                          "• ئەگەر بێزاربوویت لە سێرچ کردن(نوسینی بەشەکان) بەڵام هیچ دەرەنجامێکی نەهێنا، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت، یاخود ئەو بەشە بە ڕێزمانێکی هەڵە نوسرابێت. پێشنیار دەکەم خۆت بگەڕێیت بەناو لیستەکەدا تاوەکوو بەشی دڵخوازت بدۆزیتەوە.\n\n"
+                          "لەکاتی بوونی کێشە لە نمرە، ئپڵیکەیشن یاخود هەرشتێکی تر، پەیوەندی بە گەشەپێدەرەوە بکە.\n\n",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "rabar_009",
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      }),
     );
   }
 }

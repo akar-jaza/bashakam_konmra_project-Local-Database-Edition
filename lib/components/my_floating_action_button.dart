@@ -15,13 +15,13 @@ class MyFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
       return SizedBox(
-        width: 185.0,
-        height: 60.0,
+        width: 180.0,
+        height: 55.0,
         child: CupertinoButton(
           onPressed: onPressed,
           color: ThemeColors.kBoldBlueTextColor,
           padding: EdgeInsets.zero,
-          // borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(17),
           child: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
