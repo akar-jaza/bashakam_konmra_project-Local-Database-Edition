@@ -14,6 +14,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ThemeColors.kBodyColor,
+      surfaceTintColor: ThemeColors.kBodyColor,
       title: const Center(
         child: Text(
           '🎓 بەشەکەم',

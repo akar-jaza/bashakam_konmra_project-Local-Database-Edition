@@ -24,96 +24,113 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double calculateTextFontSize(BuildContext context) {
+      final screenSize = MediaQuery.of(context).size;
+      final screenWidth = screenSize.width;
+
+      if (screenWidth < 400) {
+        return 16; // Small screen
+      } else if (screenWidth < 600) {
+        return 18; // Medium screen
+      } else {
+        return 20; // Large screen
+      }
+    }
+
     return Scaffold(
       backgroundColor: ThemeColors.kBodyColor,
       appBar: const HomePageAppBar(),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              SvgPicture.asset(
-                'assets/images/cats.svg',
-                width: 200,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                'ڕیزبەندی بکە لەگەڵ ئەپڵیکەیشنی',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: ThemeColors.kWhiteTextColor,
-                  fontFamily: 'rabarBold',
+      body: ListView(
+        children: [
+          Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 25,
                 ),
-              ),
-              const Text(
-                '🎓 بەشەکەم',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: ThemeColors.kWhiteTextColor,
-                  fontFamily: 'rabarBold',
+                SvgPicture.asset(
+                  'assets/images/cats.svg',
+                  width: MediaQuery.of(context).size.width < 700
+                      ? MediaQuery.of(context).size.width * 0.5
+                      : 270,
                 ),
-              ),
-              const SizedBox(height: 15),
-              const Text(
-                'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
-                style: TextStyle(
-                  color: ThemeColors.kGreyTextColor,
-                  fontSize: 12,
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyCard(
-                    imageAsset: 'assets/images/list3.svg',
-                    buttonTitle: 'ببینە',
+                const Text(
+                  'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت',
+                  style: TextStyle(
+                    fontSize: 18,
                     color: ThemeColors.kWhiteTextColor,
-                    text: 'کەمترین کۆنمرە',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const KamtrinKonmra()),
-                      );
-                    },
+                    fontFamily: 'rabarBold',
                   ),
-                  MyCard(
-                    imageAsset: 'assets/images/id.svg',
-                    buttonTitle: 'ببینە',
+                ),
+                Text(
+                  '🎓 ببینە',
+                  style: TextStyle(
+                    fontSize: calculateTextFontSize(context),
                     color: ThemeColors.kWhiteTextColor,
-                    text: 'نمرەکانم',
-                    onTap: () {},
+                    fontFamily: 'rabarBold',
                   ),
-                ],
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyCard(
-                    imageAsset: 'assets/images/zarabin.svg',
-                    buttonTitle: 'ببینە',
-                    color: ThemeColors.kWhiteTextColor,
-                    text: 'ڕیزبەندیەکانم',
+                ),
+                const SizedBox(height: 15),
+                Text(
+                  'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
+                  style: TextStyle(
+                    color: ThemeColors.kGreyTextColor,
+                    fontSize: calculateTextFontSize(context) - 3.5,
                   ),
-                  MyCard(
-                    imageAsset: 'assets/images/departments.svg',
-                    buttonTitle: 'ببینە',
-                    color: ThemeColors.kWhiteTextColor,
-                    text: 'بەشەکان',
-                  ),
-                ],
-              ),
-            ],
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyCard(
+                      imageAsset: 'assets/images/list3.svg',
+                      buttonTitle: 'ببینە',
+                      color: ThemeColors.kWhiteTextColor,
+                      text: 'کەمترین کۆنمرە',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const KamtrinKonmra()),
+                        );
+                      },
+                    ),
+                    MyCard(
+                      imageAsset: 'assets/images/id.svg',
+                      buttonTitle: 'ببینە',
+                      color: ThemeColors.kWhiteTextColor,
+                      text: 'نمرەکانم',
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyCard(
+                      imageAsset: 'assets/images/zarabin.svg',
+                      buttonTitle: 'ببینە',
+                      color: ThemeColors.kWhiteTextColor,
+                      text: 'ڕیزبەندیەکانم',
+                    ),
+                    MyCard(
+                      imageAsset: 'assets/images/departments.svg',
+                      buttonTitle: 'ببینە',
+                      color: ThemeColors.kWhiteTextColor,
+                      text: 'بەشەکان',
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

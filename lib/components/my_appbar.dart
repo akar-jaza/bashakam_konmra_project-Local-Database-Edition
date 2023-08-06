@@ -57,6 +57,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
+              alignment: Alignment.centerRight,
               child: Text(
                 text,
                 style: const TextStyle(color: ThemeColors.kWhiteTextColor),
