@@ -1,3 +1,4 @@
+import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/material.dart';
@@ -102,11 +103,17 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                     MyCard(
-                      imageAsset: 'assets/images/id.svg',
+                      imageAsset: 'assets/images/departments.svg',
                       buttonTitle: 'ببینە',
                       color: ThemeColors.kWhiteTextColor,
-                      text: 'نمرەکانم',
-                      onTap: () {},
+                      text: 'بەشەکان',
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const DepartmentIntroductionScreen(),
+                        ),
+                      ),
                     ),
                   ],
                 ),

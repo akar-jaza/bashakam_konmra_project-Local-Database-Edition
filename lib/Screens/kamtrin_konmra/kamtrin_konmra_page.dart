@@ -4,15 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:connectivity/connectivity.dart';
 import '../../components/my_custom_modal_bottom_sheet.dart';
 import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
 import '../../components/my_show_dialog.dart';
-import '../../helpers/hive_helper.dart';
+import '../../csv_importers/import_konmra_csv.dart';
 import '../../widgets/konmra_list_item.dart';
-import 'dart:io';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -25,7 +23,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  List<Map<String, dynamic>> departments = [];
+  List<Map<String, dynamic>> konmra = [];
   List<Map<String, dynamic>> _foundUsers = [];
 
   List<String> university = [];
@@ -46,7 +44,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   @override
   void initState() {
     super.initState();
-    checkConnectivity(context);
     _fetchData();
   }
 
@@ -60,31 +57,25 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     isLoading = true;
 
     try {
-      departments =
-          await HiveHelper.importDataFromCsv('assets/data/CSV(2021-2022).csv');
+      konmra = await ImportKonmraCsv.importDataFromCsv(
+          'assets/data/CSV(2021-2022).csv');
 
-      university =
-          departments.map((data) => data['university'] as String).toList();
-      collage = departments
-          .map((data) => data['collage_institute'] as String)
-          .toList();
+      university = konmra.map((data) => data['university'] as String).toList();
+      collage =
+          konmra.map((data) => data['collage_institute'] as String).toList();
       departmentName =
-          departments.map((data) => data['department'] as String).toList();
+          konmra.map((data) => data['department'] as String).toList();
 
-      pZankoline =
-          departments.map((data) => data['p_zankoline'] as String).toList();
-      pParallel =
-          departments.map((data) => data['p_parallel'] as String).toList();
-      pEwaran = departments.map((data) => data['p_ewaran'] as String).toList();
+      pZankoline = konmra.map((data) => data['p_zankoline'] as String).toList();
+      pParallel = konmra.map((data) => data['p_parallel'] as String).toList();
+      pEwaran = konmra.map((data) => data['p_ewaran'] as String).toList();
 
-      gZankoline =
-          departments.map((data) => data['g_zankoline'] as String).toList();
-      gParallel =
-          departments.map((data) => data['g_parallel'] as String).toList();
-      gEwaran = departments.map((data) => data['g_ewaran'] as String).toList();
+      gZankoline = konmra.map((data) => data['g_zankoline'] as String).toList();
+      gParallel = konmra.map((data) => data['g_parallel'] as String).toList();
+      gEwaran = konmra.map((data) => data['g_ewaran'] as String).toList();
 
       setState(() {
-        _foundUsers = List.from(departments);
+        _foundUsers = List.from(konmra);
       });
 
       // Print the university, collage, and department names after processing by Hive
@@ -102,20 +93,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     }
   }
 
-  Future<void> checkConnectivity(BuildContext context) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      const ConnectionDialog();
-    }
-  }
-
   void _runFilter(String enteredKeyword) {
     if (enteredKeyword.isEmpty) {
       setState(() {
-        _foundUsers = List.from(departments);
+        _foundUsers = List.from(konmra);
       });
     } else {
-      List<Map<String, dynamic>> filteredList = departments.where((data) {
+      List<Map<String, dynamic>> filteredList = konmra.where((data) {
         final departmentName = data['department'] as String;
         return departmentName.contains(enteredKeyword);
       }).toList();

@@ -3,7 +3,9 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart'; // Import the csv package
 
-class HiveHelper {
+class ImportDepartmentIntroduction {
+  ImportDepartmentIntroduction(String s);
+
   // Add the importDataFromCsv function here
   static Future<List<Map<String, dynamic>>> importDataFromCsv(String s) async {
     try {
@@ -14,18 +16,11 @@ class HiveHelper {
 
       List<Map<String, dynamic>> data = [];
 
-      for (int i = 1; i < csvTable.length; i++) {
+      for (int i = 0; i < csvTable.length; i++) {
         // Skip the header row (index 0), start from index 1
         Map<String, dynamic> rowData = {
-          'g_ewaran': csvTable[i][0].toString(),
-          'g_parallel': csvTable[i][1].toString(),
-          'g_zankoline': csvTable[i][2].toString(),
-          'p_ewaran': csvTable[i][3].toString(),
-          'p_parallel': csvTable[i][4].toString(),
-          'p_zankoline': csvTable[i][5].toString(),
-          'department': csvTable[i][6].toString(),
-          'collage_institute': csvTable[i][7].toString(),
-          'university': csvTable[i][8].toString(),
+          'departmentName': csvTable[i][0].toString(),
+          'introduction': csvTable[i][1].toString(),
         };
         data.add(rowData);
       }
