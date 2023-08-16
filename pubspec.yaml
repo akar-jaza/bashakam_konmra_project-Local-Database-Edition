@@ -86,6 +86,7 @@ flutter:
     - assets/images/drag_handle_ios.png
     - assets/images/drag_handle_android.png
     - assets/data/CSV(2021-2022).csv
+    - assets/data/bashakan_info(CSV).csv
 
 
 

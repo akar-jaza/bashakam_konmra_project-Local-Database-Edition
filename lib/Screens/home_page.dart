@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   SystemUiOverlayHelper uiOverlayFunc = SystemUiOverlayHelper();
+  String homePageTitle = "لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت";
 
   @override
   void initState() {
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       if (screenWidth < 400) {
         return 16; // Small screen
       } else if (screenWidth < 600) {
-        return 18; // Medium screen
+        return 20; // Medium screen
       } else {
         return 20; // Large screen
       }
@@ -58,30 +59,39 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text(
-                  'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: ThemeColors.kWhiteTextColor,
-                    fontFamily: 'rabarBold',
-                  ),
-                ),
-                Text(
-                  '🎓 ببینە',
-                  style: TextStyle(
-                    fontSize: calculateTextFontSize(context),
-                    color: ThemeColors.kWhiteTextColor,
-                    fontFamily: 'rabarBold',
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: RichText(
+                      text: TextSpan(
+                        children: const <TextSpan>[
+                          TextSpan(
+                            text:
+                                'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە \u{1F393}',
+                          ),
+                        ],
+                        style: TextStyle(
+                          fontSize: calculateTextFontSize(context),
+                          color: ThemeColors.kWhiteTextColor,
+                          fontFamily: 'rabarBold',
+                        ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 15),
-                Text(
-                  'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
-                  style: TextStyle(
-                    color: ThemeColors.kGreyTextColor,
-                    fontSize: calculateTextFontSize(context) - 3.5,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
+                    style: TextStyle(
+                      color: ThemeColors.kGreyTextColor,
+                      fontSize: calculateTextFontSize(context) - 4,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 30,

@@ -25,6 +25,12 @@ class _DepartmentIntroductionScreenState
 
   bool isLoading = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
   Future<void> _fetchData() async {
     isLoading = true;
 
@@ -47,7 +53,7 @@ class _DepartmentIntroductionScreenState
       // Print the university, collage, and department names after processing by Hive
       // print('Processed Data:');
       // for (var i = 0; i < departmentName.length; i++) {
-      //   print('${university[i]} / ${collage[i]} / ${departmentName[i]}');
+      //   print('${departmentName[i]} / ${introduction[i]}');
       // }
     } catch (error) {
       print('fetch data error: $error');
@@ -105,14 +111,17 @@ class _DepartmentIntroductionScreenState
                   ),
                 ),
               ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => DepartmentIntroductionListItem(
-                  departments: departmentIntroduction,
-                  index: departmentName.length,
+            if (!isLoading)
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) =>
+                      DepartmentIntroductionListItem(
+                    departments: departmentIntroduction,
+                    index: index,
+                  ),
+                  itemCount: departmentIntroduction.length,
                 ),
-              ),
-            )
+              )
           ],
         ),
       ),

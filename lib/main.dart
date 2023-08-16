@@ -8,7 +8,7 @@ import 'csv_importers/import_konmra_csv.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('konmra');
+  // await Hive.openBox('konmra');
   await Hive.openBox('departmentIntroduction');
   await ImportKonmraCsv.importDataFromCsv('assets/data/CSV(2021-2022).csv');
   await ImportDepartmentIntroduction.importDataFromCsv(

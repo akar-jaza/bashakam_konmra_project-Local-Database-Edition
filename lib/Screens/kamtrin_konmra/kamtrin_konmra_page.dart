@@ -8,7 +8,6 @@ import '../../components/my_custom_modal_bottom_sheet.dart';
 import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
-import '../../components/my_show_dialog.dart';
 import '../../csv_importers/import_konmra_csv.dart';
 import '../../widgets/konmra_list_item.dart';
 
@@ -85,7 +84,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       // }
     } catch (error) {
       print('fetch data error: $error');
-      const ConnectionDialog();
+      
     } finally {
       setState(() {
         isLoading = false;
@@ -145,7 +144,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: MyTextField(
                   textController: _textEditingController,
-                  labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
+                  labelText: 'ناوی بەش بنووسە',
                   onChanged: (value) => _runFilter(value),
                   onPressed: () {},
                 ),

@@ -17,7 +17,6 @@ class ImportDepartmentIntroduction {
       List<Map<String, dynamic>> data = [];
 
       for (int i = 0; i < csvTable.length; i++) {
-        // Skip the header row (index 0), start from index 1
         Map<String, dynamic> rowData = {
           'departmentName': csvTable[i][0].toString(),
           'introduction': csvTable[i][1].toString(),
