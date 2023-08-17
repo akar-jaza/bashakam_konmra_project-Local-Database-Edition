@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../components/my_card.dart';
@@ -105,11 +108,24 @@ class _HomePageState extends State<HomePage> {
                       color: ThemeColors.kWhiteTextColor,
                       text: 'کەمترین کۆنمرە',
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const KamtrinKonmra()),
-                        );
+                        if (Platform.isIOS) {
+                          Navigator.of(context, rootNavigator: true).push(
+                            CupertinoPageRoute<bool>(
+                              fullscreenDialog: false,
+                              builder: (BuildContext context) =>
+                                  const KamtrinKonmra(),
+                            ),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const KamtrinKonmra();
+                              },
+                            ),
+                          );
+                        }
                       },
                     ),
                     MyCard(
@@ -117,13 +133,26 @@ class _HomePageState extends State<HomePage> {
                       buttonTitle: 'ببینە',
                       color: ThemeColors.kWhiteTextColor,
                       text: 'بەشەکان',
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const DepartmentIntroductionScreen(),
-                        ),
-                      ),
+                      onTap: () {
+                        if (Platform.isIOS) {
+                          Navigator.of(context, rootNavigator: true).push(
+                            CupertinoPageRoute<bool>(
+                              fullscreenDialog: false,
+                              builder: (BuildContext context) =>
+                                  const DepartmentIntroductionScreen(),
+                            ),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const DepartmentIntroductionScreen();
+                              },
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),

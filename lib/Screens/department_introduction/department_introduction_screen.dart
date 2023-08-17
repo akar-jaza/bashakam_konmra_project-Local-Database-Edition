@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../components/my_appbar.dart';
 import '../../components/my_textfiled.dart';
 import '../../constantes/them_colors.dart';
-import '../../widgets/department_introduction_list_item.dart';
+import '../../list_items/department_introduction_list_item.dart';
 
 class DepartmentIntroductionScreen extends StatefulWidget {
   const DepartmentIntroductionScreen({super.key});
@@ -38,6 +38,10 @@ class _DepartmentIntroductionScreenState
       departmentIntroduction =
           await ImportDepartmentIntroduction.importDataFromCsv(
               'assets/data/bashakan_info(CSV).csv');
+
+      // Sort the departmentIntroduction list based on department names
+      // departmentIntroduction
+      //     .sort((a, b) => a['departmentName'].compareTo(b['departmentName']));
 
       departmentName = departmentIntroduction
           .map((data) => data['departmentName'] as String)

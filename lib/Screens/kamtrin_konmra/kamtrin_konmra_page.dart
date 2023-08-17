@@ -9,7 +9,7 @@ import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
 import '../../csv_importers/import_konmra_csv.dart';
-import '../../widgets/konmra_list_item.dart';
+import '../../list_items/konmra_list_item.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
