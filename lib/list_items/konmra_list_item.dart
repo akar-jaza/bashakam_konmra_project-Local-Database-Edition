@@ -60,7 +60,7 @@ class SlemaniKonmraListItem extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Text(
-              'پارێزگا/ $pZankoline - $pParallel - $pEwaranText',
+              'پارێزگا: ($pZankoline) - ($pParallel) - ($pEwaranText)',
               style: const TextStyle(
                 color: ThemeColors.kGreyTextColor,
                 fontSize: 13.5,
@@ -70,7 +70,7 @@ class SlemaniKonmraListItem extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'گشتی/ $gZankoline - $gParallel - $gEwaranText',
+              'گشتی: ($gZankoline) - ($gParallel) - ($gEwaranText)',
               style: const TextStyle(
                 color: ThemeColors.kGreyTextColor,
                 fontSize: 13.5,

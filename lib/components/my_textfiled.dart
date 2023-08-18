@@ -44,7 +44,8 @@ class _MyTextFieldState extends State<MyTextField> {
         cursorColor: ThemeColors.kblueColor,
         style: const TextStyle(
           color: ThemeColors.kWhiteTextColor,
-          fontFamily: 'Roboto',
+          fontFamily: 'rabarBold',
+          fontSize: 14,
           letterSpacing: 0.0,
         ),
         decoration: InputDecoration(
