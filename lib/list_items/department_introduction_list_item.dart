@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/Screens/department_introduction/Department_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,18 +45,27 @@ class DepartmentIntroductionListItem extends StatelessWidget {
 
       return Directionality(
         textDirection: TextDirection.rtl,
-        child: Expanded(
-          child: Column(
-            children: [
-              Theme(
-                data: ThemeData(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  fontFamily: "rabarBold",
-                ),
-                child: ListTile(
-                  onTap: () {
-                 
+        child: Column(
+          children: [
+            Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                fontFamily: "rabarBold",
+              ),
+              child: ListTile(
+                onTap: () {
+                  if (Platform.isIOS) {
+                    Navigator.of(context, rootNavigator: true).push(
+                      CupertinoPageRoute<bool>(
+                        fullscreenDialog: false,
+                        builder: (context) => DepartmentInfoScreen(
+                          departmentName: departmentName,
+                          introduction: departments[index]['introduction'],
+                        ),
+                      ),
+                    );
+                  } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => DepartmentInfoScreen(
@@ -63,36 +74,36 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                         ),
                       ),
                     );
-                  },
-                  visualDensity: VisualDensity.compact,
-                  contentPadding:
-                      const EdgeInsets.only(right: 20, top: 5, bottom: 5),
-                  leading: SizedBox(
-                    width: 250,
-                    child: Text(
-                      departmentName,
-                      style: TextStyle(
-                        color: ThemeColors.kWhiteTextColor,
-                        fontSize: calculateTextFontSize(context),
-                        letterSpacing: 0.0,
-                        height: 1.5,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ),
-                  trailing: const Padding(
-                    padding: EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 14,
+                  }
+                },
+                visualDensity: VisualDensity.compact,
+                contentPadding:
+                    const EdgeInsets.only(right: 20, top: 5, bottom: 5),
+                leading: SizedBox(
+                  width: 250,
+                  child: Text(
+                    departmentName,
+                    style: TextStyle(
                       color: ThemeColors.kWhiteTextColor,
+                      fontSize: calculateTextFontSize(context),
+                      letterSpacing: 0.0,
+                      height: 1.5,
                     ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+                trailing: const Padding(
+                  padding: EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 14,
+                    color: ThemeColors.kWhiteTextColor,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     }

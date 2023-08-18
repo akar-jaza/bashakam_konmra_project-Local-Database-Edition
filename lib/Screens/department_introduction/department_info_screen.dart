@@ -24,8 +24,7 @@ class DepartmentInfoScreen extends StatelessWidget {
             child: Text(
               introduction,
               style: const TextStyle(
-                color: ThemeColors.kWhiteTextColor,
-              ),
+                  color: ThemeColors.kWhiteTextColor, fontFamily: "rabarBold"),
             ),
           ),
         ),

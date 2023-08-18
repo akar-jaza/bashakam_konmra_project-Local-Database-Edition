@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../components/my_card.dart';
 import '../components/my_homepage_appbar.dart';
 import '../helpers/systemUi_overlay_helper.dart';
+import '../animations/animated_route_transition.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -136,10 +137,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         if (Platform.isIOS) {
                           Navigator.of(context, rootNavigator: true).push(
-                            CupertinoPageRoute<bool>(
-                              fullscreenDialog: false,
-                              builder: (BuildContext context) =>
-                                  const DepartmentIntroductionScreen(),
+                            createRoute(
+                              const DepartmentIntroductionScreen(),
                             ),
                           );
                         } else {
@@ -147,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const DepartmentIntroductionScreen();
+                                return const KamtrinKonmra();
                               },
                             ),
                           );

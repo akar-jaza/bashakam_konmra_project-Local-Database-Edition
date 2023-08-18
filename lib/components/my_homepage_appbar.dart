@@ -1,4 +1,6 @@
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constantes/them_colors.dart';
 
@@ -12,49 +14,54 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: ThemeColors.kBodyColor,
-      surfaceTintColor: ThemeColors.kBodyColor,
-      title: const Center(
-        child: Text(
-          '🎓 بەشەکەم',
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: AppBar(
+        backgroundColor: ThemeColors.kBodyColor,
+        surfaceTintColor: ThemeColors.kBodyColor,
+        title: const Text(
+          'بەشەکەم',
           style: TextStyle(
             fontSize: 18,
             color: ThemeColors.kWhiteTextColor,
             fontFamily: 'rabarBold',
           ),
         ),
-      ),
-      leading: Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            color: Colors.white,
-            icon: const Icon(
-              Icons.menu_outlined,
-              size: 18,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        },
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: IconButton(
-            onPressed: () {},
-            icon: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Image.asset(
-                'assets/images/flo.png',
+        leading: Builder(
+          builder: (BuildContext context) {
+            return Theme(
+              data: ThemeData(
+                splashColor: Platform.isIOS ? Colors.transparent : null,
+                highlightColor: Platform.isIOS ? Colors.transparent : null,
               ),
-            ),
-          ),
-          color: Colors.white,
+              child: IconButton(
+                color: Colors.white,
+                icon: const Icon(
+                  Icons.menu_outlined,
+                  size: 20,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            );
+          },
         ),
-      ],
+        // actions: const [
+        //   Padding(
+        //     padding: EdgeInsets.only(left: 25),
+        //     child: Text(
+        //       'بەشەکەم',
+        //       style: TextStyle(
+        //         fontSize: 18,
+        //         color: ThemeColors.kWhiteTextColor,
+        //         fontFamily: 'rabarBold',
+        //       ),
+        //     ),
+        //   ),
+        // ],
+      ),
     );
   }
 }

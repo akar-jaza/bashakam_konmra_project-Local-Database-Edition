@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../components/my_appbar.dart';
 import '../../components/my_textfiled.dart';
@@ -20,6 +23,7 @@ class _DepartmentIntroductionScreenState
   final TextEditingController _textEditingController = TextEditingController();
 
   List<Map<String, dynamic>> departmentIntroduction = [];
+  List<Map<String, dynamic>> _foundDepartment = [];
   List<String> departmentName = [];
   List<String> introduction = [];
 
@@ -50,9 +54,9 @@ class _DepartmentIntroductionScreenState
           .map((data) => data['introduction'] as String)
           .toList();
 
-      // setState(() {
-      //   _foundUsers = List.from(konmra);
-      // });
+      setState(() {
+        _foundDepartment = List.from(departmentIntroduction);
+      });
 
       // Print the university, collage, and department names after processing by Hive
       // print('Processed Data:');
@@ -69,25 +73,31 @@ class _DepartmentIntroductionScreenState
   }
 
   void _runFilter(String enteredKeyword) {
-    // if (enteredKeyword.isEmpty) {
-    //   setState(() {
-    //     _foundUsers = List.from(konmra);
-    //   });
-    // } else {
-    //   List<Map<String, dynamic>> filteredList = konmra.where((data) {
-    //     final departmentName = data['department'] as String;
-    //     return departmentName.contains(enteredKeyword);
-    //   }).toList();
+    if (enteredKeyword.isEmpty) {
+      setState(() {
+        _foundDepartment = List.from(departmentIntroduction);
+      });
+    } else {
+      List<Map<String, dynamic>> filteredList =
+          departmentIntroduction.where((data) {
+        final departmentName = data['departmentName'] as String;
+        return departmentName.contains(enteredKeyword);
+      }).toList();
 
-    //   setState(() {
-    //     _foundUsers =
-    //         filteredList; // Update the filtered list with the matching items.
-    //   });
-    // }
+      setState(() {
+        _foundDepartment =
+            filteredList; // Update the filtered list with the matching items.
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final svgPicture = SvgPicture.asset(
+      'assets/images/ListIsEmpty.svg',
+      height: 350,
+    );
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -117,15 +127,30 @@ class _DepartmentIntroductionScreenState
               ),
             if (!isLoading)
               Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) =>
-                      DepartmentIntroductionListItem(
-                    departments: departmentIntroduction,
-                    index: index,
-                  ),
-                  itemCount: departmentIntroduction.length,
-                ),
-              )
+                child: _foundDepartment.isNotEmpty
+                    ? ListView.builder(
+                        itemBuilder: (context, index) =>
+                            DepartmentIntroductionListItem(
+                          departments: _foundDepartment,
+                          index: index,
+                        ),
+                        itemCount: _foundDepartment.length,
+                      )
+                    : Center(
+                        child: Column(
+                          children: [
+                            svgPicture,
+                            const Text(
+                              '! هیچ بەشێک نەدۆزرایەوە',
+                              style: TextStyle(
+                                color: ThemeColors.kWhiteTextColor,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+              ),
           ],
         ),
       ),
