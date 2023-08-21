@@ -43,6 +43,7 @@ dependencies:
   csv: ^5.0.2
   unorm_dart: ^0.2.0
   http: ^1.1.0
+  flutter_locales: ^3.0.1 
   
 
 dev_dependencies:
@@ -87,6 +88,7 @@ flutter:
     - assets/images/drag_handle_android.png
     - assets/data/CSV(2021-2022).csv
     - assets/data/bashakan_info(CSV).csv
+    - assets/locales/ku.json
 
 
 

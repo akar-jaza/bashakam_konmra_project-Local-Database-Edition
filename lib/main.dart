@@ -1,6 +1,7 @@
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'Screens/home_page.dart';
 import 'csv_importers/import_konmra_csv.dart';
@@ -13,6 +14,8 @@ void main() async {
   await ImportKonmraCsv.importDataFromCsv('assets/data/CSV(2021-2022).csv');
   await ImportDepartmentIntroduction.importDataFromCsv(
       'assets/data/bashakan_info(CSV).csv');
+  WidgetsFlutterBinding.ensureInitialized();
+  await Locales.init(['ku']);
   runApp(const MyApp());
 }
 

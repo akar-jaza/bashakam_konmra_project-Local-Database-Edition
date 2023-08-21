@@ -62,42 +62,31 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 30,
                 ),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        children: const <TextSpan>[
-                          TextSpan(
-                            text:
-                                'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە \u{1F393}',
-                          ),
-                        ],
-                        style: TextStyle(
-                          fontSize: calculateTextFontSize(context),
-                          color: ThemeColors.kWhiteTextColor,
-                          fontFamily: 'rabarBold',
-                        ),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 15),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
+                    'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                     style: TextStyle(
-                      color: ThemeColors.kGreyTextColor,
-                      fontSize: calculateTextFontSize(context) - 4,
+                      fontSize: calculateTextFontSize(context),
+                      color: ThemeColors.kWhiteTextColor,
+                      fontFamily: 'rabarBold',
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
+                // const SizedBox(height: 15),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: Text(
+                //     'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
+                //     style: TextStyle(
+                //       color: ThemeColors.kGreyTextColor,
+                //       fontSize: calculateTextFontSize(context) - 3.5,
+                //     ),
+                //     textAlign: TextAlign.center,
+                //   ),
+                // ),
                 const SizedBox(
-                  height: 30,
+                  height: 15, //30
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const KamtrinKonmra();
+                                return const DepartmentIntroductionScreen();
                               },
                             ),
                           );
