@@ -18,14 +18,11 @@ class DepartmentInfoScreen extends StatelessWidget {
       backgroundColor: ThemeColors.kBodyColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: SingleChildScrollView(
-            child: Text(
-              introduction,
-              style: const TextStyle(
-                  color: ThemeColors.kWhiteTextColor, fontFamily: "rabarBold"),
-            ),
+        child: SingleChildScrollView(
+          child: Text(
+            introduction,
+            style: const TextStyle(
+                color: ThemeColors.kWhiteTextColor, fontFamily: "rabarBold"),
           ),
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../components/my_card.dart';
 import '../components/my_homepage_appbar.dart';
 import '../helpers/systemUi_overlay_helper.dart';
@@ -19,7 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   SystemUiOverlayHelper uiOverlayFunc = SystemUiOverlayHelper();
-  String homePageTitle = "لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت";
 
   @override
   void initState() {
@@ -145,6 +145,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

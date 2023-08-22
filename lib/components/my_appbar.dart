@@ -37,23 +37,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
             ),
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        // mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Platform.isIOS
-              ? CupertinoButton(
-                  onPressed: () {},
-                  child: Icon(
-                    cupertinoIconData,
-                    color: ThemeColors.kblueColor,
-                  ),
-                )
-              : IconButton(
-                  icon: Icon(
-                    materialIconData,
-                    color: ThemeColors.kblueColor,
-                  ),
-                  onPressed: () {},
-                ),
           Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -64,6 +49,25 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+          Platform.isIOS
+              ? CupertinoButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    cupertinoIconData,
+                    color: ThemeColors.kblueColor,
+                  ),
+                )
+              : IconButton(
+                  icon: Icon(
+                    materialIconData,
+                    color: ThemeColors.kblueColor,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
         ],
       ),
     );

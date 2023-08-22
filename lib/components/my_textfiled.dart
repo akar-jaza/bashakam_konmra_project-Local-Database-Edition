@@ -35,61 +35,58 @@ class _MyTextFieldState extends State<MyTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: TextField(
-        onChanged: widget.onChanged,
-        keyboardType: TextInputType.text,
-        controller: widget._textController,
-        cursorColor: ThemeColors.kblueColor,
-        style: const TextStyle(
-          color: ThemeColors.kWhiteTextColor,
-          fontFamily: 'rabarBold',
-          fontSize: 14,
-          letterSpacing: 0.0,
-        ),
-        decoration: InputDecoration(
-          labelText: widget.labelText,
-          suffixIcon: Platform.isIOS
-              ? const SizedBox(
-                  height: 24, // Set the desired height for the button
-                  child: Icon(
-                    CupertinoIcons.search,
-                    size: 20,
-                    color: ThemeColors
-                        .kWhiteTextColor, // Set the desired size for the icon
-                  ),
-                )
-              : const Icon(
-                  Icons.search,
-                  color: ThemeColors.kWhiteTextColor,
-                ),
-          labelStyle: const TextStyle(
-            color: ThemeColors.kGreyTextColor,
-            fontSize: 14,
-          ),
-          hintStyle: const TextStyle(
-            color: ThemeColors.kGreyTextColor,
-          ),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: ThemeColors.kGreyTextColor,
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: ThemeColors.kGreyTextColor,
-            ),
-          ),
-          fillColor: ThemeColors.kMyCardColor,
-          filled: true,
-        ),
-        enableInteractiveSelection: true,
-        textDirection: TextDirection.rtl,
-        textAlign: TextAlign.right,
+    return TextField(
+      onChanged: widget.onChanged,
+      keyboardType: TextInputType.text,
+      controller: widget._textController,
+      cursorColor: ThemeColors.kblueColor,
+      style: const TextStyle(
+        color: ThemeColors.kWhiteTextColor,
+        fontFamily: 'rabarBold',
+        fontSize: 14,
+        letterSpacing: 0.0,
       ),
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        suffixIcon: Platform.isIOS
+            ? const SizedBox(
+                height: 24, // Set the desired height for the button
+                child: Icon(
+                  CupertinoIcons.search,
+                  size: 20,
+                  color: ThemeColors
+                      .kWhiteTextColor, // Set the desired size for the icon
+                ),
+              )
+            : const Icon(
+                Icons.search,
+                color: ThemeColors.kWhiteTextColor,
+              ),
+        labelStyle: const TextStyle(
+          color: ThemeColors.kGreyTextColor,
+          fontSize: 14,
+        ),
+        hintStyle: const TextStyle(
+          color: ThemeColors.kGreyTextColor,
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ThemeColors.kGreyTextColor,
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ThemeColors.kGreyTextColor,
+          ),
+        ),
+        fillColor: ThemeColors.kMyCardColor,
+        filled: true,
+      ),
+      enableInteractiveSelection: true,
+      textDirection: TextDirection.rtl,
+      textAlign: TextAlign.right,
     );
   }
 }
