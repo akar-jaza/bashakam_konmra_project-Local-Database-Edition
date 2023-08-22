@@ -84,7 +84,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       // }
     } catch (error) {
       print('fetch data error: $error');
-      
     } finally {
       setState(() {
         isLoading = false;
@@ -189,7 +188,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         floatingActionButton: AnimatedAlign(
           duration: const Duration(milliseconds: 500),
           alignment:
-              isFabVisible ? Alignment.bottomRight : const Alignment(1, 2),
+              isFabVisible ? Alignment.bottomLeft : const Alignment(0.99, 0.99),
           curve: Curves.fastOutSlowIn,
           child: MyFloatingActionButton(
             onPressed: () {

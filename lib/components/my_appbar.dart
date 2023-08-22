@@ -24,11 +24,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: ThemeColors.kBodyColor,
       surfaceTintColor: ThemeColors.kblueColor,
       leading: Platform.isIOS
-          ? CupertinoNavigationBarBackButton(
-              color: ThemeColors.kWhiteTextColor,
-              onPressed: () {
-                Navigator.pop(context);
-              },
+          ? Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: CupertinoNavigationBarBackButton(
+                color: ThemeColors.kWhiteTextColor,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             )
           : IconButton(
               icon: const Icon(Icons.arrow_back),
@@ -36,39 +39,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pop(context);
               },
             ),
-      title: Row(
-        // mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerRight,
-              child: Text(
-                text,
-                style: const TextStyle(color: ThemeColors.kWhiteTextColor),
-              ),
-            ),
+      titleSpacing: 0,
+      title: Expanded(
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            text,
+            style: const TextStyle(color: ThemeColors.kWhiteTextColor),
           ),
-          Platform.isIOS
-              ? CupertinoButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    cupertinoIconData,
-                    color: ThemeColors.kblueColor,
-                  ),
-                )
-              : IconButton(
-                  icon: Icon(
-                    materialIconData,
-                    color: ThemeColors.kblueColor,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-        ],
+        ),
       ),
     );
   }
