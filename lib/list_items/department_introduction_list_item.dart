@@ -84,7 +84,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                   child: Text(
                     departmentName,
                     style: TextStyle(
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       fontSize: calculateTextFontSize(context),
                       letterSpacing: 0.0,
                       height: 1.5,
@@ -98,7 +98,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_back_ios_new,
                     size: 14,
-                    color: ThemeColors.kWhiteTextColor,
+                    color: ThemeColors.kBodyTextColor,
                   ),
                 ),
               ),

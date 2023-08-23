@@ -41,7 +41,7 @@ class _MyTextFieldState extends State<MyTextField> {
       controller: widget._textController,
       cursorColor: ThemeColors.kblueColor,
       style: const TextStyle(
-        color: ThemeColors.kWhiteTextColor,
+        color: ThemeColors.kBodyTextColor,
         fontFamily: 'rabarBold',
         fontSize: 14,
         letterSpacing: 0.0,
@@ -55,30 +55,30 @@ class _MyTextFieldState extends State<MyTextField> {
                   CupertinoIcons.search,
                   size: 20,
                   color: ThemeColors
-                      .kWhiteTextColor, // Set the desired size for the icon
+                      .kBodyTextColor, // Set the desired size for the icon
                 ),
               )
             : const Icon(
                 Icons.search,
-                color: ThemeColors.kWhiteTextColor,
+                color: ThemeColors.kBodyTextColor,
               ),
         labelStyle: const TextStyle(
-          color: ThemeColors.kGreyTextColor,
+          color: ThemeColors.kLightGreyTextColor,
           fontSize: 14,
         ),
         hintStyle: const TextStyle(
-          color: ThemeColors.kGreyTextColor,
+          color: ThemeColors.kLightGreyTextColor,
         ),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: ThemeColors.kGreyTextColor,
+            color: ThemeColors.kLightGreyTextColor,
           ),
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: ThemeColors.kGreyTextColor,
+            color: ThemeColors.kLightGreyTextColor,
           ),
         ),
         fillColor: ThemeColors.kMyCardColor,

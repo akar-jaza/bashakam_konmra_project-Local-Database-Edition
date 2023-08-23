@@ -37,7 +37,7 @@ class LessonCard extends StatelessWidget {
                 text,
                 textAlign: TextAlign.right,
                 style: const TextStyle(
-                  color: ThemeColors.kWhiteTextColor,
+                  color: ThemeColors.kBodyTextColor,
                   fontSize: 13,
                 ),
               ),
@@ -58,7 +58,7 @@ class LessonCard extends StatelessWidget {
                   child: const Text(
                     'گۆڕین',
                     style: TextStyle(
-                        color: ThemeColors.kGreyTextColor, fontSize: 12),
+                        color: ThemeColors.kLightGreyTextColor, fontSize: 12),
                   ),
                 ),
                 const SizedBox(

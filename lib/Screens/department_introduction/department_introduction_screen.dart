@@ -121,7 +121,7 @@ class _DepartmentIntroductionScreenState
                 height: 40,
                 child: Center(
                   child: CupertinoActivityIndicator(
-                    color: ThemeColors.kWhiteTextColor,
+                    color: ThemeColors.kBodyTextColor,
                   ),
                 ),
               ),
@@ -143,7 +143,7 @@ class _DepartmentIntroductionScreenState
                             const Text(
                               '! هیچ بەشێک نەدۆزرایەوە',
                               style: TextStyle(
-                                color: ThemeColors.kWhiteTextColor,
+                                color: ThemeColors.kBodyTextColor,
                                 fontSize: 18,
                               ),
                             ),

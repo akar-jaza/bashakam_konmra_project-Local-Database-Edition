@@ -23,7 +23,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
           'بەشەکەم \u{1F393}',
           style: TextStyle(
             fontSize: 18,
-            color: ThemeColors.kWhiteTextColor,
+            color: ThemeColors.kBodyTextColor,
             fontFamily: 'rabarBold',
           ),
         ),

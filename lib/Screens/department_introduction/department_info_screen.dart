@@ -22,7 +22,7 @@ class DepartmentInfoScreen extends StatelessWidget {
           child: Text(
             introduction,
             style: const TextStyle(
-                color: ThemeColors.kWhiteTextColor, fontFamily: "rabarBold"),
+                color: ThemeColors.kBodyTextColor, fontFamily: "rabarBold"),
           ),
         ),
       ),

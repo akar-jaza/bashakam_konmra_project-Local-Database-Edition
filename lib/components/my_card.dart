@@ -63,7 +63,7 @@ class MyCard extends StatelessWidget {
                   text,
                   textAlign: TextAlign.right,
                   style: const TextStyle(
-                    color: ThemeColors.kWhiteTextColor,
+                    color: ThemeColors.kBodyTextColor,
                     fontSize: 13,
                   ),
                 ),

@@ -3,6 +3,7 @@ import 'package:bashakam_barawzanko/csv_importers/import_department_introduction
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'Screens/home_page.dart';
 import 'csv_importers/import_konmra_csv.dart';
 
@@ -28,7 +29,12 @@ void main() async {
 
   await Locales.init(['fa']);
 
-  runApp(const MyApp());
+  runApp(
+    ThemeProvider(
+      
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

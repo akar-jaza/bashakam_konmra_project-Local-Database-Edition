@@ -53,11 +53,14 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 25,
                 ),
-                SvgPicture.asset(
-                  'assets/images/cats.svg',
-                  width: MediaQuery.of(context).size.width < 700
-                      ? MediaQuery.of(context).size.width * 0.5
-                      : 270,
+                GestureDetector(
+                  onTap: () {},
+                  child: SvgPicture.asset(
+                    'assets/images/cats.svg',
+                    width: MediaQuery.of(context).size.width < 700
+                        ? MediaQuery.of(context).size.width * 0.5
+                        : 270,
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -68,24 +71,24 @@ class _HomePageState extends State<HomePage> {
                     'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                     style: TextStyle(
                       fontSize: calculateTextFontSize(context),
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       fontFamily: 'rabarBold',
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                // const SizedBox(height: 15),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: Text(
-                //     'ڕیزبەندی بکە، ڕیزبەندیەکانت ببینە، زانیاری لەسەر بەشەکان ببینە',
-                //     style: TextStyle(
-                //       color: ThemeColors.kGreyTextColor,
-                //       fontSize: calculateTextFontSize(context) - 3.5,
-                //     ),
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
+                    style: TextStyle(
+                      color: ThemeColors.kLightGreyTextColor,
+                      fontSize: calculateTextFontSize(context) - 4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 const SizedBox(
                   height: 15, //30
                 ),
@@ -95,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                     MyCard(
                       imageAsset: 'assets/images/list3.svg',
                       buttonTitle: 'ببینە',
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       text: 'کەمترین کۆنمرە',
                       onTap: () {
                         if (Platform.isIOS) {
@@ -121,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                     MyCard(
                       imageAsset: 'assets/images/departments.svg',
                       buttonTitle: 'ببینە',
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       text: 'بەشەکان',
                       onTap: () {
                         if (Platform.isIOS) {
@@ -146,20 +149,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MyCard(
                       imageAsset: 'assets/images/zarabin.svg',
                       buttonTitle: 'ببینە',
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       text: 'ڕیزبەندیەکانم',
                     ),
                     MyCard(
                       imageAsset: 'assets/images/departments.svg',
                       buttonTitle: 'ببینە',
-                      color: ThemeColors.kWhiteTextColor,
+                      color: ThemeColors.kBodyTextColor,
                       text: 'بەشەکان',
                     ),
                   ],
