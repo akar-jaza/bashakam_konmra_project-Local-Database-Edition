@@ -2,6 +2,31 @@
 
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
+class ThemeClass {
+  Color lightPrimaryColor = const Color(0xFF445E91); //kblueColor
+  Color darkPrimaryColor = const Color(0xFFADC6FF); //kblueColor
+
+  static ThemeData lightTheme = ThemeData(
+    primaryColor: ThemeData.light().scaffoldBackgroundColor,
+    colorScheme: const ColorScheme.light().copyWith(
+      primary: ThemeClass().lightPrimaryColor,
+    ),
+    // colorSchemeSeed: ColorScheme(
+    //     brightness: brightness,
+    //     primary: primary,
+    //     onPrimary: onPrimary,
+    //     secondary: secondary,
+    //     onSecondary: onSecondary,
+    //     error: error,
+    //     onError: onError,
+    //     background: background,
+    //     onBackground: onBackground,
+    //     surface: surface,
+    //     onSurface: onSurface)
+  );
+}
 
 class ThemeColors {
   static const Color kBodyColor = Color(0xFF1B1B1F);

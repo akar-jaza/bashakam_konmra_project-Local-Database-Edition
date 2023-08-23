@@ -31,7 +31,6 @@ void main() async {
 
   runApp(
     ThemeProvider(
-      
       child: const MyApp(),
     ),
   );
