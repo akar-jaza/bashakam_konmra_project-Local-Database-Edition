@@ -99,12 +99,24 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     } else {
       List<Map<String, dynamic>> filteredList = konmra.where((data) {
         final departmentName = data['department'] as String;
-        return departmentName.contains(enteredKeyword);
+        final pZankoline = data['p_zankoline'] as String;
+        final pParallel = data['p_parallel'] as String;
+        final pEwaran = data['p_ewaran'] as String;
+        final gZankoline = data['g_zankoline'] as String;
+        final gParallel = data['g_parallel'] as String;
+        final gEwaran = data['g_ewaran'] as String;
+
+        return departmentName.contains(enteredKeyword) ||
+            pZankoline.contains(enteredKeyword) ||
+            pParallel.contains(enteredKeyword) ||
+            pEwaran.contains(enteredKeyword) ||
+            gZankoline.contains(enteredKeyword) ||
+            gParallel.contains(enteredKeyword) ||
+            gEwaran.contains(enteredKeyword);
       }).toList();
 
       setState(() {
-        _foundUsers =
-            filteredList; // Update the filtered list with the matching items.
+        _foundUsers = filteredList;
       });
     }
   }
@@ -143,7 +155,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: MyTextField(
                   textController: _textEditingController,
-                  labelText: 'ناوی بەش بنووسە',
+                  labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
                   onChanged: (value) => _runFilter(value),
                   onPressed: () {},
                 ),
@@ -161,7 +173,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                 child: _foundUsers.isNotEmpty
                     ? ListView.builder(
                         controller: _scrollController,
-                        itemBuilder: (context, index) => SlemaniKonmraListItem(
+                        itemBuilder: (context, index) => KonmraListItem(
                           departments: _foundUsers,
                           index: index,
                         ),
@@ -185,15 +197,19 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             ],
           ),
         ),
-        floatingActionButton: AnimatedAlign(
-          duration: const Duration(milliseconds: 500),
-          alignment:
-              isFabVisible ? Alignment.bottomLeft : const Alignment(0.99, 0.99),
-          curve: Curves.fastOutSlowIn,
-          child: MyFloatingActionButton(
-            onPressed: () {
-              showCustomModalBottomSheet(context);
-            },
+        floatingActionButton: Directionality(
+          textDirection: TextDirection.ltr,
+          child: AnimatedAlign(
+            duration: const Duration(milliseconds: 500),
+            alignment: isFabVisible
+                ? Alignment.bottomLeft
+                : const Alignment(-1.0, 2.0),
+            curve: Curves.fastOutSlowIn,
+            child: MyFloatingActionButton(
+              onPressed: () {
+                showCustomModalBottomSheet(context);
+              },
+            ),
           ),
         ),
       ),

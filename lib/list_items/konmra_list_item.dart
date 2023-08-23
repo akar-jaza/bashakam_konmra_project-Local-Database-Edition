@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 
-class SlemaniKonmraListItem extends StatelessWidget {
+class KonmraListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
   final int index;
 
-  const SlemaniKonmraListItem({
+  const KonmraListItem({
     Key? key,
     required this.departments,
     required this.index,

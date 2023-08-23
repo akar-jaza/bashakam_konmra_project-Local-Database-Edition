@@ -37,30 +37,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LocaleBuilder(
-      builder: (local) => MaterialApp(
-        localizationsDelegates: Locales.delegates,
-        supportedLocales: Locales.supportedLocales,
-        locale: local,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          fontFamily: 'rabarBold',
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: ThemeColors.kblueColor,
+      builder: (local) => TooltipVisibility(
+        visible: false,
+        child: MaterialApp(
+          localizationsDelegates: Locales.delegates,
+          supportedLocales: Locales.supportedLocales,
+          locale: local,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            fontFamily: 'rabarBold',
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              primary: ThemeColors.kblueColor,
+            ),
+            textTheme: const TextTheme(
+              bodyLarge: TextStyle(
+                letterSpacing: 0.0,
+              ),
+              bodyMedium: TextStyle(
+                letterSpacing: 0.0,
+              ),
+              labelLarge: TextStyle(
+                letterSpacing: 0.0,
+              ),
+            ),
           ),
-          textTheme: const TextTheme(
-            bodyLarge: TextStyle(
-              letterSpacing: 0.0,
-            ),
-            bodyMedium: TextStyle(
-              letterSpacing: 0.0,
-            ),
-            labelLarge: TextStyle(
-              letterSpacing: 0.0,
-            ),
-          ),
+          home: const HomePage(),
         ),
-        home: const HomePage(),
       ),
     );
   }

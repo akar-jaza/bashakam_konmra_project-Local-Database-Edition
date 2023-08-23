@@ -71,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                       color: ThemeColors.kWhiteTextColor,
                       fontFamily: 'rabarBold',
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 // const SizedBox(height: 15),
