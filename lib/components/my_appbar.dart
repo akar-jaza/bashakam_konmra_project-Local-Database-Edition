@@ -40,14 +40,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
             ),
       titleSpacing: 0,
-      title: Expanded(
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.centerLeft,
-          child: Text(
-            text,
-            style: const TextStyle(color: ThemeColors.kBodyTextColor),
-          ),
+      title: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: const TextStyle(color: ThemeColors.kBodyTextColor),
         ),
       ),
     );
