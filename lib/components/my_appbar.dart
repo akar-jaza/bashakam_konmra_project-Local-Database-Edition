@@ -20,32 +20,20 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: const IconThemeData(color: ThemeColors.kBodyTextColor),
+      iconTheme: const IconThemeData(
+        color: ThemeColors.kBodyTextColor,
+      ),
       backgroundColor: ThemeColors.kBodyColor,
       surfaceTintColor: ThemeColors.kblueColor,
-      leading: Platform.isIOS
-          ? Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: CupertinoNavigationBarBackButton(
-                color: ThemeColors.kBodyTextColor,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            )
-          : IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
       titleSpacing: 0,
       title: FittedBox(
         fit: BoxFit.scaleDown,
-        alignment: Alignment.centerLeft,
+        // alignment: Alignment.centerLeft,
         child: Text(
           text,
-          style: const TextStyle(color: ThemeColors.kBodyTextColor),
+          style: const TextStyle(
+            color: ThemeColors.kBodyTextColor,
+          ),
         ),
       ),
     );

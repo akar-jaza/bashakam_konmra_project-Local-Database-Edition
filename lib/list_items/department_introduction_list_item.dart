@@ -9,8 +9,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
   final int index;
 
-  const DepartmentIntroductionListItem(
-    void unfocus, {
+  const DepartmentIntroductionListItem({
     Key? key,
     required this.departments,
     required this.index,

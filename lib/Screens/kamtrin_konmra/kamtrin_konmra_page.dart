@@ -125,7 +125,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   Widget build(BuildContext context) {
     final svgPicture = SvgPicture.asset(
       'assets/images/ListIsEmpty.svg',
-      height: 350,
+      height: 300,
     );
 
     return GestureDetector(
@@ -183,11 +183,14 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         child: Column(
                           children: [
                             svgPicture,
-                            const Text(
-                              '! هیچ بەشێک نەدۆزرایەوە',
-                              style: TextStyle(
-                                color: ThemeColors.kBodyTextColor,
-                                fontSize: 18,
+                            const Directionality(
+                              textDirection: TextDirection.ltr,
+                              child:  Text(
+                                '! هیچ بەشێک نەدۆزرایەوە',
+                                style: TextStyle(
+                                  color: ThemeColors.kBodyTextColor,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                           ],

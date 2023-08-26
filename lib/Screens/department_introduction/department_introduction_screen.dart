@@ -137,7 +137,6 @@ class _DepartmentIntroductionScreenState
                     ? ListView.builder(
                         itemBuilder: (context, index) =>
                             DepartmentIntroductionListItem(
-                          FocusManager.instance.primaryFocus?.unfocus(),
                           departments: _foundDepartment,
                           index: index,
                         ),

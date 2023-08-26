@@ -50,12 +50,12 @@ class _MyTextFieldState extends State<MyTextField> {
         labelText: widget.labelText,
         suffixIcon: Platform.isIOS
             ? const SizedBox(
-                height: 24, // Set the desired height for the button
+                height: 24,
                 child: Icon(
                   CupertinoIcons.search,
                   size: 20,
                   color: ThemeColors
-                      .kBodyTextColor, // Set the desired size for the icon
+                      .kBodyTextColor,
                 ),
               )
             : const Icon(
