@@ -17,12 +17,20 @@ class DepartmentInfoScreen extends StatelessWidget {
       appBar: MyAppBar(text: departmentName),
       backgroundColor: ThemeColors.kBodyColor,
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Text(
-            introduction,
-            style: const TextStyle(
-                color: ThemeColors.kBodyTextColor, fontFamily: "rabarBold"),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Theme(
+          data: ThemeData(
+            useMaterial3: false,
+          ),
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Text(
+                introduction,
+                style: const TextStyle(
+                    color: ThemeColors.kBodyTextColor, fontFamily: "rabarBold"),
+              ),
+            ],
           ),
         ),
       ),

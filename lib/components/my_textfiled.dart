@@ -85,8 +85,9 @@ class _MyTextFieldState extends State<MyTextField> {
         filled: true,
       ),
       enableInteractiveSelection: true,
-      textDirection: TextDirection.rtl,
-      textAlign: TextAlign.right,
+
+      // textDirection: TextDirection.rtl,
+      // textAlign: TextAlign.right,
     );
   }
 }

@@ -9,7 +9,8 @@ class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
   final int index;
 
-  const DepartmentIntroductionListItem({
+  const DepartmentIntroductionListItem(
+    void unfocus, {
     Key? key,
     required this.departments,
     required this.index,
@@ -43,68 +44,65 @@ class DepartmentIntroductionListItem extends StatelessWidget {
       final departmentData = departments[index];
       final departmentName = departmentData['departmentName'];
 
-      return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Column(
-          children: [
-            Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                fontFamily: "rabarBold",
-              ),
-              child: ListTile(
-                onTap: () {
-                  if (Platform.isIOS) {
-                    Navigator.of(context, rootNavigator: true).push(
-                      CupertinoPageRoute<bool>(
-                        fullscreenDialog: false,
-                        builder: (context) => DepartmentInfoScreen(
-                          departmentName: departmentName,
-                          introduction: departments[index]['introduction'],
-                        ),
+      return Column(
+        children: [
+          Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              fontFamily: "rabarBold",
+            ),
+            child: ListTile(
+              onTap: () {
+                if (Platform.isIOS) {
+                  Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute<bool>(
+                      fullscreenDialog: false,
+                      builder: (context) => DepartmentInfoScreen(
+                        departmentName: departmentName,
+                        introduction: departments[index]['introduction'],
                       ),
-                    );
-                  } else {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => DepartmentInfoScreen(
-                          departmentName: departmentName,
-                          introduction: departments[index]['introduction'],
-                        ),
-                      ),
-                    );
-                  }
-                },
-                visualDensity: VisualDensity.compact,
-                contentPadding:
-                    const EdgeInsets.only(right: 20, top: 5, bottom: 5),
-                leading: SizedBox(
-                  width: 250,
-                  child: Text(
-                    departmentName,
-                    style: TextStyle(
-                      color: ThemeColors.kBodyTextColor,
-                      fontSize: calculateTextFontSize(context),
-                      letterSpacing: 0.0,
-                      height: 1.5,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                ),
-                trailing: const Padding(
-                  padding: EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 14,
+                  );
+                } else {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DepartmentInfoScreen(
+                        departmentName: departmentName,
+                        introduction: departments[index]['introduction'],
+                      ),
+                    ),
+                  );
+                }
+              },
+              visualDensity: VisualDensity.compact,
+              contentPadding:
+                  const EdgeInsets.only(right: 20, top: 5, bottom: 5),
+              leading: SizedBox(
+                width: 250,
+                child: Text(
+                  departmentName,
+                  style: TextStyle(
                     color: ThemeColors.kBodyTextColor,
+                    fontSize: calculateTextFontSize(context),
+                    letterSpacing: 0.0,
+                    height: 1.5,
                   ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ),
+              trailing: const Padding(
+                padding: EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 14,
+                  color: ThemeColors.kBodyTextColor,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     }
   }

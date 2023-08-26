@@ -35,6 +35,12 @@ class _DepartmentIntroductionScreenState
     _fetchData();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _textEditingController.dispose();
+  }
+
   Future<void> _fetchData() async {
     isLoading = true;
 
@@ -95,7 +101,7 @@ class _DepartmentIntroductionScreenState
   Widget build(BuildContext context) {
     final svgPicture = SvgPicture.asset(
       'assets/images/ListIsEmpty.svg',
-      height: 350,
+      height: 300,
     );
 
     return GestureDetector(
@@ -131,6 +137,7 @@ class _DepartmentIntroductionScreenState
                     ? ListView.builder(
                         itemBuilder: (context, index) =>
                             DepartmentIntroductionListItem(
+                          FocusManager.instance.primaryFocus?.unfocus(),
                           departments: _foundDepartment,
                           index: index,
                         ),
@@ -140,11 +147,15 @@ class _DepartmentIntroductionScreenState
                         child: Column(
                           children: [
                             svgPicture,
-                            const Text(
-                              '! هیچ بەشێک نەدۆزرایەوە',
-                              style: TextStyle(
-                                color: ThemeColors.kBodyTextColor,
-                                fontSize: 18,
+                            const Directionality(
+                              // To ensure correct text ordering in Kurdish (RTL), we're using Directionality widget.
+                              textDirection: TextDirection.ltr,
+                              child: Text(
+                                '!هیچ بەشێک نەدۆزرایەوە',
+                                style: TextStyle(
+                                  color: ThemeColors.kBodyTextColor,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                           ],

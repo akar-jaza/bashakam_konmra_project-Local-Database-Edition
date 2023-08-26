@@ -11,9 +11,9 @@ import 'csv_importers/import_konmra_csv.dart';
 // -------------------------------------------------
 // This section addresses the RTL layout for the Kurdish (ku) locale.
 // Since the Flutter team doesn't natively support Kurdish, the "ku" locale
-// might trigger a warning. We use Farsi (fa) locale settings to fix this issue.
+// might trigger a warning. We use Farsi (ar) locale settings to fix this issue.
 
-// Important: This app is Kurdish, not Farsi. Farsi is used for proper RTL support.
+// Important: This app is Kurdish, not arabic. Arabic is used for proper RTL support.
 // -------------------------------------------------
 
 void main() async {
@@ -27,7 +27,7 @@ void main() async {
       'assets/data/bashakan_info(CSV).csv');
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Locales.init(['fa']);
+  await Locales.init(['ar']);
 
   runApp(
     ThemeProvider(
