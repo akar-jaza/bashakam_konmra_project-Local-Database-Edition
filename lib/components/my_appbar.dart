@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,10 +26,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: FittedBox(
         fit: BoxFit.scaleDown,
         // alignment: Alignment.centerLeft,
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: ThemeColors.kBodyTextColor,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: ThemeColors.kBodyTextColor,
+            ),
           ),
         ),
       ),
