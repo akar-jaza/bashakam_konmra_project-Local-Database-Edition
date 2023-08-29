@@ -163,145 +163,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     Platform.isIOS
                         ? CupertinoButton(
                             onPressed: () {
-                              showModalBottomSheet<void>(
-                                backgroundColor: ThemeColors.kMyCardColor,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return StatefulBuilder(
-                                    builder: (BuildContext context,
-                                        void Function(void Function())
-                                            setState) {
-                                      return SizedBox(
-                                        height: 300,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Center(
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 15),
-                                                child: Text(
-                                                  "گەڕان بەپێی شار",
-                                                  style: TextStyle(
-                                                      color: ThemeColors
-                                                          .kBodyTextColor,
-                                                      fontSize: 16),
-                                                ),
-                                              ),
-                                            ),
-                                            CheckboxListTile(
-                                              title: const Text(
-                                                "سلێمانی",
-                                                style: TextStyle(
-                                                  color: ThemeColors
-                                                      .kBodyTextColor,
-                                                ),
-                                              ),
-                                              controlAffinity:
-                                                  ListTileControlAffinity
-                                                      .leading,
-                                              value: _slemaniIsChecked,
-                                              onChanged: ((value) {
-                                                setState(() {
-                                                  _slemaniIsChecked = value!;
-                                                  print(value);
-                                                });
-                                              }),
-                                              activeColor: ThemeColors
-                                                  .kBoldBlueTextColor,
-                                              checkColor:
-                                                  ThemeColors.kBodyTextColor,
-                                              side: _slemaniIsChecked
-                                                  ? null
-                                                  : MaterialStateBorderSide
-                                                      .resolveWith(
-                                                      (states) =>
-                                                          const BorderSide(
-                                                        width: 1.0,
-                                                        color: ThemeColors
-                                                            .kBodyTextColor,
-                                                      ),
-                                                    ),
-                                            ),
-                                            // const Divider(
-                                            //   height: 0,
-                                            //   color: Color.fromARGB(
-                                            //       72, 197, 198, 209),
-                                            // ),
-                                            CheckboxListTile(
-                                              title: const Text(
-                                                "هەولێر",
-                                                style: TextStyle(
-                                                  color: ThemeColors
-                                                      .kBodyTextColor,
-                                                ),
-                                              ),
-                                              controlAffinity:
-                                                  ListTileControlAffinity
-                                                      .leading,
-                                              value: _hawlerIsChecked,
-                                              onChanged: ((value) {
-                                                setState(() {
-                                                  _hawlerIsChecked = value!;
-                                                });
-                                              }),
-                                              activeColor: ThemeColors
-                                                  .kBoldBlueTextColor,
-                                              checkColor:
-                                                  ThemeColors.kBodyTextColor,
-                                              side: _hawlerIsChecked
-                                                  ? null
-                                                  : MaterialStateBorderSide
-                                                      .resolveWith(
-                                                      (states) =>
-                                                          const BorderSide(
-                                                        width: 1.0,
-                                                        color: ThemeColors
-                                                            .kBodyTextColor,
-                                                      ),
-                                                    ),
-                                            ),
-
-                                            CheckboxListTile(
-                                              title: const Text(
-                                                "دهۆک",
-                                                style: TextStyle(
-                                                  color: ThemeColors
-                                                      .kBodyTextColor,
-                                                ),
-                                              ),
-                                              controlAffinity:
-                                                  ListTileControlAffinity
-                                                      .leading,
-                                              value: _duhokIsChecked,
-                                              onChanged: ((value) {
-                                                setState(() {
-                                                  _duhokIsChecked = value!;
-                                                });
-                                              }),
-                                              activeColor: ThemeColors
-                                                  .kBoldBlueTextColor,
-                                              checkColor:
-                                                  ThemeColors.kBodyTextColor,
-                                              side: _duhokIsChecked
-                                                  ? null
-                                                  : MaterialStateBorderSide
-                                                      .resolveWith(
-                                                      (states) =>
-                                                          const BorderSide(
-                                                        width: 1.0,
-                                                        color: ThemeColors
-                                                            .kBodyTextColor,
-                                                      ),
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              );
+                              filterByCityModalBottomSheet(context);
                             },
                             child: const Icon(
                               CupertinoIcons.slider_horizontal_3,
@@ -311,7 +173,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         : Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: IconButton(
-                              onPressed: (() {}),
+                              onPressed: (() {
+                                filterByCityModalBottomSheet(context);
+                              }),
                               icon: const Icon(
                                 Icons.tune_outlined,
                                 size: 26,
@@ -387,6 +251,127 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> filterByCityModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet<void>(
+      backgroundColor: ThemeColors.kMyCardColor,
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            return SizedBox(
+              height: 300,
+              child: Theme(
+                data: ThemeData(
+                  splashColor: Platform.isIOS ? Colors.transparent : null,
+                  highlightColor: Platform.isIOS ? Colors.transparent : null,
+                  fontFamily: "rabarBold",
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          "گەڕان بەپێی شار",
+                          style: TextStyle(
+                              color: ThemeColors.kBodyTextColor, fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    CheckboxListTile(
+                      title: const Text(
+                        "سلێمانی",
+                        style: TextStyle(
+                          color: ThemeColors.kBodyTextColor,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _slemaniIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _slemaniIsChecked = value!;
+                          print(value);
+                        });
+                      }),
+                      activeColor: ThemeColors.kBoldBlueTextColor,
+                      checkColor: ThemeColors.kBodyTextColor,
+                      side: _slemaniIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => const BorderSide(
+                                width: 1.0,
+                                color: ThemeColors.kBodyTextColor,
+                              ),
+                            ),
+                    ),
+                    // const Divider(
+                    //   height: 0,
+                    //   color: Color.fromARGB(
+                    //       72, 197, 198, 209),
+                    // ),
+                    CheckboxListTile(
+                      title: const Text(
+                        "هەولێر",
+                        style: TextStyle(
+                          color: ThemeColors.kBodyTextColor,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _hawlerIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _hawlerIsChecked = value!;
+                        });
+                      }),
+                      activeColor: ThemeColors.kBoldBlueTextColor,
+                      checkColor: ThemeColors.kBodyTextColor,
+                      side: _hawlerIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => const BorderSide(
+                                width: 1.0,
+                                color: ThemeColors.kBodyTextColor,
+                              ),
+                            ),
+                    ),
+
+                    CheckboxListTile(
+                      title: const Text(
+                        "دهۆک",
+                        style: TextStyle(
+                          color: ThemeColors.kBodyTextColor,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _duhokIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _duhokIsChecked = value!;
+                        });
+                      }),
+                      activeColor: ThemeColors.kBoldBlueTextColor,
+                      checkColor: ThemeColors.kBodyTextColor,
+                      side: _duhokIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => const BorderSide(
+                                width: 1.0,
+                                color: ThemeColors.kBodyTextColor,
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
