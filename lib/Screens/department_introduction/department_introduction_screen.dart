@@ -49,10 +49,6 @@ class _DepartmentIntroductionScreenState
           await ImportDepartmentIntroduction.importDataFromCsv(
               'assets/data/bashakan_info(CSV).csv');
 
-      // Sort the departmentIntroduction list based on department names
-      // departmentIntroduction
-      //     .sort((a, b) => a['departmentName'].compareTo(b['departmentName']));
-
       departmentName = departmentIntroduction
           .map((data) => data['departmentName'] as String)
           .toList();
@@ -63,12 +59,6 @@ class _DepartmentIntroductionScreenState
       setState(() {
         _foundDepartment = List.from(departmentIntroduction);
       });
-
-      // Print the university, collage, and department names after processing by Hive
-      // print('Processed Data:');
-      // for (var i = 0; i < departmentName.length; i++) {
-      //   print('${departmentName[i]} / ${introduction[i]}');
-      // }
     } catch (error) {
       print('fetch data error: $error');
     } finally {

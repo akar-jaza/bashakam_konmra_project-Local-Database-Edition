@@ -1,11 +1,14 @@
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:theme_provider/theme_provider.dart';
 import 'Screens/home_page.dart';
-import 'csv_importers/import_konmra_csv.dart';
+import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
 // Note: Handling RTL Layout for Kurdish (ku) Locale
 // -------------------------------------------------
@@ -18,15 +21,27 @@ import 'csv_importers/import_konmra_csv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Hive.initFlutter();
-  // await Hive.openBox('konmra');
+
+  await Hive.openBox('konmra');
+  await Hive.openBox('slemaniKonmra');
+  await Hive.openBox('hawlerKonmra');
+  await Hive.openBox('duhokKonmra');
+
   await Hive.openBox('departmentIntroduction');
+
+  await ImportSlemaniKonmraCsv.importDataFromCsv(
+      'assets/data/2022_2023/slemani_2022_2023.csv');
+  await ImportHawlerKonmraCsv.importDataFromCsv(
+      'assets/data/2022_2023/hawler_2022_2023.csv');
+  await ImportDuhokKonmraCsv.importDataFromCsv(
+      'assets/data/2022_2023/duhok_2022_2023.csv');
+
   await ImportKonmraCsv.importDataFromCsv('assets/data/CSV(2021-2022).csv');
   await ImportDepartmentIntroduction.importDataFromCsv(
       'assets/data/bashakan_info(CSV).csv');
-  WidgetsFlutterBinding.ensureInitialized();
 
+  WidgetsFlutterBinding.ensureInitialized();
   await Locales.init(['ar']);
 
   runApp(

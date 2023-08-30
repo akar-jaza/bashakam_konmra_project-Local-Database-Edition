@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,7 +11,7 @@ import '../../components/my_custom_modal_bottom_sheet.dart';
 import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
-import '../../csv_importers/import_konmra_csv.dart';
+import '../../csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 import '../../list_items/konmra_list_item.dart';
 
 class KamtrinKonmra extends StatefulWidget {
@@ -24,32 +25,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  List<Map<String, dynamic>> konmra = [];
-  List<Map<String, dynamic>> _foundUsers = [];
-
-  List<String> university = [];
-  List<String> collage = [];
-  List<String> departmentName = [];
-
-  List<String> pZankoline = [];
-  List<String> pParallel = [];
-  List<String> pEwaran = [];
-
-  List<String> gZankoline = [];
-  List<String> gParallel = [];
-  List<String> gEwaran = [];
-
-  bool isLoading = false;
-  bool _slemaniIsChecked = false;
-  bool _hawlerIsChecked = false;
-  bool _duhokIsChecked = false;
-
-  bool isFabVisible = true;
-
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    _fetchSlemaniData();
+    _fetchHawlerData();
+    _fetchDuhokData();
+    _foundUsers = List.from(konmra);
   }
 
   @override
@@ -58,36 +40,184 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     super.dispose();
   }
 
-  Future<void> _fetchData() async {
+  List<Map<String, dynamic>> konmra = [];
+  List<Map<String, dynamic>> _foundUsers = [];
+
+  List<Map<String, dynamic>> slemaniKonmra = [],
+      hawlerKonmra = [],
+      duhokKonmra = [];
+
+  List<Map<String, dynamic>> _slemaniFoundUsers = [],
+      _hawlerFoundUsers = [],
+      _duhokFoundUsers = [];
+
+  List<String> university = [],
+      collage = [],
+      departmentName = [],
+      pZankoline = [],
+      pParallel = [],
+      pEwaran = [],
+      gZankoline = [],
+      gParallel = [],
+      gEwaran = [];
+
+  List<String> slemaniUniversity = [],
+      slemaniCollage = [],
+      slemaniDepartmentName = [],
+      slemanipZankoline = [],
+      slemanipParallel = [],
+      slemanipEwaran = [],
+      slemanigZankoline = [],
+      slemanigParallel = [],
+      slemanigEwaran = [];
+
+  List<String> hawlerUniversity = [],
+      hawlerCollage = [],
+      hawlerDepartmentName = [],
+      hawlerpZankoline = [],
+      hawlerpParallel = [],
+      hawlerpEwaran = [],
+      hawlergZankoline = [],
+      hawlergParallel = [],
+      hawlergEwaran = [];
+
+  List<String> duhokUniversity = [],
+      duhokCollage = [],
+      duhokDepartmentName = [],
+      duhokpZankoline = [],
+      duhokpParallel = [],
+      duhokpEwaran = [],
+      duhokgZankoline = [],
+      duhokgParallel = [],
+      duhokgEwaran = [];
+
+  bool isLoading = false;
+  bool _slemaniIsChecked = true;
+  bool _hawlerIsChecked = true;
+  bool _duhokIsChecked = true;
+
+  bool isFabVisible = true;
+
+  Future<void> _fetchSlemaniData() async {
     isLoading = true;
 
     try {
-      konmra = await ImportKonmraCsv.importDataFromCsv(
-          'assets/data/CSV(2021-2022).csv');
+      slemaniKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
+          'assets/data/2022_2023/slemani_2022_2023.csv');
 
-      university = konmra.map((data) => data['university'] as String).toList();
-      collage =
-          konmra.map((data) => data['collage_institute'] as String).toList();
-      departmentName =
-          konmra.map((data) => data['department'] as String).toList();
+      slemaniUniversity =
+          slemaniKonmra.map((data) => data['university'] as String).toList();
+      slemaniCollage = slemaniKonmra
+          .map((data) => data['collage_institute'] as String)
+          .toList();
+      slemaniDepartmentName =
+          slemaniKonmra.map((data) => data['department'] as String).toList();
 
-      pZankoline = konmra.map((data) => data['p_zankoline'] as String).toList();
-      pParallel = konmra.map((data) => data['p_parallel'] as String).toList();
-      pEwaran = konmra.map((data) => data['p_ewaran'] as String).toList();
+      slemanipZankoline =
+          slemaniKonmra.map((data) => data['p_zankoline'] as String).toList();
+      slemanipParallel =
+          slemaniKonmra.map((data) => data['p_parallel'] as String).toList();
+      slemanipEwaran =
+          slemaniKonmra.map((data) => data['p_ewaran'] as String).toList();
 
-      gZankoline = konmra.map((data) => data['g_zankoline'] as String).toList();
-      gParallel = konmra.map((data) => data['g_parallel'] as String).toList();
-      gEwaran = konmra.map((data) => data['g_ewaran'] as String).toList();
+      slemanigZankoline =
+          slemaniKonmra.map((data) => data['g_zankoline'] as String).toList();
+      slemanigParallel =
+          slemaniKonmra.map((data) => data['g_parallel'] as String).toList();
+      slemanigEwaran =
+          slemaniKonmra.map((data) => data['g_ewaran'] as String).toList();
 
       setState(() {
+        konmra.addAll(slemaniKonmra);
+        _slemaniFoundUsers = List.from(slemaniKonmra);
         _foundUsers = List.from(konmra);
       });
+    } catch (error) {
+      print('fetch data error: $error');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
-      // Print the university, collage, and department names after processing by Hive
-      // print('Processed Data:');
-      // for (var i = 0; i < departmentName.length; i++) {
-      //   print('${university[i]} / ${collage[i]} / ${departmentName[i]}');
-      // }
+  Future<void> _fetchHawlerData() async {
+    isLoading = true;
+
+    try {
+      hawlerKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
+          'assets/data/2022_2023/slemani_2022_2023.csv');
+
+      hawlerUniversity =
+          hawlerKonmra.map((data) => data['university'] as String).toList();
+      hawlerCollage = hawlerKonmra
+          .map((data) => data['collage_institute'] as String)
+          .toList();
+      hawlerDepartmentName =
+          hawlerKonmra.map((data) => data['department'] as String).toList();
+
+      hawlerpZankoline =
+          hawlerKonmra.map((data) => data['p_zankoline'] as String).toList();
+      hawlerpParallel =
+          hawlerKonmra.map((data) => data['p_parallel'] as String).toList();
+      hawlerpEwaran =
+          hawlerKonmra.map((data) => data['p_ewaran'] as String).toList();
+
+      hawlergZankoline =
+          hawlerKonmra.map((data) => data['g_zankoline'] as String).toList();
+      hawlergParallel =
+          hawlerKonmra.map((data) => data['g_parallel'] as String).toList();
+      hawlergEwaran =
+          hawlerKonmra.map((data) => data['g_ewaran'] as String).toList();
+
+      setState(() {
+        konmra.addAll(hawlerKonmra);
+        _foundUsers = List.from(konmra);
+        _hawlerFoundUsers = List.from(hawlerKonmra);
+      });
+    } catch (error) {
+      print('fetch data error: $error');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _fetchDuhokData() async {
+    isLoading = true;
+
+    try {
+      duhokKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
+          'assets/data/2022_2023/slemani_2022_2023.csv');
+
+      duhokUniversity =
+          duhokKonmra.map((data) => data['university'] as String).toList();
+      duhokCollage = duhokKonmra
+          .map((data) => data['collage_institute'] as String)
+          .toList();
+      duhokDepartmentName =
+          duhokKonmra.map((data) => data['department'] as String).toList();
+
+      duhokpZankoline =
+          duhokKonmra.map((data) => data['p_zankoline'] as String).toList();
+      duhokpParallel =
+          duhokKonmra.map((data) => data['p_parallel'] as String).toList();
+      duhokpEwaran =
+          duhokKonmra.map((data) => data['p_ewaran'] as String).toList();
+
+      duhokgZankoline =
+          duhokKonmra.map((data) => data['g_zankoline'] as String).toList();
+      duhokgParallel =
+          duhokKonmra.map((data) => data['g_parallel'] as String).toList();
+      duhokgEwaran =
+          duhokKonmra.map((data) => data['g_ewaran'] as String).toList();
+
+      setState(() {
+        konmra.addAll(duhokKonmra);
+        _foundUsers = List.from(konmra);
+        _duhokFoundUsers = List.from(duhokKonmra);
+      });
     } catch (error) {
       print('fetch data error: $error');
     } finally {
@@ -99,8 +229,18 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   void _runFilter(String enteredKeyword) {
     if (enteredKeyword.isEmpty) {
+      List<Map<String, dynamic>> filteredList = [];
+      if (_slemaniIsChecked) {
+        filteredList.addAll(_slemaniFoundUsers);
+      }
+      if (_hawlerIsChecked) {
+        filteredList.addAll(_hawlerFoundUsers);
+      }
+      if (_duhokIsChecked) {
+        filteredList.addAll(_duhokFoundUsers);
+      }
       setState(() {
-        _foundUsers = List.from(konmra);
+        _foundUsers = filteredList;
       });
     } else {
       List<Map<String, dynamic>> filteredList = konmra.where((data) {
@@ -259,117 +399,121 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       backgroundColor: ThemeColors.kMyCardColor,
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder:
-              (BuildContext context, void Function(void Function()) setState) {
-            return SizedBox(
-              height: 300,
-              child: Theme(
-                data: ThemeData(
-                  splashColor: Platform.isIOS ? Colors.transparent : null,
-                  highlightColor: Platform.isIOS ? Colors.transparent : null,
-                  fontFamily: "rabarBold",
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          "گەڕان بەپێی شار",
+        return Theme(
+          data: ThemeData(useMaterial3: true),
+          child: StatefulBuilder(
+            builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return SizedBox(
+                height: 260,
+                child: Theme(
+                  data: ThemeData(
+                    splashColor: Platform.isIOS ? Colors.transparent : null,
+                    highlightColor: Platform.isIOS ? Colors.transparent : null,
+                    fontFamily: "rabarBold",
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Text(
+                            "گەڕان بەپێی شار",
+                            style: TextStyle(
+                                color: ThemeColors.kBodyTextColor,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      CheckboxListTile(
+                        title: const Text(
+                          "سلێمانی",
                           style: TextStyle(
-                              color: ThemeColors.kBodyTextColor, fontSize: 16),
+                            color: ThemeColors.kBodyTextColor,
+                          ),
                         ),
-                      ),
-                    ),
-                    CheckboxListTile(
-                      title: const Text(
-                        "سلێمانی",
-                        style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
-                        ),
-                      ),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: _slemaniIsChecked,
-                      onChanged: ((value) {
-                        setState(() {
-                          _slemaniIsChecked = value!;
-                          print(value);
-                        });
-                      }),
-                      activeColor: ThemeColors.kBoldBlueTextColor,
-                      checkColor: ThemeColors.kBodyTextColor,
-                      side: _slemaniIsChecked
-                          ? null
-                          : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
-                                width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        value: _slemaniIsChecked,
+                        onChanged: ((value) {
+                          setState(() {
+                            _slemaniIsChecked = value!;
+                            print(value);
+                          });
+                        }),
+                        activeColor: ThemeColors.kBoldBlueTextColor,
+                        checkColor: ThemeColors.kBodyTextColor,
+                        side: _slemaniIsChecked
+                            ? null
+                            : MaterialStateBorderSide.resolveWith(
+                                (states) => const BorderSide(
+                                  width: 1.0,
+                                  color: ThemeColors.kBodyTextColor,
+                                ),
                               ),
-                            ),
-                    ),
-                    // const Divider(
-                    //   height: 0,
-                    //   color: Color.fromARGB(
-                    //       72, 197, 198, 209),
-                    // ),
-                    CheckboxListTile(
-                      title: const Text(
-                        "هەولێر",
-                        style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
-                        ),
                       ),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: _hawlerIsChecked,
-                      onChanged: ((value) {
-                        setState(() {
-                          _hawlerIsChecked = value!;
-                        });
-                      }),
-                      activeColor: ThemeColors.kBoldBlueTextColor,
-                      checkColor: ThemeColors.kBodyTextColor,
-                      side: _hawlerIsChecked
-                          ? null
-                          : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
-                                width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                      // const Divider(
+                      //   height: 0,
+                      //   color: Color.fromARGB(
+                      //       72, 197, 198, 209),
+                      // ),
+                      CheckboxListTile(
+                        title: const Text(
+                          "هەولێر",
+                          style: TextStyle(
+                            color: ThemeColors.kBodyTextColor,
+                          ),
+                        ),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        value: _hawlerIsChecked,
+                        onChanged: ((value) {
+                          setState(() {
+                            _hawlerIsChecked = value!;
+                          });
+                        }),
+                        activeColor: ThemeColors.kBoldBlueTextColor,
+                        checkColor: ThemeColors.kBodyTextColor,
+                        side: _hawlerIsChecked
+                            ? null
+                            : MaterialStateBorderSide.resolveWith(
+                                (states) => const BorderSide(
+                                  width: 1.0,
+                                  color: ThemeColors.kBodyTextColor,
+                                ),
                               ),
-                            ),
-                    ),
+                      ),
 
-                    CheckboxListTile(
-                      title: const Text(
-                        "دهۆک",
-                        style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
+                      CheckboxListTile(
+                        title: const Text(
+                          "دهۆک",
+                          style: TextStyle(
+                            color: ThemeColors.kBodyTextColor,
+                          ),
                         ),
-                      ),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: _duhokIsChecked,
-                      onChanged: ((value) {
-                        setState(() {
-                          _duhokIsChecked = value!;
-                        });
-                      }),
-                      activeColor: ThemeColors.kBoldBlueTextColor,
-                      checkColor: ThemeColors.kBodyTextColor,
-                      side: _duhokIsChecked
-                          ? null
-                          : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
-                                width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        value: _duhokIsChecked,
+                        onChanged: ((value) {
+                          setState(() {
+                            _duhokIsChecked = value!;
+                          });
+                        }),
+                        activeColor: ThemeColors.kBoldBlueTextColor,
+                        checkColor: ThemeColors.kBodyTextColor,
+                        side: _duhokIsChecked
+                            ? null
+                            : MaterialStateBorderSide.resolveWith(
+                                (states) => const BorderSide(
+                                  width: 1.0,
+                                  color: ThemeColors.kBodyTextColor,
+                                ),
                               ),
-                            ),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         );
       },
     );
