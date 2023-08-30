@@ -452,11 +452,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                 ),
                               ),
                       ),
-                      // const Divider(
-                      //   height: 0,
-                      //   color: Color.fromARGB(
-                      //       72, 197, 198, 209),
-                      // ),
                       CheckboxListTile(
                         title: const Text(
                           "هەولێر",
@@ -482,7 +477,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                 ),
                               ),
                       ),
-
                       CheckboxListTile(
                         title: const Text(
                           "دهۆک",
