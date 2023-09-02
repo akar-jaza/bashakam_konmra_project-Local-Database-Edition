@@ -2,6 +2,8 @@
 import 'dart:io';
 
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
+import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     _fetchSlemaniData();
     _fetchHawlerData();
     _fetchDuhokData();
-    _foundUsers = List.from(konmra);
+    // _foundUsers = List.from(konmra);
   }
 
   @override
@@ -145,8 +147,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     isLoading = true;
 
     try {
-      hawlerKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
-          'assets/data/2022_2023/slemani_2022_2023.csv');
+      hawlerKonmra = await ImportHawlerKonmraCsv.importDataFromCsv(
+          'assets/data/2022_2023/hawler_2022_2023.csv');
 
       hawlerUniversity =
           hawlerKonmra.map((data) => data['university'] as String).toList();
@@ -172,7 +174,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
       setState(() {
         konmra.addAll(hawlerKonmra);
-        _foundUsers = List.from(konmra);
+        _foundUsers = List.from(hawlerKonmra);
         _hawlerFoundUsers = List.from(hawlerKonmra);
       });
     } catch (error) {
@@ -188,8 +190,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     isLoading = true;
 
     try {
-      duhokKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
-          'assets/data/2022_2023/slemani_2022_2023.csv');
+      duhokKonmra = await ImportDuhokKonmraCsv.importDataFromCsv(
+          'assets/data/2022_2023/duhok_2022_2023.csv');
 
       duhokUniversity =
           duhokKonmra.map((data) => data['university'] as String).toList();
@@ -262,6 +264,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       }).toList();
 
       setState(() {
+        print(filteredList);
         _foundUsers = filteredList;
       });
     }
@@ -438,7 +441,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         onChanged: ((value) {
                           setState(() {
                             _slemaniIsChecked = value!;
-                            print(value);
                           });
                         }),
                         activeColor: ThemeColors.kBoldBlueTextColor,
