@@ -343,39 +343,18 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 20, left: 20),
+                padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    Platform.isIOS
-                        ? CupertinoButton(
-                            onPressed: () {
-                              filterByCityModalBottomSheet(context);
-                            },
-                            child: const Icon(
-                              CupertinoIcons.slider_horizontal_3,
-                              color: ThemeColors.kBodyTextColor,
-                            ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: IconButton(
-                              onPressed: (() {
-                                filterByCityModalBottomSheet(context);
-                              }),
-                              icon: const Icon(
-                                Icons.tune_outlined,
-                                size: 26,
-                                color: ThemeColors.kBodyTextColor,
-                              ),
-                            ),
-                          ),
                     Expanded(
                       flex: 2,
                       child: MyTextField(
                         textController: _textEditingController,
                         labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
                         onChanged: (value) => _runFilter(value),
-                        onPressed: () {},
+                        onPressed: () {
+                          filterByCityModalBottomSheet(context);
+                        },
                       ),
                     ),
                   ],

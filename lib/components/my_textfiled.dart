@@ -23,20 +23,17 @@ class MyTextField extends StatefulWidget {
 }
 
 class _MyTextFieldState extends State<MyTextField> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  bool isTextFieldActive = false;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: widget.onChanged,
+      onChanged: (value) {
+        setState(() {
+          isTextFieldActive = value.isNotEmpty;
+        });
+        widget.onChanged?.call(value); // Call the onChanged callback
+      },
       keyboardType: TextInputType.text,
       controller: widget._textController,
       cursorColor: ThemeColors.kblueColor,
@@ -48,19 +45,52 @@ class _MyTextFieldState extends State<MyTextField> {
       ),
       decoration: InputDecoration(
         labelText: widget.labelText,
+        prefixIcon: AnimatedSwitcher(
+          switchInCurve: Curves.linearToEaseOut,
+          switchOutCurve: Curves.linearToEaseOut,
+          duration: const Duration(milliseconds: 200),
+          child: isTextFieldActive
+              ? IconButton(
+                  onPressed: () {
+                    widget._textController.clear();
+                    setState(() {
+                      isTextFieldActive = false;
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.clear,
+                    color: ThemeColors.kBodyTextColor,
+                  ),
+                )
+              : Platform.isIOS
+                  ? const Icon(
+                      CupertinoIcons.search,
+                      size: 20,
+                      color: ThemeColors.kBodyTextColor,
+                    )
+                  : const Icon(
+                      Icons.search,
+                      color: ThemeColors.kBodyTextColor,
+                    ),
+        ),
         suffixIcon: Platform.isIOS
-            ? const SizedBox(
-                height: 24,
-                child: Icon(
-                  CupertinoIcons.search,
-                  size: 20,
-                  color: ThemeColors
-                      .kBodyTextColor,
+            ? CupertinoButton(
+                onPressed: widget.onPressed,
+                child: const Icon(
+                  CupertinoIcons.slider_horizontal_3,
+                  color: ThemeColors.kBodyTextColor,
                 ),
               )
-            : const Icon(
-                Icons.search,
-                color: ThemeColors.kBodyTextColor,
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: IconButton(
+                  onPressed: widget.onPressed,
+                  icon: const Icon(
+                    Icons.tune_outlined,
+                    size: 26,
+                    color: ThemeColors.kBodyTextColor,
+                  ),
+                ),
               ),
         labelStyle: const TextStyle(
           color: ThemeColors.kLightGreyTextColor,
@@ -69,8 +99,8 @@ class _MyTextFieldState extends State<MyTextField> {
         hintStyle: const TextStyle(
           color: ThemeColors.kLightGreyTextColor,
         ),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        contentPadding: const EdgeInsets.symmetric(
+            vertical: 15, horizontal: 10), // Adjust padding here
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: ThemeColors.kLightGreyTextColor,
@@ -85,9 +115,6 @@ class _MyTextFieldState extends State<MyTextField> {
         filled: true,
       ),
       enableInteractiveSelection: true,
-
-      // textDirection: TextDirection.rtl,
-      // textAlign: TextAlign.right,
     );
   }
 }
