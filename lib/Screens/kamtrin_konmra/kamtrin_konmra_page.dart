@@ -100,6 +100,51 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   bool isFabVisible = true;
 
+  Future<void> fetchDataBasedOnCheckboxes() async {
+    isLoading = true;
+
+    // Clear existing data
+    konmra.clear();
+    _foundUsers.clear();
+
+    try {
+      if (_slemaniIsChecked) {
+        await _fetchSlemaniData();
+      }
+      if (_hawlerIsChecked) {
+        await _fetchHawlerData();
+      }
+      if (_duhokIsChecked) {
+        await _fetchDuhokData();
+      }
+
+      // Combine the fetched data from different cities if needed
+      if (_slemaniIsChecked) {
+        konmra.addAll(slemaniKonmra);
+      }
+      if (_hawlerIsChecked) {
+        konmra.addAll(hawlerKonmra);
+      }
+      if (_duhokIsChecked) {
+        konmra.addAll(duhokKonmra);
+      }
+
+      // Update _foundUsers based on filtered data if any filter is applied
+      if (_textEditingController.text.isNotEmpty) {
+        _runFilter(_textEditingController.text);
+      } else {
+        // No filter, just use the combined data from different cities
+        _foundUsers = List.from(konmra);
+      }
+    } catch (error) {
+      print('fetch data error: $error');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   Future<void> _fetchSlemaniData() async {
     isLoading = true;
 
@@ -230,22 +275,21 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   }
 
   void _runFilter(String enteredKeyword) {
-    if (enteredKeyword.isEmpty) {
-      List<Map<String, dynamic>> filteredList = [];
-      if (_slemaniIsChecked) {
-        filteredList.addAll(_slemaniFoundUsers);
-      }
-      if (_hawlerIsChecked) {
-        filteredList.addAll(_hawlerFoundUsers);
-      }
-      if (_duhokIsChecked) {
-        filteredList.addAll(_duhokFoundUsers);
-      }
-      setState(() {
-        _foundUsers = filteredList;
-      });
-    } else {
-      List<Map<String, dynamic>> filteredList = konmra.where((data) {
+    List<Map<String, dynamic>> filteredList = [];
+
+    if (_slemaniIsChecked) {
+      filteredList.addAll(slemaniKonmra);
+    }
+    if (_hawlerIsChecked) {
+      filteredList.addAll(hawlerKonmra);
+    }
+    if (_duhokIsChecked) {
+      filteredList.addAll(duhokKonmra);
+    }
+
+    // Apply the text filter if needed
+    if (enteredKeyword.isNotEmpty) {
+      filteredList = filteredList.where((data) {
         final departmentName = data['department'] as String;
         final pZankoline = data['p_zankoline'] as String;
         final pParallel = data['p_parallel'] as String;
@@ -262,12 +306,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             gParallel.contains(enteredKeyword) ||
             gEwaran.contains(enteredKeyword);
       }).toList();
-
-      setState(() {
-        print(filteredList);
-        _foundUsers = filteredList;
-      });
     }
+
+    setState(() {
+      _foundUsers = filteredList;
+    });
   }
 
   @override
@@ -441,10 +484,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         onChanged: ((value) {
                           setState(() {
                             _slemaniIsChecked = value!;
+                            _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: ThemeColors.kBoldBlueTextColor,
-                        checkColor: ThemeColors.kBodyTextColor,
+                        activeColor: ThemeColors.kblueColor,
+                        checkColor: ThemeColors.kBodyColor,
                         side: _slemaniIsChecked
                             ? null
                             : MaterialStateBorderSide.resolveWith(
@@ -453,6 +497,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                   color: ThemeColors.kBodyTextColor,
                                 ),
                               ),
+                        checkboxShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                       CheckboxListTile(
                         title: const Text(
@@ -466,10 +512,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         onChanged: ((value) {
                           setState(() {
                             _hawlerIsChecked = value!;
+                            _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: ThemeColors.kBoldBlueTextColor,
-                        checkColor: ThemeColors.kBodyTextColor,
+                        activeColor: ThemeColors.kblueColor,
+                        checkColor: ThemeColors.kBodyColor,
                         side: _hawlerIsChecked
                             ? null
                             : MaterialStateBorderSide.resolveWith(
@@ -478,6 +525,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                   color: ThemeColors.kBodyTextColor,
                                 ),
                               ),
+                        checkboxShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                       CheckboxListTile(
                         title: const Text(
@@ -491,10 +540,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         onChanged: ((value) {
                           setState(() {
                             _duhokIsChecked = value!;
+                            _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: ThemeColors.kBoldBlueTextColor,
-                        checkColor: ThemeColors.kBodyTextColor,
+                        activeColor: ThemeColors.kblueColor,
+                        checkColor: ThemeColors.kBodyColor,
                         side: _duhokIsChecked
                             ? null
                             : MaterialStateBorderSide.resolveWith(
@@ -503,6 +553,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                   color: ThemeColors.kBodyTextColor,
                                 ),
                               ),
+                        checkboxShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                     ],
                   ),
