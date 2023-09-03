@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_print
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
@@ -13,8 +14,8 @@ import '../../components/my_custom_modal_bottom_sheet.dart';
 import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
 import '../../components/my_appbar.dart';
-import '../../csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 import '../../list_items/konmra_list_item.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -26,6 +27,8 @@ class KamtrinKonmra extends StatefulWidget {
 class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  late StreamSubscription<bool> keyboardSubscription;
+  bool isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -33,12 +36,20 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     _fetchSlemaniData();
     _fetchHawlerData();
     _fetchDuhokData();
-    // _foundUsers = List.from(konmra);
+
+    var keyboardVisibilityController = KeyboardVisibilityController();
+    keyboardSubscription =
+        keyboardVisibilityController.onChange.listen((bool visible) {
+      isKeyboardVisible = visible;
+    });
+    isKeyboardVisible = false;
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    keyboardSubscription.cancel();
+
     super.dispose();
   }
 
@@ -94,20 +105,28 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       duhokgEwaran = [];
 
   bool isLoading = false;
-  bool _slemaniIsChecked = true;
-  bool _hawlerIsChecked = true;
-  bool _duhokIsChecked = true;
+  bool _slemaniIsChecked = false;
+  bool _hawlerIsChecked = false;
+  bool _duhokIsChecked = false;
 
   bool isFabVisible = true;
 
   Future<void> fetchDataBasedOnCheckboxes() async {
     isLoading = true;
 
-    // Clear existing data
     konmra.clear();
     _foundUsers.clear();
 
     try {
+      if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
+        await _fetchSlemaniData();
+        await _fetchHawlerData();
+        await _fetchDuhokData();
+        konmra.addAll(slemaniKonmra);
+        konmra.addAll(hawlerKonmra);
+        konmra.addAll(duhokKonmra);
+        _foundUsers = List.from(konmra);
+      }
       if (_slemaniIsChecked) {
         await _fetchSlemaniData();
       }
@@ -118,7 +137,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         await _fetchDuhokData();
       }
 
-      // Combine the fetched data from different cities if needed
       if (_slemaniIsChecked) {
         konmra.addAll(slemaniKonmra);
       }
@@ -129,11 +147,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
         konmra.addAll(duhokKonmra);
       }
 
-      // Update _foundUsers based on filtered data if any filter is applied
       if (_textEditingController.text.isNotEmpty) {
         _runFilter(_textEditingController.text);
       } else {
-        // No filter, just use the combined data from different cities
         _foundUsers = List.from(konmra);
       }
     } catch (error) {
@@ -323,99 +339,133 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: ThemeColors.kBodyColor,
-        appBar: const MyAppBar(
-          text: 'کەمترین کۆنمرەی وەرگیراو',
-        ),
-        body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            if (notification.direction == ScrollDirection.forward) {
-              setState(() {
-                isFabVisible = true;
-              });
-            } else if (notification.direction == ScrollDirection.reverse) {
-              setState(() {
-                isFabVisible = false;
-              });
-            }
-            return true;
-          },
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: MyTextField(
-                        textController: _textEditingController,
-                        labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
-                        onChanged: (value) => _runFilter(value),
-                        onPressed: () {
-                          filterByCityModalBottomSheet(context);
-                        },
+          backgroundColor: ThemeColors.kBodyColor,
+          appBar: const MyAppBar(
+            text: 'کەمترین کۆنمرەی وەرگیراو',
+          ),
+          body: NotificationListener<UserScrollNotification>(
+            onNotification: (notification) {
+              if (notification.direction == ScrollDirection.forward) {
+                setState(() {
+                  isFabVisible = true;
+                });
+              } else if (notification.direction == ScrollDirection.reverse) {
+                setState(() {
+                  isFabVisible = false;
+                });
+              }
+              return true;
+            },
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: MyTextField(
+                          textController: _textEditingController,
+                          labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
+                          onChanged: (value) {
+                            setState(() {
+                              if (MediaQuery.of(context).viewInsets.bottom >
+                                  0.0) {
+                              } else {
+                                isFabVisible = true;
+                              }
+                            });
+                            _runFilter(value);
+                          },
+                          onPressed: () {},
+                          suffixIcon: Platform.isIOS
+                              ? CupertinoButton(
+                                  onPressed: (() =>
+                                      filterByCityModalBottomSheet(context)),
+                                  child: const Icon(
+                                    CupertinoIcons.slider_horizontal_3,
+                                    color: ThemeColors.kBodyTextColor,
+                                  ),
+                                )
+                              : Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  child: IconButton(
+                                    onPressed: () =>
+                                        filterByCityModalBottomSheet(context),
+                                    icon: const Icon(
+                                      Icons.tune_outlined,
+                                      size: 26,
+                                      color: ThemeColors.kBodyTextColor,
+                                    ),
+                                  ),
+                                ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              if (isLoading)
-                const SizedBox(
-                  height: 40,
-                  child: Center(
-                    child: CupertinoActivityIndicator(
-                      color: ThemeColors.kBodyTextColor,
-                    ),
+                    ],
                   ),
                 ),
-              Expanded(
-                child: _foundUsers.isNotEmpty
-                    ? ListView.builder(
-                        controller: _scrollController,
-                        itemBuilder: (context, index) => KonmraListItem(
-                          departments: _foundUsers,
-                          index: index,
-                        ),
-                        itemCount: _foundUsers.length,
-                      )
-                    : Center(
-                        child: Column(
-                          children: [
-                            svgPicture,
-                            const Directionality(
-                              textDirection: TextDirection.ltr,
-                              child: Text(
-                                '! هیچ بەشێک نەدۆزرایەوە',
-                                style: TextStyle(
-                                  color: ThemeColors.kBodyTextColor,
-                                  fontSize: 18,
+                if (isLoading)
+                  const SizedBox(
+                    height: 40,
+                    child: Center(
+                      child: CupertinoActivityIndicator(
+                        color: ThemeColors.kBodyTextColor,
+                      ),
+                    ),
+                  ),
+                Expanded(
+                  child: _foundUsers.isNotEmpty
+                      ? ListView.builder(
+                          keyboardDismissBehavior:
+                              ScrollViewKeyboardDismissBehavior.onDrag,
+                          controller: _scrollController,
+                          itemBuilder: (context, index) => KonmraListItem(
+                            departments: _foundUsers,
+                            index: index,
+                          ),
+                          itemCount: _foundUsers.length,
+                        )
+                      : Center(
+                          child: Column(
+                            children: [
+                              svgPicture,
+                              const Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: Text(
+                                  '! هیچ بەشێک نەدۆزرایەوە',
+                                  style: TextStyle(
+                                    color: ThemeColors.kBodyTextColor,
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: Directionality(
-          textDirection: TextDirection.ltr,
-          child: AnimatedAlign(
-            duration: const Duration(milliseconds: 500),
-            alignment: isFabVisible
-                ? Alignment.bottomLeft
-                : const Alignment(-1.0, 2.0),
-            curve: Curves.fastOutSlowIn,
-            child: MyFloatingActionButton(
-              onPressed: () {
-                showCustomModalBottomSheet(context);
-              },
+                ),
+              ],
             ),
           ),
-        ),
-      ),
+          floatingActionButton: AnimatedOpacity(
+            opacity: isKeyboardVisible ? 0.0 : 1.0,
+            duration: const Duration(milliseconds: 50),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: AnimatedAlign(
+                duration: const Duration(milliseconds: 500),
+                alignment: isFabVisible
+                    ? Alignment.bottomLeft
+                    : const Alignment(-1.0, 2.0),
+                curve: Curves.fastOutSlowIn,
+                child: MyFloatingActionButton(
+                  onPressed: () {
+                    showCustomModalBottomSheet(context);
+                  },
+                ),
+              ),
+            ),
+          )),
     );
   }
 

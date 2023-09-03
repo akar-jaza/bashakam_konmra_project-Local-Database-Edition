@@ -6,6 +6,8 @@ import 'dart:io';
 class MyTextField extends StatefulWidget {
   const MyTextField({
     Key? key,
+    this.suffixIcon,
+    this.isTextFieldActive,
     required TextEditingController textController,
     required this.labelText,
     required this.onPressed,
@@ -15,8 +17,10 @@ class MyTextField extends StatefulWidget {
 
   final TextEditingController _textController;
   final String labelText;
+  final Widget? suffixIcon;
   final void Function()? onPressed;
   final void Function(String)? onChanged;
+  final bool? isTextFieldActive;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -73,25 +77,7 @@ class _MyTextFieldState extends State<MyTextField> {
                       color: ThemeColors.kBodyTextColor,
                     ),
         ),
-        suffixIcon: Platform.isIOS
-            ? CupertinoButton(
-                onPressed: widget.onPressed,
-                child: const Icon(
-                  CupertinoIcons.slider_horizontal_3,
-                  color: ThemeColors.kBodyTextColor,
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: IconButton(
-                  onPressed: widget.onPressed,
-                  icon: const Icon(
-                    Icons.tune_outlined,
-                    size: 26,
-                    color: ThemeColors.kBodyTextColor,
-                  ),
-                ),
-              ),
+        suffixIcon: widget.suffixIcon,
         labelStyle: const TextStyle(
           color: ThemeColors.kLightGreyTextColor,
           fontSize: 14,

@@ -40,10 +40,10 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.1.0
   csv: ^5.0.2
-  # unorm_dart: ^0.2.0
   flutter_locales: ^3.0.1 
   theme_provider: ^0.6.0
-#  modal_bottom_sheet: ^2.1.2
+  flutter_keyboard_visibility: ^5.4.1
+
 
 dev_dependencies:
   flutter_test:
