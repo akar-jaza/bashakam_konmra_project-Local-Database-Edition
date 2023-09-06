@@ -29,7 +29,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   late StreamSubscription<bool> keyboardSubscription;
-  bool isKeyboardVisible = false;
+  bool _isKeyboardVisible = false;
+  bool _isLoading = false;
+  bool _slemaniIsChecked = false;
+  bool _hawlerIsChecked = false;
+  bool _duhokIsChecked = false;
+
+  bool _isFabVisible = true;
 
   @override
   void initState() {
@@ -41,9 +47,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     var keyboardVisibilityController = KeyboardVisibilityController();
     keyboardSubscription =
         keyboardVisibilityController.onChange.listen((bool visible) {
-      isKeyboardVisible = visible;
+      _isKeyboardVisible = visible;
     });
-    isKeyboardVisible = false;
+    _isKeyboardVisible = false;
   }
 
   @override
@@ -105,13 +111,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       duhokgParallel = [],
       duhokgEwaran = [];
 
-  bool isLoading = false;
-  bool _slemaniIsChecked = false;
-  bool _hawlerIsChecked = false;
-  bool _duhokIsChecked = false;
-
-  bool isFabVisible = true;
-
   // Future<void> fetchDataBasedOnCheckboxes() async {
   //   isLoading = true;
 
@@ -155,7 +154,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   // }
 
   Future<void> _fetchSlemaniData() async {
-    isLoading = true;
+    _isLoading = true;
 
     try {
       slemaniKonmra = await ImportSlemaniKonmraCsv.importDataFromCsv(
@@ -192,13 +191,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       print('fetch data error: $error');
     } finally {
       setState(() {
-        isLoading = false;
+        _isLoading = false;
       });
     }
   }
 
   Future<void> _fetchHawlerData() async {
-    isLoading = true;
+    _isLoading = true;
 
     try {
       hawlerKonmra = await ImportHawlerKonmraCsv.importDataFromCsv(
@@ -235,13 +234,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       print('fetch data error: $error');
     } finally {
       setState(() {
-        isLoading = false;
+        _isLoading = false;
       });
     }
   }
 
   Future<void> _fetchDuhokData() async {
-    isLoading = true;
+    _isLoading = true;
 
     try {
       duhokKonmra = await ImportDuhokKonmraCsv.importDataFromCsv(
@@ -278,7 +277,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       print('fetch data error: $error');
     } finally {
       setState(() {
-        isLoading = false;
+        _isLoading = false;
       });
     }
   }
@@ -345,11 +344,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             onNotification: (notification) {
               if (notification.direction == ScrollDirection.forward) {
                 setState(() {
-                  isFabVisible = true;
+                  _isFabVisible = true;
                 });
               } else if (notification.direction == ScrollDirection.reverse) {
                 setState(() {
-                  isFabVisible = false;
+                  _isFabVisible = false;
                 });
               }
               return true;
@@ -370,7 +369,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                               if (MediaQuery.of(context).viewInsets.bottom >
                                   0.0) {
                               } else {
-                                isFabVisible = true;
+                                _isFabVisible = true;
                               }
                             });
                             _runFilter(value);
@@ -415,7 +414,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     ],
                   ),
                 ),
-                if (isLoading)
+                if (_isLoading)
                   const SizedBox(
                     height: 40,
                     child: Center(
@@ -458,19 +457,21 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             ),
           ),
           floatingActionButton: AnimatedOpacity(
-            opacity: isKeyboardVisible ? 0.0 : 1.0,
+            opacity: _isKeyboardVisible ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 50),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: AnimatedAlign(
                 duration: const Duration(milliseconds: 500),
-                alignment: isFabVisible
+                alignment: _isFabVisible
                     ? Alignment.bottomLeft
                     : const Alignment(-1.0, 2.0),
                 curve: Curves.fastOutSlowIn,
                 child: MyFloatingActionButton(
                   onPressed: () {
-                    showCustomModalBottomSheet(context);
+                    _isKeyboardVisible
+                        ? null
+                        : showCustomModalBottomSheet(context);
                   },
                 ),
               ),
