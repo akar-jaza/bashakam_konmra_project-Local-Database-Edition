@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/components/filter_by_city_modalbottomsheet.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
@@ -111,55 +112,47 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   bool isFabVisible = true;
 
-  Future<void> fetchDataBasedOnCheckboxes() async {
-    isLoading = true;
+  // Future<void> fetchDataBasedOnCheckboxes() async {
+  //   isLoading = true;
 
-    konmra.clear();
-    _foundUsers.clear();
+  //   konmra.clear();
+  //   _foundUsers.clear();
 
-    try {
-      if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
-        await _fetchSlemaniData();
-        await _fetchHawlerData();
-        await _fetchDuhokData();
-        konmra.addAll(slemaniKonmra);
-        konmra.addAll(hawlerKonmra);
-        konmra.addAll(duhokKonmra);
-        _foundUsers = List.from(konmra);
-      }
-      if (_slemaniIsChecked) {
-        await _fetchSlemaniData();
-      }
-      if (_hawlerIsChecked) {
-        await _fetchHawlerData();
-      }
-      if (_duhokIsChecked) {
-        await _fetchDuhokData();
-      }
-
-      if (_slemaniIsChecked) {
-        konmra.addAll(slemaniKonmra);
-      }
-      if (_hawlerIsChecked) {
-        konmra.addAll(hawlerKonmra);
-      }
-      if (_duhokIsChecked) {
-        konmra.addAll(duhokKonmra);
-      }
-
-      if (_textEditingController.text.isNotEmpty) {
-        _runFilter(_textEditingController.text);
-      } else {
-        _foundUsers = List.from(konmra);
-      }
-    } catch (error) {
-      print('fetch data error: $error');
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
+  //   try {
+  //     if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
+  //       // await _fetchSlemaniData();
+  //       // konmra.addAll(slemaniKonmra);
+  //       // await _fetchHawlerData();
+  //       // konmra.addAll(hawlerKonmra);
+  //       // await _fetchDuhokData();
+  //       // konmra.addAll(duhokKonmra);
+  //       // _foundUsers = List.from(konmra);
+  //       print("first true");
+  //     } else if (_slemaniIsChecked) {
+  //       // await _fetchSlemaniData();
+  //       // konmra.addAll(slemaniKonmra);
+  //       print("slemani running");
+  //     } else if (_hawlerIsChecked) {
+  //       // await _fetchHawlerData();
+  //       // konmra.addAll(hawlerKonmra);
+  //       print("hawler running");
+  //     } else if (_duhokIsChecked) {
+  //       // await _fetchDuhokData();
+  //       // konmra.addAll(duhokKonmra);
+  //       print("duhok running");
+  //     } else if (_textEditingController.text.isNotEmpty) {
+  //       // _runFilter(_textEditingController.text);
+  //     } else {
+  //       // _foundUsers = List.from(konmra);
+  //     }
+  //   } catch (error) {
+  //     print('fetch data error: $error');
+  //   } finally {
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
 
   Future<void> _fetchSlemaniData() async {
     isLoading = true;
@@ -293,6 +286,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> filteredList = [];
 
+    if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
+      filteredList.addAll(slemaniKonmra);
+      filteredList.addAll(hawlerKonmra);
+      filteredList.addAll(duhokKonmra);
+    }
     if (_slemaniIsChecked) {
       filteredList.addAll(slemaniKonmra);
     }
@@ -381,7 +379,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                           suffixIcon: Platform.isIOS
                               ? CupertinoButton(
                                   onPressed: (() =>
-                                      filterByCityModalBottomSheet(context)),
+                                      filterByCityModalBottomSheet(
+                                        context,
+                                        // _slemaniIsChecked,
+                                        // _hawlerIsChecked,
+                                        // _duhokIsChecked,
+                                        // _runFilter,
+                                      )),
                                   child: const Icon(
                                     CupertinoIcons.slider_horizontal_3,
                                     color: ThemeColors.kBodyTextColor,
@@ -392,7 +396,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   child: IconButton(
                                     onPressed: () =>
-                                        filterByCityModalBottomSheet(context),
+                                        filterByCityModalBottomSheet(
+                                      context,
+                                      // _slemaniIsChecked,
+                                      // _hawlerIsChecked,
+                                      // _duhokIsChecked,
+                                      // _runFilter,
+                                    ),
                                     icon: const Icon(
                                       Icons.tune_outlined,
                                       size: 26,
@@ -468,6 +478,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           )),
     );
   }
+
+  // Future<void> _showModalBottomSheet(BuildContext context) {
+  //   return filterByCityModalBottomSheet(
+  //       context, _slemaniIsChecked, _hawlerIsChecked, _duhokIsChecked, (p0) {});
+  // }
 
   Future<void> filterByCityModalBottomSheet(BuildContext context) {
     return showModalBottomSheet<void>(
