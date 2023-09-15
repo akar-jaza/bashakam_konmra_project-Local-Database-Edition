@@ -20,10 +20,10 @@ import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 // -------------------------------------------------
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
-  await Hive.openBox('konmra');
   await Hive.openBox('slemaniKonmra');
   await Hive.openBox('hawlerKonmra');
   await Hive.openBox('duhokKonmra');
