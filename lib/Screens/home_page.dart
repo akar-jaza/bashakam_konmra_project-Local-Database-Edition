@@ -73,27 +73,33 @@ class _HomePageState extends State<HomePage> {
               selectedIndex = value;
             }),
             destinations: const [
-              NavigationDestination(
-                selectedIcon: Icon(
-                  Icons.home,
-                  color: ThemeColors.kBodyColor,
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: NavigationDestination(
+                  selectedIcon: Icon(
+                    Icons.home,
+                    color: ThemeColors.kBodyColor,
+                  ),
+                  icon: Icon(
+                    Icons.home_outlined,
+                    color: ThemeColors.kBodyTextColor,
+                  ),
+                  label: "سەرەکی",
                 ),
-                icon: Icon(
-                  Icons.home_outlined,
-                  color: ThemeColors.kBodyTextColor,
-                ),
-                label: "سەرەکی",
               ),
-              NavigationDestination(
-                selectedIcon: Icon(
-                  Icons.settings,
-                  color: ThemeColors.kBodyColor,
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: NavigationDestination(
+                  selectedIcon: Icon(
+                    Icons.settings,
+                    color: ThemeColors.kBodyColor,
+                  ),
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    color: ThemeColors.kBodyTextColor,
+                  ),
+                  label: "ڕێکخستنەکان",
                 ),
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: ThemeColors.kBodyTextColor,
-                ),
-                label: "ڕێکخستنەکان",
               ),
             ],
           ),
