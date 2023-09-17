@@ -380,10 +380,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                   onPressed: (() =>
                                       filterByCityModalBottomSheet(
                                         context,
-                                        // _slemaniIsChecked,
-                                        // _hawlerIsChecked,
-                                        // _duhokIsChecked,
-                                        // _runFilter,
                                       )),
                                   child: const Icon(
                                     CupertinoIcons.slider_horizontal_3,
@@ -397,10 +393,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                     onPressed: () =>
                                         filterByCityModalBottomSheet(
                                       context,
-                                      // _slemaniIsChecked,
-                                      // _hawlerIsChecked,
-                                      // _duhokIsChecked,
-                                      // _runFilter,
                                     ),
                                     icon: const Icon(
                                       Icons.tune_outlined,
@@ -426,6 +418,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                 Expanded(
                   child: _foundUsers.isNotEmpty
                       ? ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
                           controller: _scrollController,

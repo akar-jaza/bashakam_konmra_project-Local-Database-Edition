@@ -44,6 +44,13 @@ class _HomePageState extends State<HomePage> {
     //     return 20; // Large screen
     //   }
     // }
+    double textWidth = MediaQuery.of(context).size.width;
+
+    double width = textWidth < 380 // Galaxy S8 aspect ratio
+        ? 280
+        : textWidth > 380 // iphone 13 pro aspect ratio
+            ? 350
+            : 350; // Default width if neither condition is met
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(
@@ -107,6 +114,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: ThemeColors.kBodyColor,
         appBar: const HomePageAppBar(),
         body: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             Center(
               child: Column(
@@ -139,15 +147,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
-                      style: TextStyle(
-                        color: ThemeColors.kLightGreyTextColor,
-                        fontSize: 14, //calculateTextFontSize(context) - 4
+                  SizedBox(
+                    width: width,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
+                        style: TextStyle(
+                          color: ThemeColors.kLightGreyTextColor,
+                          fontSize: textWidth < 380
+                              ? 13
+                              : 14, //calculateTextFontSize(context) - 4
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(

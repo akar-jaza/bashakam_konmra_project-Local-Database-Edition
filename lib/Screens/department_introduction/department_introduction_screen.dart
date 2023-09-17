@@ -125,6 +125,7 @@ class _DepartmentIntroductionScreenState
               Expanded(
                 child: _foundDepartment.isNotEmpty
                     ? ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) =>
                             DepartmentIntroductionListItem(
                           departments: _foundDepartment,
