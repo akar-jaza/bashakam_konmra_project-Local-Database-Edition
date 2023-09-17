@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                   GestureDetector(
                     onTap: () {},
                     child: SvgPicture.asset(
-                      'assets/images/cats.svg',
+                      'assets/images/cats_.svg',
                       width: MediaQuery.of(context).size.width < 700
                           ? MediaQuery.of(context).size.width * 0.5
                           : 270,

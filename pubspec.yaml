@@ -75,6 +75,7 @@ flutter:
   assets:
     - assets/
     - assets/images/cats.svg
+    - assets/images/cats_.svg
     - assets/images/list.svg
     - assets/images/zarabin.svg
     - assets/images/list3.svg
