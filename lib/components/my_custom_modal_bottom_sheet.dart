@@ -22,52 +22,43 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
     builder: ((context) {
       return FractionallySizedBox(
         heightFactor: 0.75,
-        child: Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+        child: Scaffold(
+          extendBody: true,
+          backgroundColor: Colors
+              .transparent, // Set the Scaffold's background to transparent
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(25),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              surfaceTintColor: ThemeColors.kMyCardColor,
+              leading: null,
+              title: Platform.isIOS
+                  ? Image.asset(
+                      "assets/images/drag_handle_ios.png",
+                      width: 40,
+                    )
+                  : Center(
+                      child: Image.asset(
+                        "assets/images/drag_handle_android.png",
+                        width: 45,
+                      ),
+                    ),
+              backgroundColor: Colors
+                  .transparent, // Set the AppBar's background to transparent
+              elevation: 0,
             ),
           ),
-          child: Scaffold(
-            extendBody: true,
-            backgroundColor: Colors
-                .transparent, // Set the Scaffold's background to transparent
-
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(25),
-              child: AppBar(
-                automaticallyImplyLeading: false,
-                surfaceTintColor: ThemeColors.kMyCardColor,
-                leading: null,
-                title: Platform.isIOS
-                    ? Image.asset(
-                        "assets/images/drag_handle_ios.png",
-                        width: 40,
-                      )
-                    : Center(
-                        child: Image.asset(
-                          "assets/images/drag_handle_android.png",
-                          width: 45,
-                        ),
-                      ),
-                backgroundColor: Colors
-                    .transparent, // Set the AppBar's background to transparent
-                elevation: 0,
+          body: ListView(
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: pleaseReadMeText(),
+                  )
+                ],
               ),
-            ),
-            body: ListView(
-              children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: pleaseReadMeText(),
-                    )
-                  ],
-                ),
-              ],
-            ),
+            ],
           ),
         ),
       );
