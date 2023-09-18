@@ -53,23 +53,23 @@ class HomePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
-                    style: TextStyle(
-                      color: ThemeColors.kLightGreyTextColor,
-                      fontSize: textWidth < 380
-                          ? 13
-                          : 14, //calculateTextFontSize(context) - 4
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
+              // const SizedBox(height: 15),
+              // SizedBox(
+              //   width: width,
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 20),
+              //     child: Text(
+              //       'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
+              //       style: TextStyle(
+              //         color: ThemeColors.kLightGreyTextColor,
+              //         fontSize: textWidth < 380
+              //             ? 13
+              //             : 14, //calculateTextFontSize(context) - 4
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 15, //30
               ),

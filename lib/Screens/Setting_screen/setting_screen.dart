@@ -17,7 +17,6 @@ class _SettingScreenState extends State<SettingScreen> {
       'دۆخی تاریک',
     ];
     String? selectedItem = 'بەپێی سیستەم';
-    bool isDropdownOpen = false;
 
     return Scaffold(
       backgroundColor: ThemeColors.kBodyColor,
@@ -33,18 +32,11 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ),
             const SizedBox(height: 25),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  isDropdownOpen = !isDropdownOpen;
-                });
-              },
-              child: const Text(
-                'باری ڕووناکی',
-                style: TextStyle(
-                  color: ThemeColors.kBodyTextColor,
-                  fontSize: 17,
-                ),
+            const Text(
+              'باری ڕووناکی',
+              style: TextStyle(
+                color: ThemeColors.kBodyTextColor,
+                fontSize: 17,
               ),
             ),
             Theme(
@@ -70,7 +62,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                   );
                 }).toList(),
-                iconSize: 0,
+                iconSize: 30,
+                iconEnabledColor: ThemeColors.kLightGreyTextColor,
                 underline: const SizedBox(),
               ),
             ),
