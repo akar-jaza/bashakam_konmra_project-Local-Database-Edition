@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:theme_provider/theme_provider.dart';
-import 'Screens/home_page.dart';
+import 'Screens/main_page.dart';
 import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
 // Note: Handling RTL Layout for Kurdish (ku) Locale
@@ -20,7 +20,6 @@ import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 // -------------------------------------------------
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
@@ -82,7 +81,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          home: const HomePage(),
+          home: const MainPage(),
         ),
       ),
     );
