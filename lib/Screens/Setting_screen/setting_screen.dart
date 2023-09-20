@@ -70,7 +70,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const SizedBox(height: 25),
             const Text(
-              'زیاتر',
+              'دەربارە',
               style: TextStyle(
                 color: ThemeColors.kblueColor,
                 fontSize: 14,
@@ -84,7 +84,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const SizedBox(height: 25),
             const Text(
-              'دەربارە',
+              'زیاتر',
               style: TextStyle(
                 color: ThemeColors.kblueColor,
                 fontSize: 14,
