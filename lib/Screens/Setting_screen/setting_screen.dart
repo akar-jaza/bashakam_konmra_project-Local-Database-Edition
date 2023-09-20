@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:bashakam_barawzanko/components/setting_card.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -80,72 +79,37 @@ class _SettingScreenState extends State<SettingScreen> {
             const SizedBox(height: 25),
             SettingCard(
               title: 'دەربارەی بەشەکەم',
-              subTitle: 'بۆچی ئەپڵیکەیشنی بەشەکەمم درووست کرد؟',
+              subTitle: 'من کێم و بۆچی ئەپڵیکەیشنی بەشەکەمم درووست کرد؟',
               onTap: () {},
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
+            const Text(
+              'دەربارە',
+              style: TextStyle(
+                color: ThemeColors.kblueColor,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 25),
             SettingCard(
               title: 'پەیوەندی',
               subTitle: 'پەیوەندی بە گەشەپێدەرەوە بکە ',
               onTap: () {},
             ),
             const SizedBox(height: 30),
-             SettingCard(
+            SettingCard(
+              title: 'هەڵسەنگاندن',
+              subTitle: 'هەڵسەنگاندنت بەرز دەنرخێنم 💙',
+              onTap: () {},
+            ),
+            const SizedBox(height: 30),
+            SettingCard(
               title: 'هاوبەشی بکە',
               subTitle: 'لەگەڵ هاوپۆل و هاوڕێکانت هاوبەشی پێبکە',
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SettingCard extends StatelessWidget {
-  const SettingCard({
-    required this.title,
-    required this.subTitle,
-    required this.onTap,
-    super.key,
-  });
-  final String title;
-  final String subTitle;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      overlayColor: MaterialStatePropertyAll(
-        ThemeColors.kblueColor.withOpacity(0.2),
-      ),
-      highlightColor: Platform.isIOS
-          ? Colors.transparent
-          : ThemeColors.kblueColor.withOpacity(0.2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: ThemeColors.kBodyTextColor,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            subTitle,
-            style: const TextStyle(
-              color: ThemeColors.kLightGreyTextColor,
-              fontSize: 14,
-            ),
-          ),
-        ],
       ),
     );
   }
