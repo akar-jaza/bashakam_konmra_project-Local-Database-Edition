@@ -30,7 +30,7 @@ class _SettingScreenState extends State<SettingScreen> {
               'ڕووکار',
               style: TextStyle(
                 color: ThemeColors.kblueColor,
-                fontSize: 15,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 25),
@@ -38,7 +38,7 @@ class _SettingScreenState extends State<SettingScreen> {
               'باری ڕووناکی',
               style: TextStyle(
                 color: ThemeColors.kBodyTextColor,
-                fontSize: 17,
+                fontSize: 16,
               ),
             ),
             Theme(
@@ -59,12 +59,12 @@ class _SettingScreenState extends State<SettingScreen> {
                       value,
                       style: const TextStyle(
                         color: ThemeColors.kLightGreyTextColor,
-                        fontSize: 15,
+                        fontSize: 14,
                       ),
                     ),
                   );
                 }).toList(),
-                iconSize: 30,
+                iconSize: 25,
                 iconEnabledColor: ThemeColors.kLightGreyTextColor,
                 underline: const SizedBox(),
               ),
@@ -74,43 +74,78 @@ class _SettingScreenState extends State<SettingScreen> {
               'زیاتر',
               style: TextStyle(
                 color: ThemeColors.kblueColor,
-                fontSize: 15,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 25),
-            InkWell(
+            SettingCard(
+              title: 'دەربارەی بەشەکەم',
+              subTitle: 'بۆچی ئەپڵیکەیشنی بەشەکەمم درووست کرد؟',
               onTap: () {},
-              overlayColor: MaterialStatePropertyAll(
-                ThemeColors.kblueColor.withOpacity(0.2),
-              ),
-              highlightColor: Platform.isIOS
-                  ? Colors.transparent
-                  : ThemeColors.kblueColor.withOpacity(0.2),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'دەربارەی بەشەکەم',
-                    style: TextStyle(
-                      color: ThemeColors.kBodyTextColor,
-                      fontSize: 17,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'بۆچی ئەپڵیکەیشنی بەشەکەمم درووست کرد؟',
-                    style: TextStyle(
-                      color: ThemeColors.kLightGreyTextColor,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
+            ),
+            const SizedBox(height: 30),
+            SettingCard(
+              title: 'پەیوەندی',
+              subTitle: 'پەیوەندی بە گەشەپێدەرەوە بکە ',
+              onTap: () {},
+            ),
+            const SizedBox(height: 30),
+             SettingCard(
+              title: 'هاوبەشی بکە',
+              subTitle: 'لەگەڵ هاوپۆل و هاوڕێکانت هاوبەشی پێبکە',
+              onTap: () {
+                
+              },
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SettingCard extends StatelessWidget {
+  const SettingCard({
+    required this.title,
+    required this.subTitle,
+    required this.onTap,
+    super.key,
+  });
+  final String title;
+  final String subTitle;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      overlayColor: MaterialStatePropertyAll(
+        ThemeColors.kblueColor.withOpacity(0.2),
+      ),
+      highlightColor: Platform.isIOS
+          ? Colors.transparent
+          : ThemeColors.kblueColor.withOpacity(0.2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: ThemeColors.kBodyTextColor,
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            subTitle,
+            style: const TextStyle(
+              color: ThemeColors.kLightGreyTextColor,
+              fontSize: 14,
+            ),
+          ),
+        ],
       ),
     );
   }
