@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -65,6 +67,46 @@ class _SettingScreenState extends State<SettingScreen> {
                 iconSize: 30,
                 iconEnabledColor: ThemeColors.kLightGreyTextColor,
                 underline: const SizedBox(),
+              ),
+            ),
+            const SizedBox(height: 25),
+            const Text(
+              'زیاتر',
+              style: TextStyle(
+                color: ThemeColors.kblueColor,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 25),
+            InkWell(
+              onTap: () {},
+              overlayColor: MaterialStatePropertyAll(
+                ThemeColors.kblueColor.withOpacity(0.2),
+              ),
+              highlightColor: Platform.isIOS
+                  ? Colors.transparent
+                  : ThemeColors.kblueColor.withOpacity(0.2),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'دەربارەی بەشەکەم',
+                    style: TextStyle(
+                      color: ThemeColors.kBodyTextColor,
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'بۆچی ئەپڵیکەیشنی بەشەکەمم درووست کرد؟',
+                    style: TextStyle(
+                      color: ThemeColors.kLightGreyTextColor,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

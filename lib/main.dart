@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
@@ -69,6 +71,13 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch().copyWith(
               primary: ThemeColors.kblueColor,
             ),
+           
+            splashFactory: Platform.isIOS
+                ? NoSplash.splashFactory
+                : InkSparkle.splashFactory,
+            highlightColor: Platform.isIOS
+                ? Colors.transparent
+                : ThemeColors.kblueColor.withOpacity(0.2),
             textTheme: const TextTheme(
               bodyLarge: TextStyle(
                 letterSpacing: 0.0,
@@ -80,6 +89,7 @@ class MyApp extends StatelessWidget {
                 letterSpacing: 0.0,
               ),
             ),
+            
           ),
           home: const MainPage(),
         ),

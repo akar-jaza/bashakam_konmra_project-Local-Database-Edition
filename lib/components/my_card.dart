@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,19 +23,19 @@ class MyCard extends StatelessWidget {
   final String text;
   final Function()? onTap;
 
-  double calculateTextFontSize(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
+  // double calculateTextFontSize(BuildContext context) {
+  //   final screenSize = MediaQuery.of(context).size;
+  //   final screenWidth = screenSize.width;
 
-    // Adjust the font size based on screenWidth
-    if (screenWidth < 400) {
-      return 11; // Small screen
-    } else if (screenWidth < 600) {
-      return 13; // Medium screen
-    } else {
-      return 15; // Large screen
-    }
-  }
+  //   // Adjust the font size based on screenWidth
+  //   if (screenWidth < 400) {
+  //     return 11; // Small screen
+  //   } else if (screenWidth < 600) {
+  //     return 13; // Medium screen
+  //   } else {
+  //     return 15; // Large screen
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
