@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/Screens/Home_screen/home_page.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/setting_screen.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
@@ -55,7 +57,7 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            height: 60,
+            height: Platform.isIOS ? 60 : 70,
             labelTextStyle: MaterialStateProperty.all(
               const TextStyle(
                 color: ThemeColors.kBodyTextColor,

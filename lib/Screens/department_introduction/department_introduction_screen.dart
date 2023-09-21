@@ -125,6 +125,8 @@ class _DepartmentIntroductionScreenState
               Expanded(
                 child: _foundDepartment.isNotEmpty
                     ? ListView.builder(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) =>
                             DepartmentIntroductionListItem(
