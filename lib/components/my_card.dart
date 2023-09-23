@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -88,9 +86,9 @@ class MyCard extends StatelessWidget {
                       ),
                     ),
                   )
-                : InkWell(
+                : GestureDetector(
                     onTap: onTap,
-                    borderRadius: BorderRadius.circular(6),
+                    // borderRadius: BorderRadius.circular(6),
                     child: TextButton(
                       onPressed: onTap,
                       child: Text(

@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 import '../constantes/them_colors.dart';
 
 class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomePageAppBar({
+    required this.title,
     super.key,
   });
 
+  final String title;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -17,10 +18,10 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         backgroundColor: ThemeColors.kBodyColor,
         surfaceTintColor: ThemeColors.kBodyColor,
-        title: const Center(
+        title: Center(
           child: Text(
-            'بەشەکەم \u{1F393}',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontSize: 18,
               color: ThemeColors.kBodyTextColor,
               fontFamily: 'rabarBold',

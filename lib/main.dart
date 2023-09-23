@@ -5,6 +5,7 @@ import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duh
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -71,7 +72,13 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch().copyWith(
               primary: ThemeColors.kblueColor,
             ),
-           
+            // cupertinoOverrideTheme: const CupertinoThemeData(
+            //   brightness: Brightness.dark, // Set to dark mode
+            //   primaryColor: Colors.black, // Customize primary color
+            //   scaffoldBackgroundColor:
+            //       Colors.black, // Customize scaffold background color
+            //   // Add more customizations as needed
+            // ),
             splashFactory: Platform.isIOS
                 ? NoSplash.splashFactory
                 : InkSparkle.splashFactory,
@@ -89,7 +96,6 @@ class MyApp extends StatelessWidget {
                 letterSpacing: 0.0,
               ),
             ),
-            
           ),
           home: const MainPage(),
         ),

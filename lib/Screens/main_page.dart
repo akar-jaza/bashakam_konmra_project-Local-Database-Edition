@@ -23,6 +23,11 @@ class _MainPageState extends State<MainPage> {
     const SettingScreen(),
   ];
 
+  final List<String> _appBarTitles = [
+    'بەشەکەم \u{1F393}',
+    'ڕێکخستنەکان',
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -105,8 +110,12 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         backgroundColor: ThemeColors.kBodyColor,
-        appBar: const HomePageAppBar(),
-        body: screens[selectedIndex],
+        appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 150),
+          switchInCurve: standardEasing,
+          child: screens[selectedIndex],
+        ),
       ),
     );
   }

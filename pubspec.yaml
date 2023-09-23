@@ -43,6 +43,7 @@ dependencies:
   flutter_locales: ^3.0.1 
   theme_provider: ^0.6.0
   flutter_keyboard_visibility: ^5.4.1
+  pull_down_button: ^0.9.3
 
 
 dev_dependencies:
