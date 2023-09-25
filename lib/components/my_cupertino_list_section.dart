@@ -19,10 +19,10 @@ class MyCupertinoListSection extends StatelessWidget {
       header: Text(
         headerText,
         style: const TextStyle(
-          color: ThemeColors.kBodyTextColor,
-          fontFamily: "rabarBold",
-          fontWeight: FontWeight.w100,
-        ),
+            color: ThemeColors.kLightGreyTextColor,
+            fontFamily: "rabarBold",
+            fontWeight: FontWeight.w100,
+            fontSize: 15),
       ),
       children: [
         ...tiles,
