@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
 import 'package:bashakam_barawzanko/components/setting_card.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -148,36 +149,53 @@ class _IOSHomePageState extends State<IOSHomePage> {
     return CupertinoTheme(
       data: const CupertinoThemeData(
         brightness: Brightness.dark, // Set to dark mode
-        primaryColor: Colors.black, // Customize primary color
+        primaryColor: ThemeColors.kblueColor, // Customize primary color
         scaffoldBackgroundColor:
-            Colors.black, // Customize scaffold background color
+            ThemeColors.kBodyColor, // Customize scaffold background color
         // Add more customizations as needed
       ),
       child: CupertinoPageScaffold(
-        child: CupertinoListSection.insetGrouped(
-          backgroundColor: ThemeColors.kBodyColor,
-          header: const Text(
-            'ڕووکار',
-            style: TextStyle(
-              color: ThemeColors.kBodyTextColor,
-              fontFamily: "rabarBold",
-              fontWeight: FontWeight.w100,
+        child: ListView(
+          children: const [
+            MyCupertinoListSection(
+              headerText: 'ڕووکار',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'دۆخی ڕووناکی',
+                  icon: CupertinoIcons.paintbrush,
+                ),
+                MyCupertinoListTile(
+                  titleText: 'فۆنت',
+                  icon: CupertinoIcons.textformat,
+                ),
+              ],
             ),
-          ),
-          children: [
-            CupertinoListTile.notched(
-              backgroundColor: ThemeColors.kMyCardColor,
-              backgroundColorActivated: ThemeColors.kLightGreyTextColor,
-              title: const Text('Open pull request'),
-              leading: const Icon(
-                CupertinoIcons.paintbrush,
-                color: ThemeColors.kBodyTextColor,
-              ),
-              trailing: const Icon(
-                CupertinoIcons.ellipsis_circle,
-                color: ThemeColors.kblueColor,
-              ),
-              onTap: () {},
+            MyCupertinoListSection(
+              headerText: 'دەربارە',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'دەربارەی بەشەکەم',
+                  icon: CupertinoIcons.info,
+                ),
+              ],
+            ),
+            MyCupertinoListSection(
+              headerText: 'زیاتر',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'پەیوەندی',
+                  icon: CupertinoIcons.mail,
+                ),
+                MyCupertinoListTile(
+                  titleText: 'هەڵسەنگاندن',
+                  icon: CupertinoIcons.star,
+                ),
+                MyCupertinoListTile(
+                  titleText: 'هاوبەشی بکە',
+                  icon: CupertinoIcons.share,
+                ),
+                // Add more tiles as needed
+              ],
             ),
           ],
         ),

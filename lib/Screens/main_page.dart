@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bashakam_barawzanko/Screens/Home_screen/home_page.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/setting_screen.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../components/my_homepage_appbar.dart';
@@ -17,10 +18,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   SystemUiOverlayHelper uiOverlayFunc = SystemUiOverlayHelper();
+
   int selectedIndex = 0;
   final screens = [
     const HomePage(),
-    const SettingScreen(),
+    const IOSHomePage(),
   ];
 
   final List<String> _appBarTitles = [
@@ -82,12 +84,14 @@ class _MainPageState extends State<MainPage> {
                 padding: EdgeInsets.only(top: 10),
                 child: NavigationDestination(
                   selectedIcon: Icon(
-                    Icons.home,
+                    CupertinoIcons.house_fill,
                     color: ThemeColors.kBodyColor,
+                    size: 22,
                   ),
                   icon: Icon(
-                    Icons.home_outlined,
+                    CupertinoIcons.house,
                     color: ThemeColors.kBodyTextColor,
+                    size: 22,
                   ),
                   label: "سەرەکی",
                 ),

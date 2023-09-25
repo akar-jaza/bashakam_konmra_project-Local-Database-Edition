@@ -72,13 +72,20 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch().copyWith(
               primary: ThemeColors.kblueColor,
             ),
-            // cupertinoOverrideTheme: const CupertinoThemeData(
-            //   brightness: Brightness.dark, // Set to dark mode
-            //   primaryColor: Colors.black, // Customize primary color
-            //   scaffoldBackgroundColor:
-            //       Colors.black, // Customize scaffold background color
-            //   // Add more customizations as needed
-            // ),
+            cupertinoOverrideTheme: const CupertinoThemeData(
+              textTheme: CupertinoTextThemeData(
+                navTitleTextStyle: TextStyle(fontFamily: "rabarBold"),
+                textStyle: TextStyle(
+                  fontFamily: "rabarBold",
+                ),
+                actionTextStyle: TextStyle(
+                  fontFamily: "rabarBold",
+                ),
+                navLargeTitleTextStyle: TextStyle(
+                  fontFamily: "rabarBold",
+                ),
+              ),
+            ),
             splashFactory: Platform.isIOS
                 ? NoSplash.splashFactory
                 : InkSparkle.splashFactory,
