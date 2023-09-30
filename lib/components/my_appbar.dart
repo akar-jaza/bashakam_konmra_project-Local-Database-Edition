@@ -32,6 +32,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             text,
             style: const TextStyle(
               color: ThemeColors.kBodyTextColor,
+              fontSize: 18,
             ),
           ),
         ),

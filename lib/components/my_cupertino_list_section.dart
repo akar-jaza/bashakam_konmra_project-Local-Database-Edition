@@ -36,10 +36,12 @@ class MyCupertinoListTile extends StatelessWidget {
     super.key,
     required this.titleText,
     required this.icon,
+    required this.onTap,
   });
 
   final String titleText;
   final IconData icon;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class MyCupertinoListTile extends StatelessWidget {
         color: ThemeColors.kBodyTextColor,
       ),
       trailing: const CupertinoListTileChevron(),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }

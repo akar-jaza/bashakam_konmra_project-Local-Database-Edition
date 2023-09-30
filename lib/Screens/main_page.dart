@@ -1,7 +1,10 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'dart:io';
 
 import 'package:bashakam_barawzanko/Screens/Home_screen/home_page.dart';
-import 'package:bashakam_barawzanko/Screens/Setting_screen/setting_screen.dart';
+import 'package:bashakam_barawzanko/Screens/Setting_screen/main_setting_screen.dart';
+import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +117,11 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         backgroundColor: ThemeColors.kBodyColor,
-        appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
+        // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
+        appBar: MyCupertinoAppBar(
+          enableLeading: false,
+          middleText: '${_appBarTitles[selectedIndex]}',
+        ),
         body: AnimatedSwitcher(
           duration: const Duration(milliseconds: 150),
           switchInCurve: standardEasing,

@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,8 +99,9 @@ class _DepartmentIntroductionScreenState
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: ThemeColors.kBodyColor,
-        appBar: const MyAppBar(
-          text: 'ناساندنی بەشەکان',
+        appBar: const MyCupertinoAppBar(
+          enableLeading: true,
+          middleText: 'ناساندنی بەشەکان',
         ),
         body: Column(
           children: [

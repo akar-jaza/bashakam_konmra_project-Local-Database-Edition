@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
@@ -336,9 +337,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           backgroundColor: ThemeColors.kBodyColor,
-          appBar: const MyAppBar(
-            text: 'کەمترین کۆنمرەی وەرگیراو',
+          appBar: const MyCupertinoAppBar(
+            enableLeading: true, middleText: 'کەمترین کۆنمرەی وەرگیراو',
+            
           ),
+          // appBar: const MyAppBar(
+          //   text: 'کەمترین کۆنمرەی وەرگیراو',
+          // ),
           body: NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
               if (notification.direction == ScrollDirection.forward) {
@@ -355,7 +360,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(
+                      bottom: 20, left: 20, right: 20, top: 10),
                   child: Row(
                     children: [
                       Expanded(
