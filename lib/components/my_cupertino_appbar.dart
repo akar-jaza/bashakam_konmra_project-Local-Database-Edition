@@ -7,21 +7,29 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.enableLeading,
     required this.middleText,
+    this.isMiddleTextBlue,
   });
 
   final bool enableLeading;
   final String middleText;
+  final bool? isMiddleTextBlue;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
+    final textColor = isMiddleTextBlue == true
+        ? ThemeColors.kblueColor
+        : ThemeColors.kBodyTextColor;
     return CupertinoNavigationBar(
       backgroundColor: ThemeColors.kBodyColor,
       middle: Text(
         middleText,
-        style: const TextStyle(color: ThemeColors.kBodyTextColor, fontSize: 18),
+        style: TextStyle(
+          color: textColor,
+          fontSize: 18,
+        ),
       ),
       border: null,
       leading: enableLeading

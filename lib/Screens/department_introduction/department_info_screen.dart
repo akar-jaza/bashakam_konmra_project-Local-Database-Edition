@@ -18,6 +18,7 @@ class DepartmentInfoScreen extends StatelessWidget {
       appBar: MyCupertinoAppBar(
         enableLeading: true,
         middleText: departmentName,
+        isMiddleTextBlue: true,
       ),
       backgroundColor: ThemeColors.kBodyColor,
       body: Padding(
