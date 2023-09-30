@@ -20,8 +20,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  SystemUiOverlayHelper uiOverlayFunc = SystemUiOverlayHelper();
-
   int selectedIndex = 0;
   final screens = [
     const HomePage(),
@@ -36,7 +34,6 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    uiOverlayFunc.setSystemUiOverlayStyle();
   }
 
   @override
@@ -54,79 +51,70 @@ class _MainPageState extends State<MainPage> {
     //     return 20; // Large screen
     //   }
     // }
+    // uiOverlayFunc.setSystemUiOverlayStyle();
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(
-        systemNavigationBarColor: ThemeColors.kMyCardColor,
-        statusBarColor: ThemeColors.kBodyColor,
-        statusBarIconBrightness:
-            Brightness.light, // Set the icon brightness to light
-        systemNavigationBarIconBrightness: Brightness
-            .light, // Set the system navigation bar icon brightness to light
-      ),
-      child: Scaffold(
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-            height: Platform.isIOS ? 60 : 70,
-            labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(
-                color: ThemeColors.kBodyTextColor,
-              ),
+    return Scaffold(
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          height: Platform.isIOS ? 60 : 70,
+          labelTextStyle: MaterialStateProperty.all(
+            const TextStyle(
+              color: ThemeColors.kBodyTextColor,
             ),
           ),
-          child: NavigationBar(
-            surfaceTintColor: ThemeColors.kMyCardColor,
-            backgroundColor: ThemeColors.kMyCardColor,
-            indicatorColor: ThemeColors.kblueColor,
-            selectedIndex: selectedIndex,
-            onDestinationSelected: (value) => setState(() {
-              selectedIndex = value;
-            }),
-            destinations: const [
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: NavigationDestination(
-                  selectedIcon: Icon(
-                    CupertinoIcons.house_fill,
-                    color: ThemeColors.kBodyColor,
-                    size: 22,
-                  ),
-                  icon: Icon(
-                    CupertinoIcons.house,
-                    color: ThemeColors.kBodyTextColor,
-                    size: 22,
-                  ),
-                  label: "سەرەکی",
+        ),
+        child: NavigationBar(
+          surfaceTintColor: ThemeColors.kMyCardColor,
+          backgroundColor: ThemeColors.kMyCardColor,
+          indicatorColor: ThemeColors.kblueColor,
+          selectedIndex: selectedIndex,
+          onDestinationSelected: (value) => setState(() {
+            selectedIndex = value;
+          }),
+          destinations: const [
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: NavigationDestination(
+                selectedIcon: Icon(
+                  CupertinoIcons.house_fill,
+                  color: ThemeColors.kBodyColor,
+                  size: 22,
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.settings,
-                    color: ThemeColors.kBodyColor,
-                  ),
-                  icon: Icon(
-                    Icons.settings_outlined,
-                    color: ThemeColors.kBodyTextColor,
-                  ),
-                  label: "ڕێکخستنەکان",
+                icon: Icon(
+                  CupertinoIcons.house,
+                  color: ThemeColors.kBodyTextColor,
+                  size: 22,
                 ),
+                label: "سەرەکی",
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.settings,
+                  color: ThemeColors.kBodyColor,
+                ),
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: ThemeColors.kBodyTextColor,
+                ),
+                label: "ڕێکخستنەکان",
+              ),
+            ),
+          ],
         ),
-        backgroundColor: ThemeColors.kBodyColor,
-        // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
-        appBar: MyCupertinoAppBar(
-          enableLeading: false,
-          middleText: '${_appBarTitles[selectedIndex]}',
-        ),
-        body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 150),
-          switchInCurve: standardEasing,
-          child: screens[selectedIndex],
-        ),
+      ),
+      backgroundColor: ThemeColors.kBodyColor,
+      // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
+      appBar: MyCupertinoAppBar(
+        enableLeading: false,
+        middleText: '${_appBarTitles[selectedIndex]}',
+      ),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 150),
+        switchInCurve: standardEasing,
+        child: screens[selectedIndex],
       ),
     );
   }

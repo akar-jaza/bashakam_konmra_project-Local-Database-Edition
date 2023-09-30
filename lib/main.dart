@@ -5,8 +5,10 @@ import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duh
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
+import 'package:bashakam_barawzanko/helpers/systemUi_overlay_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:theme_provider/theme_provider.dart';
@@ -46,6 +48,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Locales.init(['ar']);
 
+  final systemUiOverlayHelper = SystemUiOverlayHelper();
+  systemUiOverlayHelper.setSystemUiOverlayStyle();
+  
   runApp(
     ThemeProvider(
       child: const MyApp(),

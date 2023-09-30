@@ -338,8 +338,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       child: Scaffold(
           backgroundColor: ThemeColors.kBodyColor,
           appBar: const MyCupertinoAppBar(
-            enableLeading: true, middleText: 'کەمترین کۆنمرەی وەرگیراو',
-            
+            enableLeading: true,
+            middleText: 'کەمترین کۆنمرەی وەرگیراو',
           ),
           // appBar: const MyAppBar(
           //   text: 'کەمترین کۆنمرەی وەرگیراو',
@@ -360,8 +360,12 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 20, left: 20, right: 20, top: 10),
+                  padding: EdgeInsets.only(
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                    top: Platform.isIOS ? 10 : 15,
+                  ),
                   child: Row(
                     children: [
                       Expanded(

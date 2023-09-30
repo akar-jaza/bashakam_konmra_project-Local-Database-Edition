@@ -6,7 +6,7 @@ class SystemUiOverlayHelper {
   void setSystemUiOverlayStyle() {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(
-        systemNavigationBarColor: ThemeColors.kBodyColor,
+        systemNavigationBarColor: ThemeColors.kMyCardColor,
         statusBarColor: ThemeColors.kBodyColor,
         statusBarIconBrightness:
             Brightness.light, // Set the icon brightness to light

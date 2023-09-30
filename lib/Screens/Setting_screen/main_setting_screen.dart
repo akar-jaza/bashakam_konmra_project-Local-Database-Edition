@@ -1,13 +1,10 @@
 import 'dart:io';
 
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
-import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
-import 'package:bashakam_barawzanko/components/setting_card.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pull_down_button/pull_down_button.dart';
 
 // class SettingScreen extends StatelessWidget {
 //   const SettingScreen({super.key});
