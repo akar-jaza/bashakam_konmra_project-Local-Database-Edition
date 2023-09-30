@@ -143,8 +143,6 @@ class IOSHomePage extends StatefulWidget {
 class _IOSHomePageState extends State<IOSHomePage> {
   @override
   Widget build(BuildContext context) {
-    int selectedValue = 0;
-
     return CupertinoTheme(
       data: const CupertinoThemeData(
         brightness: Brightness.dark, // Set to dark mode

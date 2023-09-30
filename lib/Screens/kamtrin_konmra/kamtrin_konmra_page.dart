@@ -14,7 +14,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../components/my_custom_modal_bottom_sheet.dart';
 import '../../components/my_floating_action_button.dart';
 import '../../constantes/them_colors.dart';
-import '../../components/my_appbar.dart';
 import '../../list_items/konmra_list_item.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
@@ -67,8 +66,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       hawlerKonmra = [],
       duhokKonmra = [];
 
+  // ignore: unused_field
   List<Map<String, dynamic>> _slemaniFoundUsers = [],
+      // ignore: unused_field
       _hawlerFoundUsers = [],
+      // ignore: unused_field
       _duhokFoundUsers = [];
 
   List<String> university = [],

@@ -8,9 +8,6 @@ import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../components/my_homepage_appbar.dart';
-import '../helpers/systemUi_overlay_helper.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

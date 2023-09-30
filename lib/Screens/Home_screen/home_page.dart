@@ -13,13 +13,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double textWidth = MediaQuery.of(context).size.width;
+    // double textWidth = MediaQuery.of(context).size.width;
 
-    double width = textWidth < 380 // Galaxy S8 aspect ratio
-        ? 280
-        : textWidth > 380 // iphone 13 pro aspect ratio
-            ? 350
-            : 350; // Default width if neither condition is met
+    // double width = textWidth < 380 // Galaxy S8 aspect ratio
+    //     ? 280
+    //     : textWidth > 380 // iphone 13 pro aspect ratio
+    //         ? 350
+    //         : 350; // Default width if neither condition is met
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [

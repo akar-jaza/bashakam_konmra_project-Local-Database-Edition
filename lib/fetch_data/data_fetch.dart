@@ -1,6 +1,6 @@
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
-class dataRepository {
+class DataRepository {
   Future<List<Map<String, dynamic>>> fetchData() async {
     List<Map<String, dynamic>> konmra = await ImportKonmraCsv.importDataFromCsv(
         'assets/data/CSV(2021-2022).csv');
