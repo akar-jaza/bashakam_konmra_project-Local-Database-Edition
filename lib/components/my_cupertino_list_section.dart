@@ -47,7 +47,10 @@ class MyCupertinoListTile extends StatelessWidget {
       backgroundColor: ThemeColors.kMyCardColor,
       title: Text(
         titleText,
-        style: const TextStyle(fontFamily: 'rabarBold', fontSize: 15),
+        style: const TextStyle(
+          fontFamily: 'rabarBold',
+          fontSize: 15,
+        ),
       ),
       leading: Icon(
         icon,
