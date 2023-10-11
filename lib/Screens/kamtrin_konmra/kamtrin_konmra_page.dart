@@ -343,9 +343,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             enableLeading: true,
             middleText: 'کەمترین کۆنمرەی وەرگیراو',
           ),
-          // appBar: const MyAppBar(
-          //   text: 'کەمترین کۆنمرەی وەرگیراو',
-          // ),
           body: NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
               if (notification.direction == ScrollDirection.forward) {

@@ -145,11 +145,10 @@ class _IOSHomePageState extends State<IOSHomePage> {
   Widget build(BuildContext context) {
     return CupertinoTheme(
       data: const CupertinoThemeData(
-        brightness: Brightness.dark, // Set to dark mode
-        primaryColor: ThemeColors.kblueColor, // Customize primary color
+        brightness: Brightness.dark, 
+        primaryColor: ThemeColors.kblueColor, 
         scaffoldBackgroundColor:
-            ThemeColors.kBodyColor, // Customize scaffold background color
-        // Add more customizations as needed
+            ThemeColors.kBodyColor,
       ),
       child: CupertinoPageScaffold(
         child: ListView(
@@ -176,11 +175,13 @@ class _IOSHomePageState extends State<IOSHomePage> {
                             },
                           ),
                         ),
+                  trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'فۆنت',
                   icon: CupertinoIcons.textformat,
                   onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
                 ),
               ],
             ),
@@ -191,6 +192,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                   titleText: 'دەربارەی بەشەکەم',
                   icon: CupertinoIcons.info,
                   onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
                 ),
               ],
             ),
@@ -201,16 +203,19 @@ class _IOSHomePageState extends State<IOSHomePage> {
                   titleText: 'پەیوەندی',
                   icon: CupertinoIcons.mail,
                   onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هەڵسەنگاندن',
                   icon: CupertinoIcons.star,
                   onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هاوبەشی بکە',
                   icon: CupertinoIcons.share,
                   onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
                 ),
                 // Add more tiles as needed
               ],

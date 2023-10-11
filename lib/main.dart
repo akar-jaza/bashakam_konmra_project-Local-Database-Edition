@@ -10,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:theme_provider/theme_provider.dart';
 import 'Screens/main_page.dart';
 import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
@@ -51,9 +50,7 @@ void main() async {
   systemUiOverlayHelper.setSystemUiOverlayStyle();
 
   runApp(
-    ThemeProvider(
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 }
 

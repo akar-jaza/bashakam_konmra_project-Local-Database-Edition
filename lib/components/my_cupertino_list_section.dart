@@ -14,19 +14,26 @@ class MyCupertinoListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoListSection.insetGrouped(
-      backgroundColor: ThemeColors.kBodyColor,
-      header: Text(
-        headerText,
-        style: const TextStyle(
-            color: ThemeColors.kLightGreyTextColor,
-            fontFamily: "rabarBold",
-            fontWeight: FontWeight.w100,
-            fontSize: 15),
+    return CupertinoTheme(
+      data: const CupertinoThemeData(
+        brightness: Brightness.dark,
+        primaryColor: ThemeColors.kblueColor,
+        scaffoldBackgroundColor: ThemeColors.kBodyColor,
       ),
-      children: [
-        ...tiles,
-      ],
+      child: CupertinoListSection.insetGrouped(
+        backgroundColor: ThemeColors.kBodyColor,
+        header: Text(
+          headerText,
+          style: const TextStyle(
+              color: ThemeColors.kLightGreyTextColor,
+              fontFamily: "rabarBold",
+              fontWeight: FontWeight.w100,
+              fontSize: 15),
+        ),
+        children: [
+          ...tiles,
+        ],
+      ),
     );
   }
 }
@@ -35,13 +42,15 @@ class MyCupertinoListTile extends StatelessWidget {
   const MyCupertinoListTile({
     super.key,
     required this.titleText,
-    required this.icon,
+    this.icon,
     required this.onTap,
+    required this.trailing,
   });
 
   final String titleText;
-  final IconData icon;
+  final IconData? icon;
   final void Function() onTap;
+  final Widget trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,7 @@ class MyCupertinoListTile extends StatelessWidget {
         size: 22,
         color: ThemeColors.kBodyTextColor,
       ),
-      trailing: const CupertinoListTileChevron(),
+      trailing: trailing,
       onTap: onTap,
     );
   }
