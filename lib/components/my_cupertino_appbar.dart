@@ -49,3 +49,11 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+
+/** appBar: Platform.isIOS
+          ? MyCupertinoAppBar(
+              enableLeading: false,
+              middleText: '${_appBarTitles[selectedIndex]}',
+            )
+          : AppBar(title: MyAppBar(text: '${_appBarTitles[selectedIndex]}')), */

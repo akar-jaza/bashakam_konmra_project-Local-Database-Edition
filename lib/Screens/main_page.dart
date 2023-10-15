@@ -55,8 +55,8 @@ class _MainPageState extends State<MainPage> {
         data: NavigationBarThemeData(
           height: Platform.isIOS ? 60 : 70,
           labelTextStyle: MaterialStateProperty.all(
-            const TextStyle(
-              color: ThemeColors.kBodyTextColor,
+            TextStyle(
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),
@@ -102,7 +102,7 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      backgroundColor: ThemeColors.kBodyColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
       appBar: MyCupertinoAppBar(
         enableLeading: false,

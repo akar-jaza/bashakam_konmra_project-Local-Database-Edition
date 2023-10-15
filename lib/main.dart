@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 import 'Screens/main_page.dart';
 import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
@@ -49,8 +50,15 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   systemUiOverlayHelper.setSystemUiOverlayStyle();
 
+  // runApp(
+  //   const MyApp(),
+  // );
+
   runApp(
-    const MyApp(),
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -59,54 +67,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LocaleBuilder(
-      builder: (local) => TooltipVisibility(
-        visible: false,
-        child: MaterialApp(
-          localizationsDelegates: Locales.delegates,
-          supportedLocales: Locales.supportedLocales,
-          locale: local,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: true,
-            fontFamily: 'rabarBold',
-            colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: ThemeColors.kblueColor,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => ThemeProvider(),
+      child: LocaleBuilder(
+        builder: (local) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
+          return TooltipVisibility(
+            visible: false,
+            child: MaterialApp(
+              localizationsDelegates: Locales.delegates,
+              supportedLocales: Locales.supportedLocales,
+              locale: local,
+              debugShowCheckedModeBanner: false,
+              themeMode: ThemeMode.system,
+              theme: MyThemes.lightTheme,
+              darkTheme: MyThemes.darkTheme,
+              home: const MainPage(),
             ),
-            cupertinoOverrideTheme: const CupertinoThemeData(
-              textTheme: CupertinoTextThemeData(
-                navTitleTextStyle: TextStyle(fontFamily: "rabarBold"),
-                textStyle: TextStyle(
-                  fontFamily: "rabarBold",
-                ),
-                actionTextStyle: TextStyle(
-                  fontFamily: "rabarBold",
-                ),
-                navLargeTitleTextStyle: TextStyle(
-                  fontFamily: "rabarBold",
-                ),
-              ),
-            ),
-            splashFactory: Platform.isIOS
-                ? NoSplash.splashFactory
-                : InkSparkle.splashFactory,
-            highlightColor: Platform.isIOS
-                ? Colors.transparent
-                : ThemeColors.kblueColor.withOpacity(0.2),
-            textTheme: const TextTheme(
-              bodyLarge: TextStyle(
-                letterSpacing: 0.0,
-              ),
-              bodyMedium: TextStyle(
-                letterSpacing: 0.0,
-              ),
-              labelLarge: TextStyle(
-                letterSpacing: 0.0,
-              ),
-            ),
-          ),
-          home: const MainPage(),
-        ),
+          );
+        },
       ),
     );
   }

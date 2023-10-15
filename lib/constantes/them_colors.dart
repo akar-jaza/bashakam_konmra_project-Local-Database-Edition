@@ -1,42 +1,110 @@
 // ignore_for_file: file_names
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ThemeProvider extends ChangeNotifier{
-  Color lightPrimaryColor = const Color(0xFF445E91); //kblueColor
-  Color darkPrimaryColor = const Color(0xFFADC6FF); //kblueColor
+class ThemeProvider extends ChangeNotifier {
+  ThemeMode selectedTheme = ThemeMode.light; // Default to light theme
 
+  ThemeMode get getSelectedTheme => selectedTheme;
+
+  void setTheme(ThemeMode theme) {
+    selectedTheme = theme;
+    notifyListeners();
+  }
+}
+
+class MyThemes {
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: WhiteThemeColors.kBodyColor,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: WhiteThemeColors.kblueColor, // primary color
+      onPrimary: WhiteThemeColors.kBoldBlueTextColor,
+      background: WhiteThemeColors.kBodyColor, // background color
+      surface: WhiteThemeColors.kMyCardColor, // card color
+    ),
     primaryTextTheme: const TextTheme(
       bodyLarge: TextStyle(color: ThemeColors.kBodyTextColor),
     ),
-    colorScheme: const ColorScheme.light().copyWith(
-      primary: ThemeProvider().lightPrimaryColor,
+    useMaterial3: true,
+    fontFamily: 'rabarBold',
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      textTheme: CupertinoTextThemeData(
+        navTitleTextStyle: TextStyle(fontFamily: "rabarBold"),
+        textStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+        actionTextStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+        navLargeTitleTextStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+      ),
+    ),
+    splashFactory:
+        Platform.isIOS ? NoSplash.splashFactory : InkSparkle.splashFactory,
+    highlightColor: Platform.isIOS
+        ? Colors.transparent
+        : ThemeColors.kblueColor.withOpacity(0.2),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        letterSpacing: 0.0,
+      ),
+      bodyMedium: TextStyle(
+        letterSpacing: 0.0,
+      ),
+      labelLarge: TextStyle(
+        letterSpacing: 0.0,
+      ),
     ),
   );
 
   static ThemeData darkTheme = ThemeData(
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: ThemeColors.kBodyTextColor,
+    ),
     scaffoldBackgroundColor: ThemeColors.kBodyColor,
     primaryTextTheme: const TextTheme(
       bodyLarge: TextStyle(color: WhiteThemeColors.kBodyTextColor),
     ),
-    colorScheme: ColorScheme.dark(
-      primary: ThemeProvider().darkPrimaryColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: ThemeColors.kBodyColor,
+      surfaceTintColor: ThemeColors.kblueColor,
+    ),
+    useMaterial3: true,
+    fontFamily: 'rabarBold',
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      textTheme: CupertinoTextThemeData(
+        navTitleTextStyle: TextStyle(fontFamily: "rabarBold"),
+        textStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+        actionTextStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+        navLargeTitleTextStyle: TextStyle(
+          fontFamily: "rabarBold",
+        ),
+      ),
+    ),
+    splashFactory:
+        Platform.isIOS ? NoSplash.splashFactory : InkSparkle.splashFactory,
+    highlightColor: Platform.isIOS
+        ? Colors.transparent
+        : ThemeColors.kblueColor.withOpacity(0.2),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        letterSpacing: 0.0,
+      ),
+      bodyMedium: TextStyle(
+        letterSpacing: 0.0,
+      ),
+      labelLarge: TextStyle(
+        letterSpacing: 0.0,
+      ),
     ),
   );
-
-  // colorSchemeSeed: ColorScheme(
-  //     brightness: brightness,
-  //     primary: primary,
-  //     onPrimary: onPrimary,
-  //     secondary: secondary,
-  //     onSecondary: onSecondary,
-  //     error: error,
-  //     onError: onError,
-  //     background: background,
-  //     onBackground: onBackground,
-  //     surface: surface,
-  //     onSurface: onSurface)
 }
 
 class ThemeColors {
