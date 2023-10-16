@@ -18,10 +18,13 @@ class ThemeProvider extends ChangeNotifier {
 class MyThemes {
   static ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: WhiteThemeColors.kblueColor, // primary color
-      onPrimary: WhiteThemeColors.kBoldBlueTextColor,
-      background: WhiteThemeColors.kBodyColor, // background color
+      primary: WhiteThemeColors.kBodyColor, // primary color
+      onPrimary: WhiteThemeColors.kBodyTextColor,
       surface: WhiteThemeColors.kMyCardColor, // card color
+      onSecondary: WhiteThemeColors.kblueColor,
+      onSecondaryContainer: WhiteThemeColors.kBoldBlueTextColor,
+      onTertiary: WhiteThemeColors.kLightGreyTextColor,
+      outline: WhiteThemeColors.kOutlinedTextfieldColor,
     ),
     primaryTextTheme: const TextTheme(
       bodyLarge: TextStyle(color: ThemeColors.kBodyTextColor),
@@ -62,7 +65,13 @@ class MyThemes {
 
   static ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: ThemeColors.kBodyTextColor,
+      primary: ThemeColors.kBodyColor, // primary color
+      onPrimary: ThemeColors.kBodyTextColor,
+      surface: ThemeColors.kMyCardColor, // card color
+      onSecondary: ThemeColors.kblueColor,
+      onSecondaryContainer: ThemeColors.kBoldBlueTextColor,
+      onTertiary: ThemeColors.kLightGreyTextColor,
+      outline: ThemeColors.kOutlinedTextfieldColor,
     ),
     scaffoldBackgroundColor: ThemeColors.kBodyColor,
     primaryTextTheme: const TextTheme(
@@ -109,7 +118,8 @@ class MyThemes {
 
 class ThemeColors {
   static const Color kBodyColor = Color(0xFF1B1B1F);
-  static const Color kappBarColor = Color(0xFF292B35);
+  static const Color kappBarColor =
+      Color(0xFF292B35); // ❌ not used in color-scheme
   static const Color kblueColor = Color(0xFFADC6FF);
   static const Color kBoldBlueTextColor = Color(0xFF0F2F64);
   static const Color kBodyTextColor = Color(0xFFE4E2E6); //White Text Color
@@ -121,7 +131,8 @@ class ThemeColors {
 
 class WhiteThemeColors {
   static const Color kBodyColor = Color(0xFFFAF9FF);
-  static const Color kappBarColor = Color(0xFFECEDF7);
+  static const Color kappBarColor =
+      Color(0xFFECEDF7); // ❌ not used in color-scheme
   static const Color kblueColor = Color(0xFF445E91);
   static const Color kBoldBlueTextColor = Color(0xFF445E91);
   static const Color kBodyTextColor = Color(0xFF1B1B1F);
