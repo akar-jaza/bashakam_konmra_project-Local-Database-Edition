@@ -40,9 +40,9 @@ class _MyTextFieldState extends State<MyTextField> {
       },
       keyboardType: TextInputType.text,
       controller: widget._textController,
-      cursorColor: ThemeColors.kblueColor,
-      style: const TextStyle(
-        color: ThemeColors.kBodyTextColor,
+      cursorColor: Theme.of(context).colorScheme.onSecondary,
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onPrimary,
         fontFamily: 'rabarBold',
         fontSize: 14,
         letterSpacing: 0.0,
@@ -61,43 +61,43 @@ class _MyTextFieldState extends State<MyTextField> {
                       isTextFieldActive = false;
                     });
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.clear,
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 )
               : Platform.isIOS
-                  ? const Icon(
+                  ? Icon(
                       CupertinoIcons.search,
                       size: 20,
-                      color: ThemeColors.kBodyTextColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     )
-                  : const Icon(
+                  : Icon(
                       Icons.search,
-                      color: ThemeColors.kBodyTextColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
         ),
         suffixIcon: widget.suffixIcon,
-        labelStyle: const TextStyle(
-          color: ThemeColors.kLightGreyTextColor,
+        labelStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onTertiary,
           fontSize: 14,
         ),
-        hintStyle: const TextStyle(
-          color: ThemeColors.kLightGreyTextColor,
+        hintStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onTertiary,
         ),
         contentPadding: const EdgeInsets.symmetric(
             vertical: 15, horizontal: 10), // Adjust padding here
-        enabledBorder: const OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: ThemeColors.kLightGreyTextColor,
+            color: Theme.of(context).colorScheme.onTertiary,
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: ThemeColors.kLightGreyTextColor,
+            color: Theme.of(context).colorScheme.onTertiary,
           ),
         ),
-        fillColor: ThemeColors.kMyCardColor,
+        fillColor: Theme.of(context).colorScheme.surface,
         filled: true,
       ),
       enableInteractiveSelection: true,

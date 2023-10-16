@@ -13,23 +13,38 @@ class MyFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).colorScheme.onSecondary,
+      onPressed: onPressed,
+      child: Icon(
+        Icons.info,
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
+        size: 25,
+      ),
+    );
+  }
+}
+
+
+
+/**
+ * if (Platform.isIOS) {
       return SizedBox(
         width: 180.0,
         height: 55.0,
         child: CupertinoButton(
           onPressed: onPressed,
-          color: ThemeColors.kBoldBlueTextColor,
+          color: Theme.of(context).colorScheme.onSecondary,
           padding: EdgeInsets.zero,
           borderRadius: BorderRadius.circular(17),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 CupertinoIcons.info_circle_fill,
-                color: ThemeColors.kblueColor,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Text(
@@ -37,6 +52,7 @@ class MyFloatingActionButton extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "rabarBold",
                   fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
               ),
             ],
@@ -45,14 +61,13 @@ class MyFloatingActionButton extends StatelessWidget {
       );
     } else {
       return FloatingActionButton.extended(
-        backgroundColor: ThemeColors.kBoldBlueTextColor,
+        backgroundColor: Theme.of(context).colorScheme.onSecondary,
         onPressed: onPressed,
-        icon: const Icon(
+        icon: Icon(
           Icons.info,
-          color: ThemeColors.kblueColor,
+          color: Theme.of(context).colorScheme.onSecondaryContainer,
         ),
         label: const Text('تکایە بمخوێنەرەوە'),
       );
     }
-  }
-}
+ */

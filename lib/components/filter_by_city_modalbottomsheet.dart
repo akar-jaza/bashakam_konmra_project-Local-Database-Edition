@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/material.dart';
 
 Future<void> filterByCityModalBottomSheet(
@@ -10,7 +8,7 @@ Future<void> filterByCityModalBottomSheet(
     bool duhokIsChecked,
     void Function(String) runFilter) {
   return showModalBottomSheet<void>(
-    backgroundColor: ThemeColors.kMyCardColor,
+    backgroundColor: Theme.of(context).colorScheme.surface,
     context: context,
     builder: (BuildContext context) {
       return Theme(
@@ -29,21 +27,22 @@ Future<void> filterByCityModalBottomSheet(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Center(
+                    Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 15),
                         child: Text(
                           "گەڕان بەپێی شار",
                           style: TextStyle(
-                              color: ThemeColors.kBodyTextColor, fontSize: 16),
+                              color: Theme.of(context).colorScheme.surface,
+                              fontSize: 16),
                         ),
                       ),
                     ),
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                         "سلێمانی",
                         style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
@@ -54,24 +53,24 @@ Future<void> filterByCityModalBottomSheet(
                           runFilter('');
                         });
                       }),
-                      activeColor: ThemeColors.kblueColor,
-                      checkColor: ThemeColors.kBodyColor,
+                      activeColor: Theme.of(context).colorScheme.onSecondary,
+                      checkColor: Theme.of(context).colorScheme.onPrimary,
                       side: slemaniIsChecked
                           ? null
                           : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
+                              (states) => BorderSide(
                                 width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
                       checkboxShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                     ),
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                         "هەولێر",
                         style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
@@ -82,24 +81,24 @@ Future<void> filterByCityModalBottomSheet(
                           runFilter('');
                         });
                       }),
-                      activeColor: ThemeColors.kblueColor,
-                      checkColor: ThemeColors.kBodyColor,
+                      activeColor: Theme.of(context).colorScheme.onSecondary,
+                      checkColor: Theme.of(context).colorScheme.onPrimary,
                       side: hawlerIsChecked
                           ? null
                           : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
+                              (states) => BorderSide(
                                 width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
                       checkboxShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                     ),
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                         "دهۆک",
                         style: TextStyle(
-                          color: ThemeColors.kBodyTextColor,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
@@ -110,14 +109,14 @@ Future<void> filterByCityModalBottomSheet(
                           runFilter('');
                         });
                       }),
-                      activeColor: ThemeColors.kblueColor,
-                      checkColor: ThemeColors.kBodyColor,
+                      activeColor: Theme.of(context).colorScheme.onSecondary,
+                      checkColor: Theme.of(context).colorScheme.onPrimary,
                       side: duhokIsChecked
                           ? null
                           : MaterialStateBorderSide.resolveWith(
-                              (states) => const BorderSide(
+                              (states) => BorderSide(
                                 width: 1.0,
-                                color: ThemeColors.kBodyTextColor,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
                       checkboxShape: RoundedRectangleBorder(

@@ -86,8 +86,7 @@ class HomePage extends StatelessWidget {
                         Navigator.of(context, rootNavigator: true).push(
                           CupertinoPageRoute<bool>(
                             fullscreenDialog: false,
-                            builder: (BuildContext context) =>
-                                const KamtrinKonmra(),
+                            builder: (BuildContext context) => KamtrinKonmra(),
                           ),
                         );
                       } else {
@@ -95,7 +94,7 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const KamtrinKonmra();
+                              return KamtrinKonmra();
                             },
                           ),
                         );
@@ -105,7 +104,7 @@ class HomePage extends StatelessWidget {
                   MyCard(
                     imageAsset: 'assets/images/departments.svg',
                     buttonTitle: 'ببینە',
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onTertiary,
                     text: 'بەشەکان',
                     onTap: () {
                       if (Platform.isIOS) {
@@ -130,19 +129,19 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyCard(
                     imageAsset: 'assets/images/zarabin.svg',
                     buttonTitle: 'ببینە',
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     text: 'ڕیزبەندیەکانم',
                   ),
                   MyCard(
                     imageAsset: 'assets/images/departments.svg',
                     buttonTitle: 'ببینە',
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     text: 'بەشەکان',
                   ),
                 ],

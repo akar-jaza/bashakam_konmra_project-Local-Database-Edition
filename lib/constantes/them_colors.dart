@@ -25,6 +25,7 @@ class MyThemes {
       onSecondaryContainer: WhiteThemeColors.kBoldBlueTextColor,
       onTertiary: WhiteThemeColors.kLightGreyTextColor,
       outline: WhiteThemeColors.kOutlinedTextfieldColor,
+      
     ),
     primaryTextTheme: const TextTheme(
       bodyLarge: TextStyle(color: ThemeColors.kBodyTextColor),
@@ -72,6 +73,7 @@ class MyThemes {
       onSecondaryContainer: ThemeColors.kBoldBlueTextColor,
       onTertiary: ThemeColors.kLightGreyTextColor,
       outline: ThemeColors.kOutlinedTextfieldColor,
+      
     ),
     scaffoldBackgroundColor: ThemeColors.kBodyColor,
     primaryTextTheme: const TextTheme(
@@ -133,8 +135,8 @@ class WhiteThemeColors {
   static const Color kBodyColor = Color(0xFFFAF9FF);
   static const Color kappBarColor =
       Color(0xFFECEDF7); // ❌ not used in color-scheme
-  static const Color kblueColor = Color(0xFF445E91);
-  static const Color kBoldBlueTextColor = Color(0xFF445E91);
+  static const Color kblueColor = Color(0xFFD4E2FD);
+  static const Color kBoldBlueTextColor = Color(0xFF001A3B);
   static const Color kBodyTextColor = Color(0xFF1B1B1F);
   static const Color kLightGreyTextColor = Color(0xFF45474F);
   static const Color kMyCardColor = Color(0xFFF2F3FD);

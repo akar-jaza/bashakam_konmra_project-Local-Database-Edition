@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 
 class KonmraListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
@@ -14,8 +13,9 @@ class KonmraListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (index.isOdd) {
-      return const Divider(
-        color: Color.fromARGB(72, 197, 198, 209),
+      return Divider(
+        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.2),
+        // color: Color.fromARGB(72, 197, 198, 209),
       );
     } else {
       final itemIndex = index ~/ 2;
@@ -48,8 +48,8 @@ class KonmraListItem extends StatelessWidget {
       return ListTile(
         title: Text(
           '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
-          style: const TextStyle(
-            color: ThemeColors.kBodyTextColor,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
             fontSize: 19,
             // letterSpacing: 0.0,
           ),
@@ -61,8 +61,8 @@ class KonmraListItem extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               'پارێزگا: ($pZankoline) - ($pParallel) - ($pEwaranText)',
-              style: const TextStyle(
-                color: ThemeColors.kLightGreyTextColor,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
                 fontSize: 13.5,
                 // letterSpacing: 0.0,
               ),
@@ -71,8 +71,8 @@ class KonmraListItem extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               'گشتی: ($gZankoline) - ($gParallel) - ($gEwaranText)',
-              style: const TextStyle(
-                color: ThemeColors.kLightGreyTextColor,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
                 fontSize: 13.5,
                 // letterSpacing: 0.0,
               ),
