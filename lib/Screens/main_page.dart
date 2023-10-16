@@ -56,45 +56,45 @@ class _MainPageState extends State<MainPage> {
           height: Platform.isIOS ? 60 : 70,
           labelTextStyle: MaterialStateProperty.all(
             TextStyle(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
         ),
         child: NavigationBar(
-          surfaceTintColor: ThemeColors.kMyCardColor,
-          backgroundColor: ThemeColors.kMyCardColor,
-          indicatorColor: ThemeColors.kblueColor,
+          surfaceTintColor: Theme.of(context).colorScheme.surface,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          indicatorColor: Theme.of(context).colorScheme.onSecondary,
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) => setState(() {
             selectedIndex = value;
           }),
-          destinations: const [
+          destinations: [
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: NavigationDestination(
                 selectedIcon: Icon(
                   CupertinoIcons.house_fill,
-                  color: ThemeColors.kBodyColor,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 22,
                 ),
                 icon: Icon(
                   CupertinoIcons.house,
-                  color: ThemeColors.kBodyTextColor,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   size: 22,
                 ),
                 label: "سەرەکی",
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: NavigationDestination(
                 selectedIcon: Icon(
                   Icons.settings,
-                  color: ThemeColors.kBodyColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
                 icon: Icon(
                   Icons.settings_outlined,
-                  color: ThemeColors.kBodyTextColor,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
                 label: "ڕێکخستنەکان",
               ),
