@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:bashakam_barawzanko/Screens/Home_screen/home_page.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/main_setting_screen.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -102,7 +101,7 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
       appBar: MyCupertinoAppBar(
         enableLeading: false,

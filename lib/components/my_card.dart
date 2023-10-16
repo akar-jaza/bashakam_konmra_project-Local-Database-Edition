@@ -51,7 +51,7 @@ class MyCard extends StatelessWidget {
         width: cardWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: ThemeColors.kMyCardColor,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Column(
           children: [
@@ -62,8 +62,8 @@ class MyCard extends StatelessWidget {
                 child: Text(
                   text,
                   textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: ThemeColors.kBodyTextColor,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
                     fontSize: 13,
                   ),
                 ),
@@ -80,8 +80,8 @@ class MyCard extends StatelessWidget {
                     onPressed: onTap,
                     child: Text(
                       buttonTitle,
-                      style: const TextStyle(
-                        color: ThemeColors.kblueColor,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSecondary,
                         fontFamily: 'rabarBold',
                       ),
                     ),
@@ -93,7 +93,9 @@ class MyCard extends StatelessWidget {
                       onPressed: onTap,
                       child: Text(
                         buttonTitle,
-                        style: const TextStyle(color: ThemeColors.kblueColor),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
                       ),
                     ),
                   ),

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -41,13 +40,13 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                   style: TextStyle(
                     fontSize: 17,
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     fontFamily: 'rabarBold',
                   ),
                   textAlign: TextAlign.center,
@@ -79,7 +78,7 @@ class HomePage extends StatelessWidget {
                   MyCard(
                     imageAsset: 'assets/images/list3.svg',
                     buttonTitle: 'ببینە',
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     text: 'کەمترین کۆنمرە',
                     onTap: () {
                       if (Platform.isIOS) {

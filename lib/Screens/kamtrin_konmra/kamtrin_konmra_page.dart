@@ -406,7 +406,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                   ),
                                 )
                               : Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: IconButton(
                                     onPressed: () =>
                                         filterByCityModalBottomSheet(
@@ -438,7 +439,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                 Expanded(
                   child: _foundUsers.isNotEmpty
                       ? ListView.builder(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
                           controller: _scrollController,
@@ -521,12 +522,13 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     children: [
                       Center(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
                           child: Text(
                             "گەڕان بەپێی شار",
                             style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: 16),
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
@@ -615,7 +617,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                 ),
                               ),
                         checkboxShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ],
                   ),
