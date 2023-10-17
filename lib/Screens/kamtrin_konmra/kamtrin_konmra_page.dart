@@ -506,132 +506,125 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
       context: context,
       builder: (BuildContext context) {
-        return Theme(
-          data: ThemeData(useMaterial3: true),
-          child: StatefulBuilder(
-            builder: (BuildContext context,
-                void Function(void Function()) setState) {
-              return SizedBox(
-                height: 260,
-                child: Theme(
-                  data: ThemeData(
-                    splashColor: Platform.isIOS ? Colors.transparent : null,
-                    highlightColor: Platform.isIOS ? Colors.transparent : null,
-                    fontFamily: "rabarBold",
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Text(
-                            "گەڕان بەپێی شار",
-                            style: TextStyle(
-                              color: ThemeProvider().getSelectedTheme ==
-                                      ThemeMode.light
-                                  ? MyThemes.lightTheme.colorScheme.onSurface
-                                  : MyThemes.darkTheme.colorScheme.onSurface,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                      CheckboxListTile(
-                        title: Text(
-                          "سلێمانی",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        value: _slemaniIsChecked,
-                        onChanged: ((value) {
-                          setState(() {
-                            _slemaniIsChecked = value!;
-                            _runFilter(_textEditingController.text);
-                          });
-                        }),
-                        activeColor: Theme.of(context).colorScheme.onPrimary,
-                        checkColor: Theme.of(context).colorScheme.onSurface,
-                        
-                        // side: _slemaniIsChecked
-                        //     ? null
-                        //     : MaterialStateBorderSide.resolveWith(
-                        //         (states) => BorderSide(
-                        //           width: 1.0,
-                        //           color:
-                        //               Theme.of(context).colorScheme.onPrimary,
-                        //         ),
-                        //       ),
-                        checkboxShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      CheckboxListTile(
-                        title: Text(
-                          "هەولێر",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        value: _hawlerIsChecked,
-                        onChanged: ((value) {
-                          setState(() {
-                            _hawlerIsChecked = value!;
-                            _runFilter(_textEditingController.text);
-                          });
-                        }),
-                        activeColor: Theme.of(context).colorScheme.onPrimary,
-                        checkColor: Theme.of(context).colorScheme.onSurface,
-                        side: _hawlerIsChecked
-                            ? null
-                            : MaterialStateBorderSide.resolveWith(
-                                (states) => BorderSide(
-                                  width: 1.0,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              ),
-                        checkboxShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      CheckboxListTile(
-                        title: Text(
-                          "دهۆک",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        value: _duhokIsChecked,
-                        onChanged: ((value) {
-                          setState(() {
-                            _duhokIsChecked = value!;
-                            _runFilter(_textEditingController.text);
-                          });
-                        }),
-                        activeColor: Theme.of(context).colorScheme.onPrimary,
-                        checkColor: Theme.of(context).colorScheme.onSurface,
-                        side: _duhokIsChecked
-                            ? null
-                            : MaterialStateBorderSide.resolveWith(
-                                (states) => BorderSide(
-                                  width: 1.0,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              ),
-                        checkboxShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ],
-                  ),
+        return StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            return SizedBox(
+              height: 260,
+              child: Theme(
+                data: ThemeData(
+                  splashColor: Platform.isIOS ? Colors.transparent : null,
+                  highlightColor: Platform.isIOS ? Colors.transparent : null,
+                  fontFamily: "rabarBold",
                 ),
-              );
-            },
-          ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          "گەڕان بەپێی شار",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    CheckboxListTile(
+                      title: Text(
+                        "سلێمانی",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _slemaniIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _slemaniIsChecked = value!;
+                          _runFilter(_textEditingController.text);
+                        });
+                      }),
+                      activeColor: Theme.of(context).colorScheme.onBackground,
+                      checkColor: Theme.of(context).colorScheme.onTertiary,
+                      side: _slemaniIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => BorderSide(
+                                width: 1.0,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
+                            ),
+                      checkboxShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    CheckboxListTile(
+                      title: Text(
+                        "هەولێر",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _hawlerIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _hawlerIsChecked = value!;
+                          _runFilter(_textEditingController.text);
+                        });
+                      }),
+                      activeColor: Theme.of(context).colorScheme.onBackground,
+                      checkColor: Theme.of(context).colorScheme.onTertiary,
+                      side: _hawlerIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => BorderSide(
+                                width: 1.0,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
+                            ),
+                      checkboxShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    CheckboxListTile(
+                      title: Text(
+                        "دهۆک",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: _duhokIsChecked,
+                      onChanged: ((value) {
+                        setState(() {
+                          _duhokIsChecked = value!;
+                          _runFilter(_textEditingController.text);
+                        });
+                      }),
+                      activeColor: Theme.of(context).colorScheme.onBackground,
+                      checkColor: Theme.of(context).colorScheme.onTertiary,
+                      side: _duhokIsChecked
+                          ? null
+                          : MaterialStateBorderSide.resolveWith(
+                              (states) => BorderSide(
+                                width: 1.0,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
+                            ),
+                      checkboxShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         );
       },
     );
