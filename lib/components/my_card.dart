@@ -63,7 +63,7 @@ class MyCard extends StatelessWidget {
                   text,
                   textAlign: TextAlign.right,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 13,
                   ),
                 ),
@@ -81,7 +81,7 @@ class MyCard extends StatelessWidget {
                     child: Text(
                       buttonTitle,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSecondary,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontFamily: 'rabarBold',
                       ),
                     ),
@@ -94,7 +94,7 @@ class MyCard extends StatelessWidget {
                       child: Text(
                         buttonTitle,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSecondary,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),

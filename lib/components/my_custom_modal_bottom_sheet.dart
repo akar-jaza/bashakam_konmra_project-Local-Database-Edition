@@ -16,7 +16,7 @@ Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
 
 Future<dynamic> androidModalBottomSheet(BuildContext context) {
   return showModalBottomSheet(
-    backgroundColor: ThemeColors.kMyCardColor,
+    backgroundColor: Theme.of(context).colorScheme.background,
     isScrollControlled: true,
     context: context,
     builder: ((context) {
@@ -30,16 +30,19 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
             preferredSize: const Size.fromHeight(25),
             child: AppBar(
               automaticallyImplyLeading: false,
-              surfaceTintColor: ThemeColors.kMyCardColor,
+              // surfaceTintColor: Theme.of(context).colorScheme.onBackground,
+              scrolledUnderElevation: 0,
               leading: null,
               title: Platform.isIOS
                   ? Image.asset(
                       "assets/images/drag_handle_ios.png",
+                      color: Theme.of(context).colorScheme.onBackground,
                       width: 40,
                     )
                   : Center(
                       child: Image.asset(
                         "assets/images/drag_handle_android.png",
+                        color: Theme.of(context).colorScheme.onBackground,
                         width: 45,
                       ),
                     ),
@@ -54,7 +57,7 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(18.0),
-                    child: pleaseReadMeText(),
+                    child: pleaseReadMeText(context),
                   )
                 ],
               ),
@@ -66,8 +69,8 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
   );
 }
 
-Text pleaseReadMeText() {
-  return const Text(
+Text pleaseReadMeText(BuildContext context) {
+  return Text(
     "• ئەم لیستی کۆنمرە هی ساڵی (2022-2023)ـە. ساڵانە نوێ دەکرێتەوە.\n\n"
     "• وشەی (گشتی) واتە نمرەی پێویست بۆ قوتابیانی دەرەوی شار. ئەگەر تۆ لە سلێمانی دەژیت و دەتەوێت لە هەولێر یاخود دهۆک وەربگیرێیت ئەوا پێویستە سێری نمرەی (گشتی) بکەیت.\n\n"
     "• وشەی (پارێزگا) واتە نمرەی پێویست بۆ قوتابیانی ئەو پارێزگایە(ئەو شارە). ئەگەر تۆ قوتابیەکی شاری سلێمانیت، وە خوودی بەشەکە لە سلێمانیە، ئەوا تۆ پێویستە سێری نمرەی (پارێزگا) بکەیت.\n\n"
@@ -79,7 +82,7 @@ Text pleaseReadMeText() {
     "• ئەگەر بێزاربوویت لە سێرچ کردن(نوسینی بەشەکان) بەڵام هیچ دەرەنجامێکی نەهێنا، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت، یاخود ئەو بەشە بە ڕێزمانێکی هەڵە نوسرابێت. پێشنیار دەکەم خۆت بگەڕێیت بەناو لیستەکەدا تاوەکوو بەشی دڵخوازت بدۆزیتەوە.\n\n"
     "لەکاتی بوونی کێشە لە نمرە، ئەپڵیکەیشن یاخود هەرشتێکی تر، پەیوەندی بە گەشەپێدەرەوە بکە.\n\n",
     style: TextStyle(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.onBackground,
       fontFamily: "rabar_009",
       fontSize: 16,
     ),

@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:io';
-
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
@@ -13,12 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../components/my_custom_modal_bottom_sheet.dart';
-import '../../components/my_floating_action_button.dart';
+// import '../../components/my_floating_action_button.dart';
 import '../../list_items/konmra_list_item.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class KamtrinKonmra extends StatefulWidget {
-  KamtrinKonmra({Key? key}) : super(key: key);
+  const KamtrinKonmra({Key? key}) : super(key: key);
 
   @override
   State<KamtrinKonmra> createState() => _KamtrinKonmraState();
@@ -338,7 +338,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: MyCupertinoAppBar(
             enableLeading: true,
             middleText: 'کەمترین کۆنمرەی وەرگیراو',
@@ -348,7 +348,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
               }),
               icon: Icon(
                 CupertinoIcons.info_circle_fill,
-                color: Theme.of(context).colorScheme.onSecondary,
+                color: Theme.of(context).colorScheme.primary,
                 size: 23,
               ),
             ),
@@ -401,8 +401,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                       )),
                                   child: Icon(
                                     CupertinoIcons.slider_horizontal_3,
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
                                   ),
                                 )
                               : Padding(
@@ -432,7 +433,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     height: 40,
                     child: Center(
                       child: CupertinoActivityIndicator(
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
@@ -458,8 +459,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                 child: Text(
                                   '! هیچ بەشێک نەدۆزرایەوە',
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
                                     fontSize: 18,
                                   ),
                                 ),
@@ -501,7 +503,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
 
   Future<void> filterByCityModalBottomSheet(BuildContext context) {
     return showModalBottomSheet<void>(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
       context: context,
       builder: (BuildContext context) {
         return Theme(
@@ -526,7 +528,10 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                           child: Text(
                             "گەڕان بەپێی شار",
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: ThemeProvider().getSelectedTheme ==
+                                      ThemeMode.light
+                                  ? MyThemes.lightTheme.colorScheme.onSurface
+                                  : MyThemes.darkTheme.colorScheme.onSurface,
                               fontSize: 16,
                             ),
                           ),
@@ -536,7 +541,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         title: Text(
                           "سلێمانی",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         controlAffinity: ListTileControlAffinity.leading,
@@ -547,17 +552,18 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                             _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: Theme.of(context).colorScheme.onSecondary,
-                        checkColor: Theme.of(context).colorScheme.primary,
-                        side: _slemaniIsChecked
-                            ? null
-                            : MaterialStateBorderSide.resolveWith(
-                                (states) => BorderSide(
-                                  width: 1.0,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              ),
+                        activeColor: Theme.of(context).colorScheme.onPrimary,
+                        checkColor: Theme.of(context).colorScheme.onSurface,
+                        
+                        // side: _slemaniIsChecked
+                        //     ? null
+                        //     : MaterialStateBorderSide.resolveWith(
+                        //         (states) => BorderSide(
+                        //           width: 1.0,
+                        //           color:
+                        //               Theme.of(context).colorScheme.onPrimary,
+                        //         ),
+                        //       ),
                         checkboxShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -565,7 +571,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         title: Text(
                           "هەولێر",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         controlAffinity: ListTileControlAffinity.leading,
@@ -576,8 +582,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                             _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: Theme.of(context).colorScheme.onSecondary,
-                        checkColor: Theme.of(context).colorScheme.primary,
+                        activeColor: Theme.of(context).colorScheme.onPrimary,
+                        checkColor: Theme.of(context).colorScheme.onSurface,
                         side: _hawlerIsChecked
                             ? null
                             : MaterialStateBorderSide.resolveWith(
@@ -594,7 +600,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                         title: Text(
                           "دهۆک",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         controlAffinity: ListTileControlAffinity.leading,
@@ -605,8 +611,8 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                             _runFilter(_textEditingController.text);
                           });
                         }),
-                        activeColor: Theme.of(context).colorScheme.onSecondary,
-                        checkColor: Theme.of(context).colorScheme.primary,
+                        activeColor: Theme.of(context).colorScheme.onPrimary,
+                        checkColor: Theme.of(context).colorScheme.onSurface,
                         side: _duhokIsChecked
                             ? null
                             : MaterialStateBorderSide.resolveWith(

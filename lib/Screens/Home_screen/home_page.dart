@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                   'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontFamily: 'rabarBold',
                   ),
                   textAlign: TextAlign.center,

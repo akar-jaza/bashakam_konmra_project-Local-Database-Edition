@@ -55,14 +55,14 @@ class _MainPageState extends State<MainPage> {
           height: Platform.isIOS ? 60 : 70,
           labelTextStyle: MaterialStateProperty.all(
             TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
         child: NavigationBar(
           surfaceTintColor: Theme.of(context).colorScheme.surface,
           backgroundColor: Theme.of(context).colorScheme.surface,
-          indicatorColor: Theme.of(context).colorScheme.onSecondary,
+          indicatorColor: Theme.of(context).colorScheme.primaryContainer,
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) => setState(() {
             selectedIndex = value;
@@ -73,12 +73,12 @@ class _MainPageState extends State<MainPage> {
               child: NavigationDestination(
                 selectedIcon: Icon(
                   CupertinoIcons.house_fill,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                   size: 22,
                 ),
                 icon: Icon(
                   CupertinoIcons.house,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onBackground,
                   size: 22,
                 ),
                 label: "سەرەکی",
@@ -89,11 +89,11 @@ class _MainPageState extends State<MainPage> {
               child: NavigationDestination(
                 selectedIcon: Icon(
                   Icons.settings,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 icon: Icon(
                   Icons.settings_outlined,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
                 label: "ڕێکخستنەکان",
               ),
@@ -101,7 +101,7 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.background,
       // appBar: HomePageAppBar(title: _appBarTitles[selectedIndex]),
       appBar: MyCupertinoAppBar(
         enableLeading: false,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../constantes/them_colors.dart';
 import 'dart:io';
 
 class MyTextField extends StatefulWidget {
@@ -40,9 +39,9 @@ class _MyTextFieldState extends State<MyTextField> {
       },
       keyboardType: TextInputType.text,
       controller: widget._textController,
-      cursorColor: Theme.of(context).colorScheme.onSecondary,
+      cursorColor: Theme.of(context).colorScheme.primary,
       style: TextStyle(
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.onSurface,
         fontFamily: 'rabarBold',
         fontSize: 14,
         letterSpacing: 0.0,
@@ -63,38 +62,42 @@ class _MyTextFieldState extends State<MyTextField> {
                   },
                   icon: Icon(
                     Icons.clear,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 )
               : Platform.isIOS
                   ? Icon(
                       CupertinoIcons.search,
                       size: 20,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     )
                   : Icon(
                       Icons.search,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
         ),
         suffixIcon: widget.suffixIcon,
         labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onTertiary,
+          color: Theme.of(context).colorScheme.onSurface,
+          fontSize: 14,
+        ),
+        floatingLabelStyle: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
           fontSize: 14,
         ),
         hintStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onTertiary,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         contentPadding: const EdgeInsets.symmetric(
             vertical: 15, horizontal: 10), // Adjust padding here
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onTertiary,
+            color: Theme.of(context).colorScheme.outline,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onTertiary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
         fillColor: Theme.of(context).colorScheme.surface,

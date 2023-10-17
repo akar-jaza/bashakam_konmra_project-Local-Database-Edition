@@ -22,10 +22,10 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = isMiddleTextBlue == true
-        ? Theme.of(context).colorScheme.onSecondary
-        : Theme.of(context).colorScheme.onPrimary;
+        ? Theme.of(context).colorScheme.onSurface
+        : Theme.of(context).colorScheme.onSurface;
     return CupertinoNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         middle: Text(
           middleText,
           style: TextStyle(
@@ -43,7 +43,7 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Icons.arrow_back_ios,
                   size: 20,
                   weight: 100,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
               )
             : null,
