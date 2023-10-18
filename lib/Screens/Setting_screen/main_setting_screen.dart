@@ -176,7 +176,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                             },
                           ),
                         ),
-                  trailing: ,
+                  trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'فۆنت',
