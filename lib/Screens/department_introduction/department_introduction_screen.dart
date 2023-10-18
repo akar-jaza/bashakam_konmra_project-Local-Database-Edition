@@ -96,7 +96,7 @@ class _DepartmentIntroductionScreenState
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: ThemeColors.kBodyColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: const MyCupertinoAppBar(
           enableLeading: true,
           middleText: 'ناساندنی بەشەکان',
@@ -139,13 +139,13 @@ class _DepartmentIntroductionScreenState
                         child: Column(
                           children: [
                             svgPicture,
-                            const Directionality(
+                            Directionality(
                               // To ensure correct text ordering in Kurdish (RTL), we're using Directionality widget.
                               textDirection: TextDirection.ltr,
                               child: Text(
                                 '!هیچ بەشێک نەدۆزرایەوە',
                                 style: TextStyle(
-                                  color: ThemeColors.kBodyTextColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontSize: 18,
                                 ),
                               ),

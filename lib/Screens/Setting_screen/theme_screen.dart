@@ -21,7 +21,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      backgroundColor: ThemeColors.kBodyColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const MyCupertinoAppBar(
         enableLeading: true,
         middleText: 'دۆخی ڕووناکی',
@@ -63,20 +63,22 @@ class _ThemeScreenState extends State<ThemeScreen> {
       icon: icon,
       onTap: () {
         setState(() {
-          themeModeSelectedTileIndex = index;
-          themeProvider.setTheme(_getThemeDataForIndex(index));
+          // themeModeSelectedTileIndex = index;
+          final provider = Provider.of<ThemeProvider>(context, listen: false);
+          provider.setTheme(index);
+          
         });
       },
       trailing: Icon(
         CupertinoIcons.check_mark,
-        color: themeProvider.getSelectedTheme == _getThemeDataForIndex(index)
-            ? ThemeColors.kblueColor
+        color: themeProvider.getSelectedTheme == getThemeDataForIndex(index)
+            ? Theme.of(context).colorScheme.primary
             : Colors.transparent,
       ),
     );
   }
 
-  ThemeMode _getThemeDataForIndex(int index) {
+  ThemeMode getThemeDataForIndex(int index) {
     switch (index) {
       case 0:
         return ThemeMode.light;

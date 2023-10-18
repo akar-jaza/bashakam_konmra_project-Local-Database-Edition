@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
                         Navigator.of(context, rootNavigator: true).push(
                           CupertinoPageRoute<bool>(
                             fullscreenDialog: false,
-                            builder: (BuildContext context) => KamtrinKonmra(),
+                            builder: (BuildContext context) => const KamtrinKonmra(),
                           ),
                         );
                       } else {
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return KamtrinKonmra();
+                              return const KamtrinKonmra();
                             },
                           ),
                         );

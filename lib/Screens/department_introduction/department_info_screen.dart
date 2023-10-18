@@ -19,7 +19,7 @@ class DepartmentInfoScreen extends StatelessWidget {
         middleText: departmentName,
         isMiddleTextBlue: true,
       ),
-      backgroundColor: ThemeColors.kBodyColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Theme(
@@ -31,8 +31,10 @@ class DepartmentInfoScreen extends StatelessWidget {
             children: [
               Text(
                 introduction,
-                style: const TextStyle(
-                    color: ThemeColors.kBodyTextColor, fontFamily: "rabarBold"),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontFamily: "rabarBold",
+                ),
               ),
             ],
           ),

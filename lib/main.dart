@@ -46,11 +46,6 @@ void main() async {
 
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   systemUiOverlayHelper.setSystemUiOverlayStyle();
-
-  // runApp(
-  //   const MyApp(),
-  // );
-
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
@@ -76,7 +71,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: Locales.supportedLocales,
               locale: local,
               debugShowCheckedModeBanner: false,
-              themeMode: ThemeMode.system,
+              themeMode: themeProvider.selectedTheme,
               theme: MyThemes.lightTheme,
               darkTheme: MyThemes.darkTheme,
               home: const MainPage(),

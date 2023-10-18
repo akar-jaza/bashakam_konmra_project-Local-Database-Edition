@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bashakam_barawzanko/Screens/department_introduction/Department_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../constantes/them_colors.dart';
 
 class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
@@ -31,8 +30,8 @@ class DepartmentIntroductionListItem extends StatelessWidget {
     }
 
     if (index.isOdd) {
-      return const Divider(
-        color: Color.fromARGB(72, 197, 198, 209),
+      return Divider(
+        color: Theme.of(context).colorScheme.outlineVariant,
       );
     } else {
       final itemIndex = index ~/ 2;
@@ -82,7 +81,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                 child: Text(
                   departmentName,
                   style: TextStyle(
-                    color: ThemeColors.kBodyTextColor,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: calculateTextFontSize(context),
                     letterSpacing: 0.0,
                     height: 1.5,
@@ -91,12 +90,12 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                   maxLines: 2,
                 ),
               ),
-              trailing: const Padding(
-                padding: EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
+              trailing: Padding(
+                padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
                 child: Icon(
                   Icons.arrow_back_ios_new,
                   size: 14,
-                  color: ThemeColors.kBodyTextColor,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
               ),
             ),

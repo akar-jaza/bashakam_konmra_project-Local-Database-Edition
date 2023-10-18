@@ -49,7 +49,7 @@ class KonmraListItem extends StatelessWidget {
         title: Text(
           '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
+            color: Theme.of(context).colorScheme.onTertiaryContainer,
             fontSize: 19,
             // letterSpacing: 0.0,
           ),
@@ -62,7 +62,7 @@ class KonmraListItem extends StatelessWidget {
             Text(
               'پارێزگا: ($pZankoline) - ($pParallel) - ($pEwaranText)',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiaryContainer,
+                color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 13.5,
                 // letterSpacing: 0.0,
               ),
@@ -72,7 +72,7 @@ class KonmraListItem extends StatelessWidget {
             Text(
               'گشتی: ($gZankoline) - ($gParallel) - ($gEwaranText)',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiaryContainer,
+                color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 13.5,
                 // letterSpacing: 0.0,
               ),

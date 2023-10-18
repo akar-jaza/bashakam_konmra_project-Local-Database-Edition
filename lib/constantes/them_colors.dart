@@ -9,9 +9,20 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeMode get getSelectedTheme => selectedTheme;
 
-  void setTheme(ThemeMode theme) {
-    selectedTheme = theme;
-    notifyListeners();
+  void setTheme(int index) {
+    if (index == 0) {
+      selectedTheme = ThemeMode.light;
+      notifyListeners();
+    } else if (index == 1) {
+      selectedTheme = ThemeMode.dark;
+      notifyListeners();
+    } else if (index == 2) {
+      selectedTheme = ThemeMode.system; 
+      notifyListeners();
+    } else {
+      selectedTheme = ThemeMode.dark;
+      notifyListeners();
+    }
   }
 }
 

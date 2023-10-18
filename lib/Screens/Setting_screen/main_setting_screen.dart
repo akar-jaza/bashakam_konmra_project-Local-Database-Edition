@@ -144,14 +144,15 @@ class _IOSHomePageState extends State<IOSHomePage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTheme(
-      data: const CupertinoThemeData(
-        brightness: Brightness.dark, 
-        primaryColor: ThemeColors.kblueColor, 
-        scaffoldBackgroundColor:
-            ThemeColors.kBodyColor,
+      data: CupertinoThemeData(
+        brightness: ThemeProvider().getSelectedTheme == ThemeMode.dark
+            ? Brightness.dark
+            : Brightness.light,
+        scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
       ),
       child: CupertinoPageScaffold(
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
             MyCupertinoListSection(
               headerText: 'ڕووکار',
@@ -175,7 +176,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                             },
                           ),
                         ),
-                  trailing: const CupertinoListTileChevron(),
+                  trailing: ,
                 ),
                 MyCupertinoListTile(
                   titleText: 'فۆنت',

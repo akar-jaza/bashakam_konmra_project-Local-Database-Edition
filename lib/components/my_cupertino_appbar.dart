@@ -22,8 +22,8 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = isMiddleTextBlue == true
-        ? Theme.of(context).colorScheme.onSurface
-        : Theme.of(context).colorScheme.onSurface;
+        ? Theme.of(context).colorScheme.primary
+        : Theme.of(context).colorScheme.onBackground;
     return CupertinoNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         middle: Text(

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../constantes/them_colors.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
@@ -16,7 +15,7 @@ Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
 
 Future<dynamic> androidModalBottomSheet(BuildContext context) {
   return showModalBottomSheet(
-    backgroundColor: Theme.of(context).colorScheme.background,
+    backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
     isScrollControlled: true,
     context: context,
     builder: ((context) {

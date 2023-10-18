@@ -1,5 +1,6 @@
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+// ignore_for_file: slash_for_doc_comments
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MyCupertinoListSection extends StatelessWidget {
   const MyCupertinoListSection({
@@ -14,26 +15,19 @@ class MyCupertinoListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTheme(
-      data: const CupertinoThemeData(
-        brightness: Brightness.dark,
-        primaryColor: ThemeColors.kblueColor,
-        scaffoldBackgroundColor: ThemeColors.kBodyColor,
+    return CupertinoListSection.insetGrouped(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      header: Text(
+        headerText,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onBackground,
+            fontFamily: "rabarBold",
+            fontWeight: FontWeight.w100,
+            fontSize: 15),
       ),
-      child: CupertinoListSection.insetGrouped(
-        backgroundColor: ThemeColors.kBodyColor,
-        header: Text(
-          headerText,
-          style: const TextStyle(
-              color: ThemeColors.kLightGreyTextColor,
-              fontFamily: "rabarBold",
-              fontWeight: FontWeight.w100,
-              fontSize: 15),
-        ),
-        children: [
-          ...tiles,
-        ],
-      ),
+      children: [
+        ...tiles,
+      ],
     );
   }
 }
@@ -55,18 +49,19 @@ class MyCupertinoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile.notched(
-      backgroundColor: ThemeColors.kMyCardColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       title: Text(
         titleText,
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: 'rabarBold',
           fontSize: 15,
+          color: Theme.of(context).colorScheme.onBackground,
         ),
       ),
       leading: Icon(
         icon,
         size: 22,
-        color: ThemeColors.kBodyTextColor,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
       trailing: trailing,
       onTap: onTap,

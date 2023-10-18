@@ -16,6 +16,7 @@ import '../../components/my_custom_modal_bottom_sheet.dart';
 // import '../../components/my_floating_action_button.dart';
 import '../../list_items/konmra_list_item.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter/services.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -415,11 +416,12 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                       context,
                                     ),
                                     icon: Icon(
-                                      Icons.tune_outlined,
+                                      CupertinoIcons.slider_horizontal_3,
                                       size: 26,
+                                      weight: 100,
                                       color: Theme.of(context)
                                           .colorScheme
-                                          .onPrimary,
+                                          .onSurfaceVariant,
                                     ),
                                   ),
                                 ),

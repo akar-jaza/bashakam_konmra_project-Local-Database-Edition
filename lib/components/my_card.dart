@@ -1,4 +1,3 @@
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -81,7 +80,7 @@ class MyCard extends StatelessWidget {
                     child: Text(
                       buttonTitle,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: Theme.of(context).colorScheme.primary,
                         fontFamily: 'rabarBold',
                       ),
                     ),
@@ -94,7 +93,7 @@ class MyCard extends StatelessWidget {
                       child: Text(
                         buttonTitle,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
