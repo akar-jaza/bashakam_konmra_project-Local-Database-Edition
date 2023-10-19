@@ -46,12 +46,8 @@ void main() async {
 
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   systemUiOverlayHelper.setSystemUiOverlayStyle();
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
-    ),
-  );
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -61,24 +57,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ThemeProvider(),
-      child: LocaleBuilder(
-        builder: (local) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
-          return TooltipVisibility(
-            visible: false,
-            child: MaterialApp(
-              localizationsDelegates: Locales.delegates,
-              supportedLocales: Locales.supportedLocales,
-              locale: local,
-              debugShowCheckedModeBanner: false,
-              themeMode: themeProvider.selectedTheme,
-              theme: MyThemes.lightTheme,
-              darkTheme: MyThemes.darkTheme,
-              home: const MainPage(),
-            ),
-          );
-        },
-      ),
+      child: Builder(builder: (context) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return LocaleBuilder(
+          builder: (local) {
+            return TooltipVisibility(
+              visible: false,
+              child: MaterialApp(
+                localizationsDelegates: Locales.delegates,
+                supportedLocales: Locales.supportedLocales,
+                locale: local,
+                debugShowCheckedModeBanner: false,
+                themeMode: themeProvider.themeMode,
+                theme: MyThemes.lightTheme,
+                darkTheme: MyThemes.darkTheme,
+                home: const MainPage(),
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }

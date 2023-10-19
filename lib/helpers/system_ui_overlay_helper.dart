@@ -1,12 +1,11 @@
 // ignore: file_names
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SystemUiOverlayHelper {
   void setSystemUiOverlayStyle() {
     SystemChrome.setSystemUIOverlayStyle(
-      ThemeProvider().getSelectedTheme == ThemeMode.dark
+      ThemeProvider().isDarkMode == true
           ? SystemUiOverlayStyle.dark.copyWith(
               systemNavigationBarColor: ThemeColors.kMyCardColor,
               statusBarColor: const Color(0xFF1B1B1F),

@@ -3,27 +3,19 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode selectedTheme = ThemeMode.light; // Default to light theme
+  ThemeMode themeMode = ThemeMode.light;
 
-  ThemeMode get getSelectedTheme => selectedTheme;
+  bool get isDarkMode => themeMode == ThemeMode.dark;
 
-  void setTheme(int index) {
-    if (index == 0) {
-      selectedTheme = ThemeMode.light;
-      notifyListeners();
-    } else if (index == 1) {
-      selectedTheme = ThemeMode.dark;
-      notifyListeners();
-    } else if (index == 2) {
-      selectedTheme = ThemeMode.system; 
-      notifyListeners();
-    } else {
-      selectedTheme = ThemeMode.dark;
-      notifyListeners();
-    }
+  void toggleTheme(bool isOn) {
+    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
   }
+
+  
 }
 
 class MyThemes {

@@ -1,10 +1,96 @@
-import 'dart:io';
-
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
 import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+class IOSHomePage extends StatefulWidget {
+  const IOSHomePage({super.key});
+
+  @override
+  State<IOSHomePage> createState() => _IOSHomePageState();
+}
+
+class _IOSHomePageState extends State<IOSHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTheme(
+      data: CupertinoThemeData(
+        brightness: ThemeProvider().isDarkMode == true
+            ? Brightness.dark
+            : Brightness.light,
+        scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
+      ),
+      child: CupertinoPageScaffold(
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            MyCupertinoListSection(
+              headerText: 'ڕووکار',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'دۆخی تاریک',
+                  icon: CupertinoIcons.paintbrush,
+                  onTap: () {
+                    // showCupertinoModalPopup(
+                    //   context: context,
+                    //   builder: (context) {
+                    //     return ThemeSwitcher();
+                    //   },
+                    // );
+                  },
+                  trailing: const ThemeSwitcher(),
+                ),
+                MyCupertinoListTile(
+                  titleText: 'فۆنت',
+                  icon: CupertinoIcons.textformat,
+                  onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
+                ),
+              ],
+            ),
+            MyCupertinoListSection(
+              headerText: 'دەربارە',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'دەربارەی بەشەکەم',
+                  icon: CupertinoIcons.info,
+                  onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
+                ),
+              ],
+            ),
+            MyCupertinoListSection(
+              headerText: 'زیاتر',
+              tiles: [
+                MyCupertinoListTile(
+                  titleText: 'پەیوەندی',
+                  icon: CupertinoIcons.mail,
+                  onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
+                ),
+                MyCupertinoListTile(
+                  titleText: 'هەڵسەنگاندن',
+                  icon: CupertinoIcons.star,
+                  onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
+                ),
+                MyCupertinoListTile(
+                  titleText: 'هاوبەشی بکە',
+                  icon: CupertinoIcons.share,
+                  onTap: () {},
+                  trailing: const CupertinoListTileChevron(),
+                ),
+                // Add more tiles as needed
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 // class SettingScreen extends StatelessWidget {
 //   const SettingScreen({super.key});
@@ -132,98 +218,3 @@ import 'package:flutter/material.dart';
 //     );
 //   }
 // }
-
-class IOSHomePage extends StatefulWidget {
-  const IOSHomePage({super.key});
-
-  @override
-  State<IOSHomePage> createState() => _IOSHomePageState();
-}
-
-class _IOSHomePageState extends State<IOSHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoTheme(
-      data: CupertinoThemeData(
-        brightness: ThemeProvider().getSelectedTheme == ThemeMode.dark
-            ? Brightness.dark
-            : Brightness.light,
-        scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
-      ),
-      child: CupertinoPageScaffold(
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            MyCupertinoListSection(
-              headerText: 'ڕووکار',
-              tiles: [
-                MyCupertinoListTile(
-                  titleText: 'دۆخی ڕووناکی',
-                  icon: CupertinoIcons.paintbrush,
-                  onTap: () => Platform.isIOS
-                      ? Navigator.of(context, rootNavigator: true).push(
-                          CupertinoPageRoute<bool>(
-                            fullscreenDialog: false,
-                            builder: (BuildContext context) =>
-                                const ThemeScreen(),
-                          ),
-                        )
-                      : Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const ThemeScreen();
-                            },
-                          ),
-                        ),
-                  trailing: const CupertinoListTileChevron(),
-                ),
-                MyCupertinoListTile(
-                  titleText: 'فۆنت',
-                  icon: CupertinoIcons.textformat,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
-                ),
-              ],
-            ),
-            MyCupertinoListSection(
-              headerText: 'دەربارە',
-              tiles: [
-                MyCupertinoListTile(
-                  titleText: 'دەربارەی بەشەکەم',
-                  icon: CupertinoIcons.info,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
-                ),
-              ],
-            ),
-            MyCupertinoListSection(
-              headerText: 'زیاتر',
-              tiles: [
-                MyCupertinoListTile(
-                  titleText: 'پەیوەندی',
-                  icon: CupertinoIcons.mail,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
-                ),
-                MyCupertinoListTile(
-                  titleText: 'هەڵسەنگاندن',
-                  icon: CupertinoIcons.star,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
-                ),
-                MyCupertinoListTile(
-                  titleText: 'هاوبەشی بکە',
-                  icon: CupertinoIcons.share,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
-                ),
-                // Add more tiles as needed
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

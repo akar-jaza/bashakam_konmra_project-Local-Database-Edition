@@ -45,6 +45,7 @@ dependencies:
   flutter_keyboard_visibility: ^5.4.1
   pull_down_button: ^0.9.3
   provider: ^6.0.5
+  shared_preferences: ^2.2.2
 
 
 dev_dependencies:
