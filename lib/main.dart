@@ -4,7 +4,6 @@ import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_haw
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:bashakam_barawzanko/helpers/system_ui_overlay_helper.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -48,10 +47,9 @@ void main() async {
 
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  final isDark = sharedPreferences.getBool('isDark') ?? false;
+  final isDark = sharedPreferences.getBool('_isDark') ?? false;
 
-
-  ThemeProvider().isDarkMode
+  isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
       : systemUiOverlayHelper.setLightModeSystemUiOverlayStyle();
 

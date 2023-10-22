@@ -14,8 +14,7 @@ class KonmraListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     if (index.isOdd) {
       return Divider(
-        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.2),
-        // color: Color.fromARGB(72, 197, 198, 209),
+        color: Theme.of(context).colorScheme.outlineVariant,
       );
     } else {
       final itemIndex = index ~/ 2;

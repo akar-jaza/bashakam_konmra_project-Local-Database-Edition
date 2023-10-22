@@ -31,9 +31,9 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  initilize() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    
+  initilizePref() async {
+    SharedPreferences.getInstance();
+    notifyListeners();
   }
 }
 
