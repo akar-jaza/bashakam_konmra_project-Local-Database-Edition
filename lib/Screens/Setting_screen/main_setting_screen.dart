@@ -16,9 +16,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
   Widget build(BuildContext context) {
     return CupertinoTheme(
       data: CupertinoThemeData(
-        brightness: ThemeProvider().isDarkMode == true
-            ? Brightness.dark
-            : Brightness.light,
+        brightness: Theme.of(context).brightness,
         scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
       ),
       child: CupertinoPageScaffold(

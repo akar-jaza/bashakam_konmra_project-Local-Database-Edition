@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/helpers/system_ui_overlay_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,15 +11,33 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+  ThemeProvider({bool? isDark}) {
+    if (isDark != null) {
+      themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    }
+  }
+
+  void toggleTheme(bool isOn) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (isOn) {
+      themeMode = ThemeMode.dark;
+      SystemUiOverlayHelper().setDarkModeSystemUiOverlayStyle();
+      sharedPreferences.setBool('_isDark', true);
+    } else {
+      themeMode = ThemeMode.light;
+      SystemUiOverlayHelper().setLightModeSystemUiOverlayStyle();
+      sharedPreferences.setBool('_isDark', false);
+    }
     notifyListeners();
   }
 
-  
+  initilize() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    
+  }
 }
 
-class MyThemes {
+class MyThemes extends ChangeNotifier {
   static ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch().copyWith(
       brightness: Brightness.light,
@@ -58,8 +77,10 @@ class MyThemes {
     ),
     useMaterial3: true,
     fontFamily: 'rabarBold',
-    cupertinoOverrideTheme: const CupertinoThemeData(
-      textTheme: CupertinoTextThemeData(
+    cupertinoOverrideTheme: CupertinoThemeData(
+      brightness:
+          ThemeProvider().isDarkMode ? Brightness.dark : Brightness.light,
+      textTheme: const CupertinoTextThemeData(
         navTitleTextStyle: TextStyle(fontFamily: "rabarBold"),
         textStyle: TextStyle(
           fontFamily: "rabarBold",
@@ -165,6 +186,8 @@ class MyThemes {
       ),
     ),
   );
+  @override
+  notifyListeners();
 }
 
 class ThemeColors {

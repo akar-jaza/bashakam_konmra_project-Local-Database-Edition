@@ -4,10 +4,12 @@ import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_haw
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
 import 'package:bashakam_barawzanko/helpers/system_ui_overlay_helper.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Screens/main_page.dart';
 import 'csv_importers/fetch_konmra_cities/import_konmra_csv.dart';
 
@@ -45,20 +47,31 @@ void main() async {
   await Locales.init(['ar']);
 
   final systemUiOverlayHelper = SystemUiOverlayHelper();
-  systemUiOverlayHelper.setSystemUiOverlayStyle();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final isDark = sharedPreferences.getBool('isDark') ?? false;
 
-  runApp(const MyApp());
+
+  ThemeProvider().isDarkMode
+      ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
+      : systemUiOverlayHelper.setLightModeSystemUiOverlayStyle();
+
+  runApp(MyApp(isDark: isDark));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  bool isDark;
+  MyApp({
+    super.key,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ThemeProvider(),
+      create: (BuildContext context) => ThemeProvider(isDark: isDark),
       child: Builder(builder: (context) {
         final themeProvider = Provider.of<ThemeProvider>(context);
+
         return LocaleBuilder(
           builder: (local) {
             return TooltipVisibility(

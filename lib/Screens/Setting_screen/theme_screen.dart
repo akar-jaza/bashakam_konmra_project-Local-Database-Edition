@@ -20,8 +20,6 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
       onChanged: ((value) {
         final provider = Provider.of<ThemeProvider>(context, listen: false);
         provider.toggleTheme(value);
-
-        print(themeProvider.isDarkMode);
       }),
     );
   }
