@@ -36,14 +36,14 @@ class MyCupertinoListTile extends StatelessWidget {
   const MyCupertinoListTile({
     super.key,
     required this.titleText,
-    this.icon,
+    this.leadingIcon,
     required this.onTap,
     required this.trailing,
   });
 
   final String titleText;
-  final IconData? icon;
-  final void Function() onTap;
+  final IconData? leadingIcon;
+  final Function() onTap;
   final Widget trailing;
 
   @override
@@ -59,7 +59,7 @@ class MyCupertinoListTile extends StatelessWidget {
         ),
       ),
       leading: Icon(
-        icon,
+        leadingIcon,
         size: 22,
         color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),

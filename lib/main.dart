@@ -48,6 +48,8 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final isDark = sharedPreferences.getBool('_isDark') ?? false;
+  final themeIndex = sharedPreferences.getInt('selectedTheme') ?? 0;
+  final checkmarkIndex = sharedPreferences.getInt('selectedCheckmark') ?? 0;
 
   isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
@@ -57,8 +59,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  bool isDark;
-  MyApp({
+  final bool isDark;
+  const MyApp({
     super.key,
     required this.isDark,
   });

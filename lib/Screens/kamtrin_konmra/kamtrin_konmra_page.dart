@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
@@ -16,7 +15,6 @@ import '../../components/my_custom_modal_bottom_sheet.dart';
 // import '../../components/my_floating_action_button.dart';
 import '../../list_items/konmra_list_item.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter/services.dart';
 
 class KamtrinKonmra extends StatefulWidget {
   const KamtrinKonmra({Key? key}) : super(key: key);
@@ -35,7 +33,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   bool _hawlerIsChecked = false;
   bool _duhokIsChecked = false;
 
-  bool _isFabVisible = true;
+  // bool _isFabVisible = true;
 
   @override
   void initState() {
@@ -358,11 +356,11 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
             onNotification: (notification) {
               if (notification.direction == ScrollDirection.forward) {
                 setState(() {
-                  _isFabVisible = true;
+                  // _isFabVisible = true;
                 });
               } else if (notification.direction == ScrollDirection.reverse) {
                 setState(() {
-                  _isFabVisible = false;
+                  // _isFabVisible = false;
                 });
               }
               return true;
@@ -388,7 +386,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                               if (MediaQuery.of(context).viewInsets.bottom >
                                   0.0) {
                               } else {
-                                _isFabVisible = true;
+                                // _isFabVisible = true;
                               }
                             });
                             _runFilter(value);

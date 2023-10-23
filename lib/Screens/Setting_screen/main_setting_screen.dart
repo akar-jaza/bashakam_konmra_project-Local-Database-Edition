@@ -1,6 +1,5 @@
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,20 +27,22 @@ class _IOSHomePageState extends State<IOSHomePage> {
               tiles: [
                 MyCupertinoListTile(
                   titleText: 'دۆخی تاریک',
-                  icon: CupertinoIcons.paintbrush,
+                  leadingIcon: CupertinoIcons.paintbrush,
                   onTap: () {
-                    // showCupertinoModalPopup(
-                    //   context: context,
-                    //   builder: (context) {
-                    //     return ThemeSwitcher();
-                    //   },
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ThemeScreen();
+                        },
+                      ),
+                    );
                   },
-                  trailing: const ThemeSwitcher(),
+                  trailing: const CupertinoListTileChevron(),
+                  // trailing: const ThemeSwitcher(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'فۆنت',
-                  icon: CupertinoIcons.textformat,
+                  leadingIcon: CupertinoIcons.textformat,
                   onTap: () {},
                   trailing: const CupertinoListTileChevron(),
                 ),
@@ -52,7 +53,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
               tiles: [
                 MyCupertinoListTile(
                   titleText: 'دەربارەی بەشەکەم',
-                  icon: CupertinoIcons.info,
+                  leadingIcon: CupertinoIcons.info,
                   onTap: () {},
                   trailing: const CupertinoListTileChevron(),
                 ),
@@ -63,19 +64,19 @@ class _IOSHomePageState extends State<IOSHomePage> {
               tiles: [
                 MyCupertinoListTile(
                   titleText: 'پەیوەندی',
-                  icon: CupertinoIcons.mail,
+                  leadingIcon: CupertinoIcons.mail,
                   onTap: () {},
                   trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هەڵسەنگاندن',
-                  icon: CupertinoIcons.star,
+                  leadingIcon: CupertinoIcons.star,
                   onTap: () {},
                   trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هاوبەشی بکە',
-                  icon: CupertinoIcons.share,
+                  leadingIcon: CupertinoIcons.share,
                   onTap: () {},
                   trailing: const CupertinoListTileChevron(),
                 ),

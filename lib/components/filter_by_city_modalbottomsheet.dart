@@ -29,7 +29,7 @@ Future<void> filterByCityModalBottomSheet(
                   children: [
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Text(
                           "گەڕان بەپێی شار",
                           style: TextStyle(
