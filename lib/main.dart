@@ -1,4 +1,5 @@
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
+import 'package:bashakam_barawzanko/constantes/theme_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
@@ -48,8 +49,6 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final isDark = sharedPreferences.getBool('_isDark') ?? false;
-  final themeIndex = sharedPreferences.getInt('selectedTheme') ?? 0;
-  final checkmarkIndex = sharedPreferences.getInt('selectedCheckmark') ?? 0;
 
   isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
@@ -68,7 +67,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ThemeProvider(isDark: isDark),
+      create: (BuildContext context) {
+        return ThemeProvider(isDark: isDark);
+      },
       child: Builder(builder: (context) {
         final themeProvider = Provider.of<ThemeProvider>(context);
 

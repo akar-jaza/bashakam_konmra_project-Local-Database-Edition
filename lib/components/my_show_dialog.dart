@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../constantes/them_colors.dart';
+import '../constantes/theme_colors.dart';
 
 class ConnectionDialog extends StatelessWidget {
   const ConnectionDialog({Key? key}) : super(key: key);

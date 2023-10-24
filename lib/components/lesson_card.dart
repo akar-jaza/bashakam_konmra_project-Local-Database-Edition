@@ -1,4 +1,4 @@
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
+import 'package:bashakam_barawzanko/constantes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class LessonCard extends StatelessWidget {

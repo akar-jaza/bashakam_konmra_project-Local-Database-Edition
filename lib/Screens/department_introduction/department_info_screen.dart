@@ -1,6 +1,7 @@
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:flutter/material.dart';
 
+
 class DepartmentInfoScreen extends StatelessWidget {
   const DepartmentInfoScreen({
     super.key,

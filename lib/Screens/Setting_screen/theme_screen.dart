@@ -1,6 +1,6 @@
+import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
-import 'package:bashakam_barawzanko/constantes/them_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,15 +16,9 @@ class ThemeScreen extends StatefulWidget {
 class _ThemeScreenState extends State<ThemeScreen> {
   int themeModeSelectedTileIndex = 0;
 
-  Future<void> saveThemeAndCheckmark(int themeIndex, int checkmarkIndex) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('selectedTheme', themeIndex);
-    await prefs.setInt('selectedCheckmark', checkmarkIndex);
-  }
-
   @override
   Widget build(BuildContext context) {
-    Color getIconColor(int index) {
+    dynamic getIconColor(int index) {
       if (themeModeSelectedTileIndex == index) {
         return Theme.of(context).colorScheme.primary; // Selected tile
       } else {
@@ -32,21 +26,18 @@ class _ThemeScreenState extends State<ThemeScreen> {
       }
     }
 
-    Future<void> loadSavedValues() async {
-      final prefs = await SharedPreferences.getInstance();
-      final savedThemeIndex = prefs.getInt('selectedTheme') ?? 0;
-      final savedCheckmarkIndex = prefs.getInt('selectedCheckmark') ?? 0;
+    Future<Color> saveCheckmark(
+        int index, int themeModeSelectedTileIndex) async {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
 
-      setState(() {
-        themeModeSelectedTileIndex = savedThemeIndex;
-        // Set the checkmark index as needed
-      });
-    }
-
-    @override
-    void initState() {
-      super.initState();
-      loadSavedValues();
+      if (themeModeSelectedTileIndex == index) {
+        sharedPreferences.setBool('_show_check_$index', true);
+        return Theme.of(context).colorScheme.primary;
+      } else {
+        sharedPreferences.setBool('_show_check_$index', false);
+        return Colors.transparent;
+      }
     }
 
     return Scaffold(
@@ -68,7 +59,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                         Provider.of<ThemeProvider>(context, listen: false);
                     provider.setTheme(0);
                     themeModeSelectedTileIndex = 0;
-                    saveThemeAndCheckmark(0, themeModeSelectedTileIndex);
                   });
                 }),
                 leadingIcon: CupertinoIcons.sun_min,
@@ -86,7 +76,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                         Provider.of<ThemeProvider>(context, listen: false);
                     provider.setTheme(1);
                     themeModeSelectedTileIndex = 1;
-                    saveThemeAndCheckmark(1, themeModeSelectedTileIndex);
                   });
                 }),
                 leadingIcon: CupertinoIcons.moon,
@@ -103,7 +92,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                         Provider.of<ThemeProvider>(context, listen: false);
                     provider.setTheme(2);
                     themeModeSelectedTileIndex = 2;
-                    saveThemeAndCheckmark(2, themeModeSelectedTileIndex);
                   });
                 }),
                 leadingIcon: CupertinoIcons.gear,

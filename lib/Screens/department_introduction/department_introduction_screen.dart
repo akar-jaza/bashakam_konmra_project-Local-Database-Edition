@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';
-import '../../constantes/them_colors.dart';
+import '../../constantes/theme_colors.dart';
 import '../../list_items/department_introduction_list_item.dart';
 
 class DepartmentIntroductionScreen extends StatefulWidget {
