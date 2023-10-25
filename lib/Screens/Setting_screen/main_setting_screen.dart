@@ -1,4 +1,5 @@
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
+import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,20 @@ class _IOSHomePageState extends State<IOSHomePage> {
                 MyCupertinoListTile(
                   titleText: 'دەربارەی بەشەکەم',
                   leadingIcon: CupertinoIcons.info,
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: ((context) {
+                          return MyAlertDialog(
+                            iconData: CupertinoIcons.arrow_2_circlepath,
+                            title: 'ئەپڵیکەیشنەکە پێویستی بە ڕێستارتە',
+                            content:
+                                'بۆ ئەوەی تەواوی گۆڕانکاریەکان ببینیت تکایە ئەپڵیکەیشنەکە ڕێستارت بکە',
+                            firstActionDialogText: 'باشە',
+                            firstActionOnTap: () {},
+                          );
+                        }));
+                  },
                   trailing: const CupertinoListTileChevron(),
                 ),
               ],

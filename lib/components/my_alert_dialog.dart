@@ -21,24 +21,29 @@ class MyAlertDialog extends StatelessWidget {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return CupertinoTheme(
         data: CupertinoThemeData(
-          barBackgroundColor:
-              ThemeProvider().isDarkMode ? CupertinoColors.black : Colors.white,
+          brightness: Theme.of(context).brightness,
         ),
         child: CupertinoAlertDialog(
-          title: Text(
-            title,
-            style: TextStyle(
-              color: ThemeProvider().isDarkMode
-                  ? CupertinoColors.white
-                  : Colors.black,
-            ),
+          title: Column(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontFamily: "rabarBold",
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(
+                height: 7,
+              )
+            ],
           ),
           content: Text(
             content,
             style: TextStyle(
-              color: ThemeProvider().isDarkMode
-                  ? CupertinoColors.white
-                  : Colors.black,
+              fontFamily: "rabarBold",
+              fontSize: 11.5,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           actions: <Widget>[
@@ -46,7 +51,11 @@ class MyAlertDialog extends StatelessWidget {
               onPressed: firstActionOnTap,
               child: Text(
                 firstActionDialogText,
-                style: const TextStyle(color: CupertinoColors.systemBlue),
+                style: const TextStyle(
+                  color: CupertinoColors.systemBlue,
+                  fontFamily: "rabarBold",
+                  fontSize: 15,
+                ),
               ),
             ),
           ],
