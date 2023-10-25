@@ -1,33 +1,41 @@
+import 'dart:io';
+
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
-import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
-import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
-import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
+// import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+// import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
+// import 'package:flutter/cupertino.dart';
 
-
-
-class ThemeSwitcher extends StatefulWidget {
+class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({super.key});
 
-  @override
-  State<ThemeSwitcher> createState() => _ThemeSwitcherState();
-}
-
-class _ThemeSwitcherState extends State<ThemeSwitcher> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return Switch(
-      value: themeProvider.isDarkMode,
-      onChanged: ((value) {
-        final provider = Provider.of<ThemeProvider>(context, listen: false);
-        provider.toggleTheme(value);
-      }),
-    );
+    return Platform.isIOS
+        ? CupertinoSwitch(
+            // This bool value toggles the switch.
+            value: themeProvider.isDarkMode,
+            activeColor: CupertinoColors.activeBlue,
+            onChanged: ((value) {
+              final provider =
+                  Provider.of<ThemeProvider>(context, listen: false);
+              provider.toggleTheme(value);
+            }),
+          )
+        : Switch(
+            value: themeProvider.isDarkMode,
+            onChanged: ((value) {
+              final provider =
+                  Provider.of<ThemeProvider>(context, listen: false);
+              provider.toggleTheme(value);
+            }),
+          );
   }
 }
 
