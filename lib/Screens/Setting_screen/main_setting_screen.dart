@@ -29,16 +29,16 @@ class _IOSHomePageState extends State<IOSHomePage> {
                   titleText: 'دۆخی تاریک',
                   leadingIcon: CupertinoIcons.paintbrush,
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const ThemeScreen();
-                        },
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) {
+                    //       return const ThemeScreen();
+                    //     },
+                    //   ),
+                    // );
                   },
-                  trailing: const CupertinoListTileChevron(),
-                  // trailing: const ThemeSwitcher(),
+                  // trailing: const CupertinoListTileChevron(),
+                  trailing: const ThemeSwitcher(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'فۆنت',
