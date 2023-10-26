@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
@@ -32,22 +33,32 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   bool _slemaniIsChecked = false;
   bool _hawlerIsChecked = false;
   bool _duhokIsChecked = false;
+  bool _isScreenLoaded = false;
 
   // bool _isFabVisible = true;
 
   @override
   void initState() {
     super.initState();
-    _fetchSlemaniData();
-    _fetchHawlerData();
-    _fetchDuhokData();
 
-    var keyboardVisibilityController = KeyboardVisibilityController();
-    keyboardSubscription =
-        keyboardVisibilityController.onChange.listen((bool visible) {
-      _isKeyboardVisible = visible;
+    // Delay loading data by 500 milliseconds
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _fetchSlemaniData();
+      _fetchHawlerData();
+      _fetchDuhokData();
+
+      var keyboardVisibilityController = KeyboardVisibilityController();
+      keyboardSubscription =
+          keyboardVisibilityController.onChange.listen((bool visible) {
+        _isKeyboardVisible = visible;
+      });
+      _isKeyboardVisible = false;
+
+      // Mark the screen as fully loaded
+      setState(() {
+        _isScreenLoaded = true;
+      });
     });
-    _isKeyboardVisible = false;
   }
 
   @override
@@ -352,127 +363,133 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
               ),
             ),
           ),
-          body: NotificationListener<UserScrollNotification>(
-            onNotification: (notification) {
-              if (notification.direction == ScrollDirection.forward) {
-                setState(() {
-                  // _isFabVisible = true;
-                });
-              } else if (notification.direction == ScrollDirection.reverse) {
-                setState(() {
-                  // _isFabVisible = false;
-                });
-              }
-              return true;
-            },
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 20,
-                    left: 20,
-                    right: 20,
-                    top: Platform.isIOS ? 10 : 15,
-                  ),
-                  child: Row(
+          body: _isScreenLoaded
+              ? NotificationListener<UserScrollNotification>(
+                  onNotification: (notification) {
+                    if (notification.direction == ScrollDirection.forward) {
+                      setState(() {
+                        // _isFabVisible = true;
+                      });
+                    } else if (notification.direction ==
+                        ScrollDirection.reverse) {
+                      setState(() {
+                        // _isFabVisible = false;
+                      });
+                    }
+                    return true;
+                  },
+                  child: Column(
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: MyTextField(
-                          textController: _textEditingController,
-                          labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
-                          onChanged: (value) {
-                            setState(() {
-                              if (MediaQuery.of(context).viewInsets.bottom >
-                                  0.0) {
-                              } else {
-                                // _isFabVisible = true;
-                              }
-                            });
-                            _runFilter(value);
-                          },
-                          onPressed: () {},
-                          suffixIcon: Platform.isIOS
-                              ? CupertinoButton(
-                                  onPressed: (() =>
-                                      filterByCityModalBottomSheet(
-                                        context,
-                                      )),
-                                  child: Icon(
-                                    CupertinoIcons.slider_horizontal_3,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
-                                )
-                              : Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  child: IconButton(
-                                    onPressed: () =>
-                                        filterByCityModalBottomSheet(
-                                      context,
-                                    ),
-                                    icon: Icon(
-                                      CupertinoIcons.slider_horizontal_3,
-                                      size: 26,
-                                      weight: 100,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                    ),
-                                  ),
-                                ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 20,
+                          left: 20,
+                          right: 20,
+                          top: Platform.isIOS ? 10 : 15,
                         ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: MyTextField(
+                                textController: _textEditingController,
+                                labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom >
+                                        0.0) {
+                                    } else {
+                                      // _isFabVisible = true;
+                                    }
+                                  });
+                                  _runFilter(value);
+                                },
+                                onPressed: () {},
+                                suffixIcon: Platform.isIOS
+                                    ? CupertinoButton(
+                                        onPressed: (() =>
+                                            filterByCityModalBottomSheet(
+                                              context,
+                                            )),
+                                        child: Icon(
+                                          CupertinoIcons.slider_horizontal_3,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurfaceVariant,
+                                        ),
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        child: IconButton(
+                                          onPressed: () =>
+                                              filterByCityModalBottomSheet(
+                                            context,
+                                          ),
+                                          icon: Icon(
+                                            CupertinoIcons.slider_horizontal_3,
+                                            size: 26,
+                                            weight: 100,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurfaceVariant,
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (_isLoading)
+                        SizedBox(
+                          height: 40,
+                          child: Center(
+                            child: CupertinoActivityIndicator(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ),
+                      Expanded(
+                        child: _foundUsers.isNotEmpty
+                            ? ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                keyboardDismissBehavior:
+                                    ScrollViewKeyboardDismissBehavior.onDrag,
+                                controller: _scrollController,
+                                itemBuilder: (context, index) => KonmraListItem(
+                                  departments: _foundUsers,
+                                  index: index,
+                                ),
+                                itemCount: _foundUsers.length,
+                              )
+                            : Center(
+                                child: Column(
+                                  children: [
+                                    svgPicture,
+                                    Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: Text(
+                                        '! هیچ بەشێک نەدۆزرایەوە',
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                       ),
                     ],
                   ),
-                ),
-                if (_isLoading)
-                  SizedBox(
-                    height: 40,
-                    child: Center(
-                      child: CupertinoActivityIndicator(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                Expanded(
-                  child: _foundUsers.isNotEmpty
-                      ? ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          keyboardDismissBehavior:
-                              ScrollViewKeyboardDismissBehavior.onDrag,
-                          controller: _scrollController,
-                          itemBuilder: (context, index) => KonmraListItem(
-                            departments: _foundUsers,
-                            index: index,
-                          ),
-                          itemCount: _foundUsers.length,
-                        )
-                      : Center(
-                          child: Column(
-                            children: [
-                              svgPicture,
-                              Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Text(
-                                  '! هیچ بەشێک نەدۆزرایەوە',
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : const Center(child: CupertinoActivityIndicator()),
+
           // floatingActionButton: AnimatedOpacity(
           //   opacity: _isKeyboardVisible ? 0.0 : 1.0,
           //   duration: Duration(milliseconds: 50),
