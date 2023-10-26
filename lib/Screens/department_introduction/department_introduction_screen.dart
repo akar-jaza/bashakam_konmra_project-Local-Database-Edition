@@ -33,7 +33,7 @@ class _DepartmentIntroductionScreenState
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 400), () {
       _fetchData();
       setState(() {
         _isScreenLoaded = true;

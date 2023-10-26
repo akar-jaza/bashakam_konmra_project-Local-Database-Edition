@@ -1,24 +1,23 @@
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';
+import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // double textWidth = MediaQuery.of(context).size.width;
+    String imageLightThemeAsset = 'assets/images/cats_.svg';
+    String imageDarkThemeAsset = 'assets/images/cats_darkMode.svg';
 
-    // double width = textWidth < 380 // Galaxy S8 aspect ratio
-    //     ? 280
-    //     : textWidth > 380 // iphone 13 pro aspect ratio
-    //         ? 350
-    //         : 350; // Default width if neither condition is met
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
@@ -29,14 +28,27 @@ class HomePage extends StatelessWidget {
                 height: 25,
               ),
               GestureDetector(
-                onTap: () {},
-                child: SvgPicture.asset(
-                  'assets/images/cats_.svg',
-                  width: MediaQuery.of(context).size.width < 700
-                      ? MediaQuery.of(context).size.width * 0.5
-                      : 270,
-                ),
-              ),
+                  onTap: () {},
+                  child: FutureBuilder<bool>(
+                    future: SharedPreferences.getInstance().then(
+                        (sharedPrefs) =>
+                            sharedPrefs.getBool('_isDark') ?? false),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final isDark = snapshot.data ?? false;
+
+                        return SvgPicture.asset(
+                          isDark ? imageLightThemeAsset : imageDarkThemeAsset,
+                          width: MediaQuery.of(context).size.width < 700
+                              ? MediaQuery.of(context).size.width * 0.5
+                              : 270,
+                        );
+                      } else {
+                        // Handle loading state or error.
+                        return const MyProgressIndicator(); // or any other loading widget
+                      }
+                    },
+                  )),
               const SizedBox(
                 height: 30,
               ),
@@ -85,7 +97,8 @@ class HomePage extends StatelessWidget {
                         Navigator.of(context, rootNavigator: true).push(
                           CupertinoPageRoute<bool>(
                             fullscreenDialog: false,
-                            builder: (BuildContext context) => const KamtrinKonmra(),
+                            builder: (BuildContext context) =>
+                                const KamtrinKonmra(),
                           ),
                         );
                       } else {

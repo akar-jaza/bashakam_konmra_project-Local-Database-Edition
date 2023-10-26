@@ -1,7 +1,5 @@
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
-import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
-import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
