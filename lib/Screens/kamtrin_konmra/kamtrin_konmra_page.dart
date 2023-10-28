@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
-import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
@@ -34,6 +33,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   bool _hawlerIsChecked = false;
   bool _duhokIsChecked = false;
   bool _isScreenLoaded = false;
+  int duruationTime = Platform.isIOS ? 0 : 500;
 
   // bool _isFabVisible = true;
 
@@ -42,7 +42,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     super.initState();
 
     // Delay loading data by 500 milliseconds
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: duruationTime), () {
       _fetchSlemaniData();
       _fetchHawlerData();
       _fetchDuhokData();

@@ -116,6 +116,7 @@ class MyThemes extends ChangeNotifier {
     primaryTextTheme: const TextTheme(
       bodyLarge: TextStyle(color: WhiteThemeColors.kBodyTextColor),
     ),
+    
     appBarTheme: const AppBarTheme(
       backgroundColor: ThemeColors.kBodyColor,
       surfaceTintColor: ThemeColors.kblueColor,

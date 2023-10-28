@@ -29,7 +29,6 @@ class _DepartmentIntroductionScreenState
 
   bool isLoading = false;
   bool _isScreenLoaded = false;
-
   @override
   void initState() {
     super.initState();

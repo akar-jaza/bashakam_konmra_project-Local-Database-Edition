@@ -118,6 +118,13 @@ flutter:
     - family: uniQaidar
       fonts:
         - asset: assets/fonts/uniQaidar.ttf
+    - family: sanFranciscoUITextRegular
+      fonts:
+        - asset: assets/fonts/ArabicUITextRegular.ttf
+    - family: sanFranciscoUITextMedium
+      fonts:
+        - asset: assets/fonts/ArabicUITextMedium.ttf
+        
     
     
         

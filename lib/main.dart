@@ -57,18 +57,24 @@ void main() async {
   runApp(MyApp(isDark: isDark));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final bool isDark;
+
   const MyApp({
     super.key,
     required this.isDark,
   });
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-        return ThemeProvider(isDark: isDark);
+        return ThemeProvider(isDark: widget.isDark);
       },
       child: Builder(builder: (context) {
         final themeProvider = Provider.of<ThemeProvider>(context);

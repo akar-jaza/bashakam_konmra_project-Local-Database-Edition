@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:bashakam_barawzanko/Screens/Setting_screen/font_screen.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +12,6 @@ class IOSHomePage extends StatefulWidget {
   @override
   State<IOSHomePage> createState() => _IOSHomePageState();
 }
-
 
 class _IOSHomePageState extends State<IOSHomePage> {
   @override
@@ -44,7 +46,25 @@ class _IOSHomePageState extends State<IOSHomePage> {
                 MyCupertinoListTile(
                   titleText: 'فۆنت',
                   leadingIcon: CupertinoIcons.textformat,
-                  onTap: () {},
+                  onTap: () {
+                    if (Platform.isIOS) {
+                      Navigator.of(context, rootNavigator: true).push(
+                        CupertinoPageRoute<bool>(
+                          fullscreenDialog: false,
+                          builder: (BuildContext context) => FontScreen(),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FontScreen();
+                          },
+                        ),
+                      );
+                    }
+                  },
                   trailing: const CupertinoListTileChevron(),
                 ),
               ],
