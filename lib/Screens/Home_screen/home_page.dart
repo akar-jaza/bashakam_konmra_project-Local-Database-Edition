@@ -57,7 +57,6 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 17,
                     color: Theme.of(context).colorScheme.onBackground,
-                    fontFamily: 'rabarBold',
                   ),
                   textAlign: TextAlign.center,
                 ),

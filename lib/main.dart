@@ -1,3 +1,4 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
 import 'package:bashakam_barawzanko/constantes/theme_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
@@ -49,20 +50,23 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final isDark = sharedPreferences.getBool('_isDark') ?? false;
+  final getFont = sharedPreferences.getString('selectedFont') ?? "uniQaidar";
 
   isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
       : systemUiOverlayHelper.setLightModeSystemUiOverlayStyle();
 
-  runApp(MyApp(isDark: isDark));
+  runApp(MyApp(isDark: isDark, getFont: getFont));
+  print(getFont);
 }
 
 class MyApp extends StatefulWidget {
   final bool isDark;
-
+  final String getFont;
   const MyApp({
     super.key,
     required this.isDark,
+    required this.getFont,
   });
 
   @override
@@ -72,31 +76,49 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return ThemeProvider(isDark: widget.isDark);
-      },
-      child: Builder(builder: (context) {
-        final themeProvider = Provider.of<ThemeProvider>(context);
-
-        return LocaleBuilder(
-          builder: (local) {
-            return TooltipVisibility(
-              visible: false,
-              child: MaterialApp(
-                localizationsDelegates: Locales.delegates,
-                supportedLocales: Locales.supportedLocales,
-                locale: local,
-                debugShowCheckedModeBanner: false,
-                themeMode: themeProvider.themeMode,
-                theme: MyThemes.lightTheme,
-                darkTheme: MyThemes.darkTheme,
-                home: const MainPage(),
-              ),
-            );
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) {
+            return ThemeProvider(isDark: widget.isDark);
           },
-        );
-      }),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) {
+            return FontProvider(widget.getFont);
+          },
+        ),
+        ChangeNotifierProvider(create: (BuildContext context) {
+          return FontProvider(widget.getFont);
+        })
+      ],
+      child: ChangeNotifierProvider(
+        create: (BuildContext context) {
+          return ThemeProvider(isDark: widget.isDark);
+        },
+        child: Builder(builder: (context) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
+
+          return LocaleBuilder(
+            builder: (local) {
+              return TooltipVisibility(
+                visible: false,
+                child: MaterialApp(
+                  localizationsDelegates: Locales.delegates,
+                  supportedLocales: Locales.supportedLocales,
+                  locale: local,
+                  debugShowCheckedModeBanner: false,
+                  themeMode: themeProvider.themeMode,
+                  theme: MyThemes().lightTheme(context),
+                  darkTheme: MyThemes().darkTheme(context),
+                  
+                  home: const MainPage(),
+                ),
+              );
+            },
+          );
+        }),
+      ),
     );
   }
 }

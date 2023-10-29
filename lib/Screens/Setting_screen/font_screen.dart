@@ -1,6 +1,7 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+import 'package:bashakam_barawzanko/constantes/theme_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FontScreen extends StatefulWidget {
   const FontScreen({super.key});
@@ -10,26 +11,16 @@ class FontScreen extends StatefulWidget {
 }
 
 class _FontScreenState extends State<FontScreen> {
-  String selectedFont = "rabarBold"; // Default font
-
-  // Add this method to retrieve the selected font from SharedPreferences.
-  Future<void> getSelectedFont() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      selectedFont = prefs.getString('selectedFont') ?? "rabarBold";
-    });
-  }
-
-  // Add this method to save the selected font to SharedPreferences.
-  Future<void> saveSelectedFont(String font) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selectedFont', font);
-  }
-
+  String selectedFont = FontProvider.defaultFont; // Default font
   @override
   void initState() {
     super.initState();
-    getSelectedFont(); // Retrieve the selected font when the app starts.
+
+    FontProvider.getSelectedFont().then((font) {
+      setState(() {
+        selectedFont = font;
+      });
+    }); // Retrieve the selected font when the app starts.
   }
 
   List<Map<String, String>> fontOptions = [
@@ -75,7 +66,8 @@ class _FontScreenState extends State<FontScreen> {
               onChanged: (value) {
                 setState(() {
                   selectedFont = value!;
-                  saveSelectedFont(selectedFont); // Save the selected font.
+                  FontProvider.saveSelectedFont(
+                      selectedFont); // Save the selected font.
                 });
               },
             ),

@@ -124,6 +124,11 @@ flutter:
     - family: sanFranciscoUITextMedium
       fonts:
         - asset: assets/fonts/ArabicUITextMedium.ttf
+    - family: sanFranciscoUITextSemiBold
+      fonts:
+        - asset: assets/fonts/ArabicUITextSemibold.ttf
+
+        
         
     
     
