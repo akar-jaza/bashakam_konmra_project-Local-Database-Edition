@@ -50,7 +50,7 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final isDark = sharedPreferences.getBool('_isDark') ?? false;
-  final getFont = sharedPreferences.getString('selectedFont') ?? "uniQaidar";
+  final getFont = sharedPreferences.getString('selectedFont') ?? "rabarBold";
 
   isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()

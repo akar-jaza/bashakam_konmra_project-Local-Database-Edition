@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
-import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
