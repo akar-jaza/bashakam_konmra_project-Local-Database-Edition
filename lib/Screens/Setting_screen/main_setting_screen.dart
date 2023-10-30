@@ -30,7 +30,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
               tiles: [
                 MyCupertinoListTile(
                   titleText: 'دۆخی تاریک',
-                  leadingIcon: CupertinoIcons.paintbrush,
+                  leadingIcon: CupertinoIcons.moon,
                   onTap: () {
                     // Navigator.of(context).push(
                     //   MaterialPageRoute(
@@ -51,7 +51,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                       Navigator.of(context, rootNavigator: true).push(
                         CupertinoPageRoute<bool>(
                           fullscreenDialog: false,
-                          builder: (BuildContext context) => FontScreen(),
+                          builder: (BuildContext context) => const FontScreen(),
                         ),
                       );
                     } else {
@@ -59,7 +59,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return FontScreen();
+                            return const FontScreen();
                           },
                         ),
                       );

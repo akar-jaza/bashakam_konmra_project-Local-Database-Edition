@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FontProvider extends ChangeNotifier {
-  static String defaultFont = ""; // Default font
+  static String defaultFont = "rabarBold"; // Default font
   String? getFont; // Initialize getFont with a default font
 
   FontProvider(String getFont) {
@@ -10,14 +10,14 @@ class FontProvider extends ChangeNotifier {
       defaultFont = "rabarBold";
     } else if (getFont == "sanFranciscoUITextRegular") {
       defaultFont == "sanFranciscoUITextRegular";
-    } else if (getFont == "sanFranciscoUITextRegular") {
-      defaultFont = "sanFranciscoUITextRegular";
-    } else if (getFont == "sanFranciscoUITextMedium") {
-      defaultFont = "sanFranciscoUITextMedium";
+    } else if (getFont == "sanFranciscoUITextBold") {
+      defaultFont = "sanFranciscoUITextBold";
+    } else if (getFont == "sanFranciscoUITextHeavy") {
+      defaultFont = "sanFranciscoUITextHeavy";
     } else if (getFont == "uniQaidar") {
       defaultFont = "uniQaidar";
     } else {
-      defaultFont = "uniQaidar";
+      defaultFont = "rabarBold";
     }
 
     getSelectedFont().then((font) {

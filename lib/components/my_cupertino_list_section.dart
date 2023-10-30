@@ -21,7 +21,7 @@ class MyCupertinoListSection extends StatelessWidget {
         headerText,
         style: TextStyle(
             color: Theme.of(context).colorScheme.onBackground,
-            fontFamily: "rabarBold",
+            fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
             fontWeight: FontWeight.w100,
             fontSize: 15),
       ),
@@ -53,7 +53,7 @@ class MyCupertinoListTile extends StatelessWidget {
       title: Text(
         titleText,
         style: TextStyle(
-          fontFamily: 'rabarBold',
+          fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
           fontSize: 15,
           color: Theme.of(context).colorScheme.onBackground,
         ),

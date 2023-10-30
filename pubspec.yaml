@@ -92,6 +92,7 @@ flutter:
     - assets/data/2022_2023/duhok_2022_2023.csv
     - assets/data/bashakan_info(CSV).csv
     - assets/locales/ar.json
+    - assets/images/ListIsEmpty.svg
 
 
 
@@ -128,6 +129,9 @@ flutter:
     - family: sanFranciscoUITextSemiBold
       fonts:
         - asset: assets/fonts/ArabicUITextSemibold.ttf
+    - family: sanFranciscoUITextBold
+      fonts:
+        - asset: assets/fonts/ArabicUITextBold.ttf
 
         
         

@@ -28,8 +28,9 @@ class MyAlertDialog extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  fontFamily: "rabarBold",
+                style: TextStyle(
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   fontSize: 15,
                 ),
               ),
@@ -41,7 +42,7 @@ class MyAlertDialog extends StatelessWidget {
           content: Text(
             content,
             style: TextStyle(
-              fontFamily: "rabarBold",
+              fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
               fontSize: 11.5,
               color: Theme.of(context).colorScheme.onSurface,
             ),
@@ -51,9 +52,10 @@ class MyAlertDialog extends StatelessWidget {
               onPressed: firstActionOnTap,
               child: Text(
                 firstActionDialogText,
-                style: const TextStyle(
+                style: TextStyle(
                   color: CupertinoColors.systemBlue,
-                  fontFamily: "rabarBold",
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   fontSize: 15,
                 ),
               ),
@@ -71,14 +73,14 @@ class MyAlertDialog extends StatelessWidget {
           title,
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
-            fontSize: 20,
+            // fontSize: 20,
           ),
         ),
         content: Text(
           content,
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
-            fontSize: 14,
+            // fontSize: 14,
           ),
         ),
         actions: <Widget>[

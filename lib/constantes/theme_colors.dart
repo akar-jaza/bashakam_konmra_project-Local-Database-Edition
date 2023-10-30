@@ -73,14 +73,15 @@ class MyThemes extends ChangeNotifier {
       highlightColor: Platform.isIOS
           ? Colors.transparent
           : ThemeColors.kblueColor.withOpacity(0.2),
-      textTheme: const TextTheme(
-        bodyLarge: TextStyle(
+      textTheme: TextTheme(
+        bodyLarge: const TextStyle(
           letterSpacing: 0.0,
         ),
         bodyMedium: TextStyle(
           letterSpacing: 0.0,
+          fontFamily: getFont,
         ),
-        labelLarge: TextStyle(
+        labelLarge: const TextStyle(
           letterSpacing: 0.0,
         ),
       ),
