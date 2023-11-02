@@ -1,3 +1,4 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:flutter/material.dart';
 
 class KonmraListItem extends StatelessWidget {
@@ -12,6 +13,8 @@ class KonmraListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String getFont = FontProvider.defaultFont;
+
     if (index.isOdd) {
       return Divider(
         color: Theme.of(context).colorScheme.outlineVariant,
@@ -49,7 +52,7 @@ class KonmraListItem extends StatelessWidget {
           '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onTertiaryContainer,
-            fontSize: 19,
+            fontSize: getFont != "uniQaidar" ? 19 : 20,
             // letterSpacing: 0.0,
           ),
           textAlign: TextAlign.center,
@@ -62,7 +65,7 @@ class KonmraListItem extends StatelessWidget {
               'پارێزگا: ($pZankoline) - ($pParallel) - ($pEwaranText)',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
-                fontSize: 13.5,
+                fontSize: getFont != "uniQaidar" ? 13.5 : 15,
                 // letterSpacing: 0.0,
               ),
               textAlign: TextAlign.center,
@@ -72,7 +75,7 @@ class KonmraListItem extends StatelessWidget {
               'گشتی: ($gZankoline) - ($gParallel) - ($gEwaranText)',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
-                fontSize: 13.5,
+                fontSize: getFont != "uniQaidar" ? 13.5 : 15,
                 // letterSpacing: 0.0,
               ),
               textAlign: TextAlign.center,

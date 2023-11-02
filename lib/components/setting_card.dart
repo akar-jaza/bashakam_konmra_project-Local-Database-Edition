@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../constantes/theme_colors.dart';
+import '../color/theme_colors.dart';
 
 class SettingCard extends StatelessWidget {
   const SettingCard({

@@ -13,7 +13,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../components/my_custom_modal_bottom_sheet.dart';
 // import '../../components/my_floating_action_button.dart';
-import '../../list_items/konmra_list_item.dart';
+import 'konmra_list_item.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class KamtrinKonmra extends StatefulWidget {
@@ -532,7 +532,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                 data: ThemeData(
                   splashColor: Platform.isIOS ? Colors.transparent : null,
                   highlightColor: Platform.isIOS ? Colors.transparent : null,
-                  fontFamily: "rabarBold",
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
+
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

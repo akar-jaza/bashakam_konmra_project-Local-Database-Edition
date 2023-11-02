@@ -1,3 +1,4 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -38,6 +39,7 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final platform = Theme.of(context).platform;
     final isIOS = platform == TargetPlatform.iOS;
+    String getFont = FontProvider.defaultFont;
 
     double cardHeight = isIOS ? 174 : 163;
     double cardWidth = isIOS ? 145 : 135;
@@ -63,7 +65,9 @@ class MyCard extends StatelessWidget {
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 13,
+                    fontSize: getFont != "uniQaidar" ? 13 : 14,
+                    fontFamily:
+                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   ),
                 ),
               ),
@@ -81,7 +85,8 @@ class MyCard extends StatelessWidget {
                       buttonTitle,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
-                        fontFamily: 'rabarBold',
+                        fontFamily:
+                            Theme.of(context).textTheme.bodyMedium?.fontFamily,
                       ),
                     ),
                   )
@@ -94,6 +99,9 @@ class MyCard extends StatelessWidget {
                         buttonTitle,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
+                          fontSize: getFont != "uniQaidar" ? 14 : 15,
+                          fontFamily:
+                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
                         ),
                       ),
                     ),

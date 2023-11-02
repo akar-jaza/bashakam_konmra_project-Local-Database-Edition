@@ -6,9 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
-import 'package:bashakam_barawzanko/Screens/Setting_screen/font_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyThemes extends ChangeNotifier {
   String getFont = FontProvider.defaultFont;
@@ -52,6 +50,7 @@ class MyThemes extends ChangeNotifier {
       ),
       useMaterial3: true,
       fontFamily: getFont,
+      
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness:
             ThemeProvider().isDarkMode ? Brightness.dark : Brightness.light,
@@ -85,11 +84,14 @@ class MyThemes extends ChangeNotifier {
           letterSpacing: 0.0,
         ),
       ),
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      }),
     );
   }
 
   ThemeData darkTheme(BuildContext context) {
-    final font = Provider.of<FontProvider>(context).getFont;
+    final getFont = Provider.of<FontProvider>(context).getFont;
     return ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
         brightness: Brightness.dark,
@@ -133,18 +135,18 @@ class MyThemes extends ChangeNotifier {
         surfaceTintColor: ThemeColors.kblueColor,
       ),
       useMaterial3: true,
-      fontFamily: FontProvider.defaultFont,
+      fontFamily: getFont,
       cupertinoOverrideTheme: CupertinoThemeData(
         textTheme: CupertinoTextThemeData(
           navTitleTextStyle: TextStyle(fontFamily: FontProvider.defaultFont),
           textStyle: TextStyle(
-            fontFamily: FontProvider.defaultFont,
+            fontFamily: getFont,
           ),
           actionTextStyle: TextStyle(
-            fontFamily: FontProvider.defaultFont,
+            fontFamily: getFont,
           ),
           navLargeTitleTextStyle: TextStyle(
-            fontFamily: FontProvider.defaultFont,
+            fontFamily: getFont,
           ),
         ),
       ),
@@ -164,6 +166,9 @@ class MyThemes extends ChangeNotifier {
           letterSpacing: 0.0,
         ),
       ),
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      }),
     );
   }
 

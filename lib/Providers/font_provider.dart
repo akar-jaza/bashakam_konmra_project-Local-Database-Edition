@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FontProvider extends ChangeNotifier {
-  static String defaultFont = "rabarBold"; // Default font
+  static String defaultFont = "uniQaidar"; // Default font
   String? getFont; // Initialize getFont with a default font
 
   FontProvider(String getFont) {
@@ -17,7 +17,7 @@ class FontProvider extends ChangeNotifier {
     } else if (getFont == "uniQaidar") {
       defaultFont = "uniQaidar";
     } else {
-      defaultFont = "rabarBold";
+      defaultFont = "uniQaidar";
     }
 
     getSelectedFont().then((font) {
@@ -29,7 +29,7 @@ class FontProvider extends ChangeNotifier {
   // Add this static method to retrieve the selected font from SharedPreferences.
   static Future<String> getSelectedFont() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('selectedFont') ?? "rabarBold";
+    return prefs.getString('selectedFont') ?? "uniQaidar";
   }
 
   // Add this static method to save the selected font to SharedPreferences.

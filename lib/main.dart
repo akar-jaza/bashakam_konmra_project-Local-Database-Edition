@@ -1,6 +1,6 @@
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
-import 'package:bashakam_barawzanko/constantes/theme_colors.dart';
+import 'package:bashakam_barawzanko/color/theme_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_hawler_konmra_csv.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_slemani_konmra_csv.dart';
@@ -50,7 +50,7 @@ void main() async {
   final systemUiOverlayHelper = SystemUiOverlayHelper();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final isDark = sharedPreferences.getBool('_isDark') ?? false;
-  final getFont = sharedPreferences.getString('selectedFont') ?? "rabarBold";
+  final getFont = sharedPreferences.getString('selectedFont') ?? "uniQaidar";
 
   isDark
       ? systemUiOverlayHelper.setDarkModeSystemUiOverlayStyle()
@@ -103,16 +103,21 @@ class _MyAppState extends State<MyApp> {
             builder: (local) {
               return TooltipVisibility(
                 visible: false,
-                child: MaterialApp(
-                  localizationsDelegates: Locales.delegates,
-                  supportedLocales: Locales.supportedLocales,
-                  locale: local,
-                  debugShowCheckedModeBanner: false,
-                  themeMode: themeProvider.themeMode,
-                  theme: MyThemes().lightTheme(context),
-                  darkTheme: MyThemes().darkTheme(context),
-                  
-                  home: const MainPage(),
+                child: Theme(
+                  data: ThemeData(
+                    pageTransitionsTheme:
+                        Theme.of(context).pageTransitionsTheme,
+                  ),
+                  child: MaterialApp(
+                    localizationsDelegates: Locales.delegates,
+                    supportedLocales: Locales.supportedLocales,
+                    locale: local,
+                    debugShowCheckedModeBanner: false,
+                    themeMode: themeProvider.themeMode,
+                    theme: MyThemes().lightTheme(context),
+                    darkTheme: MyThemes().darkTheme(context),
+                    home: const MainPage(),
+                  ),
                 ),
               );
             },

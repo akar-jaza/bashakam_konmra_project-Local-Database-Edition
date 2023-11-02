@@ -1,3 +1,4 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
@@ -27,6 +28,7 @@ class MyTextField extends StatefulWidget {
 
 class _MyTextFieldState extends State<MyTextField> {
   bool isTextFieldActive = false;
+  String getFont = FontProvider.defaultFont;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +44,8 @@ class _MyTextFieldState extends State<MyTextField> {
       cursorColor: Theme.of(context).colorScheme.primary,
       style: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
-        fontFamily: 'rabarBold',
-        fontSize: 14,
+        fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
+        fontSize: getFont != "uniQaidar" ? 14 : 15,
         letterSpacing: 0.0,
       ),
       decoration: InputDecoration(

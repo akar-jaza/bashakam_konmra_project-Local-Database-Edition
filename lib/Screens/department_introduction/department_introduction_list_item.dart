@@ -4,6 +4,11 @@ import 'package:bashakam_barawzanko/Screens/department_introduction/Department_i
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//! 2
+//* ئەم لیست ڤیو بیوڵدەرە بریتیە لە لیشتی هەموو بەشەکان
+//* یوزەر کاتێک کلیک لە ئایتمی لیستێک دەکات دەڕوات بۆ زانیاری لەسەر ئەو بەشە
+//*
+
 class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
   final int index;
@@ -48,7 +53,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
             data: ThemeData(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              fontFamily: "rabarBold",
+              fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
             ),
             child: ListTile(
               onTap: () {

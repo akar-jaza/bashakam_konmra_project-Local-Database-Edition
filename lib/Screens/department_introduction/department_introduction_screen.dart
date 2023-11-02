@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
@@ -7,8 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';
-import '../../constantes/theme_colors.dart';
-import '../../list_items/department_introduction_list_item.dart';
+import '../../color/theme_colors.dart';
+import 'department_introduction_list_item.dart';
+
+//! 1
+//* ئەم سکرینیە بریتیە لە ناساندنی بەشەکان 
+//* لیستی بەشەکان پیشان دەدرێت
+//* یوزەر دەتوانێت سێرچ بۆ بەش بکات
 
 class DepartmentIntroductionScreen extends StatefulWidget {
   const DepartmentIntroductionScreen({super.key});
@@ -103,71 +107,74 @@ class _DepartmentIntroductionScreenState
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          appBar: const MyCupertinoAppBar(
-            enableLeading: true,
-            middleText: 'ناساندنی بەشەکان',
-          ),
-          body: _isScreenLoaded
-              ? Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      child: MyTextField(
-                        textController: _textEditingController,
-                        labelText: 'ناوی بەش بنووسە',
-                        onChanged: (value) => _runFilter(value),
-                        onPressed: () {},
-                      ),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: const MyCupertinoAppBar(
+          enableLeading: true,
+          middleText: 'ناساندنی بەشەکان',
+        ),
+        body: _isScreenLoaded
+            ? Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: MyTextField(
+                      textController: _textEditingController,
+                      labelText: 'ناوی بەش بنووسە',
+                      onChanged: (value) => _runFilter(value),
+                      onPressed: () {},
                     ),
-                    if (isLoading)
-                      const SizedBox(
-                        height: 40,
-                        child: Center(
-                          child: CupertinoActivityIndicator(
-                            color: ThemeColors.kBodyTextColor,
-                          ),
+                  ),
+                  if (isLoading)
+                    const SizedBox(
+                      height: 40,
+                      child: Center(
+                        child: CupertinoActivityIndicator(
+                          color: ThemeColors.kBodyTextColor,
                         ),
                       ),
-                    if (!isLoading)
-                      Expanded(
-                        child: _foundDepartment.isNotEmpty
-                            ? ListView.builder(
-                                keyboardDismissBehavior:
-                                    ScrollViewKeyboardDismissBehavior.onDrag,
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) =>
-                                    DepartmentIntroductionListItem(
-                                  departments: _foundDepartment,
-                                  index: index,
-                                ),
-                                itemCount: _foundDepartment.length,
-                              )
-                            : Center(
-                                child: Column(
-                                  children: [
-                                    svgPicture,
-                                    Directionality(
-                                      // To ensure correct text ordering in Kurdish (RTL), we're using Directionality widget.
-                                      textDirection: TextDirection.ltr,
-                                      child: Text(
-                                        '!هیچ بەشێک نەدۆزرایەوە',
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          fontSize: 18,
-                                        ),
+                    ),
+                  if (!isLoading)
+                    Expanded(
+                      child: _foundDepartment.isNotEmpty
+                          ? ListView.builder(
+                              keyboardDismissBehavior:
+                                  ScrollViewKeyboardDismissBehavior.onDrag,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) =>
+                                  DepartmentIntroductionListItem(
+                                departments: _foundDepartment,
+                                index: index,
+                              ),
+                              itemCount: _foundDepartment.length,
+                            )
+                          : Center(
+                              child: Column(
+                                children: [
+                                  svgPicture,
+                                  Directionality(
+                                    // To ensure correct text ordering in Kurdish (RTL), we're using Directionality widget.
+                                    textDirection: TextDirection.ltr,
+                                    child: Text(
+                                      '!هیچ بەشێک نەدۆزرایەوە',
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontSize: 18,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                      ),
-                  ],
-                )
-              : const Center(child: MyProgressIndicator())),
+                            ),
+                    ),
+                ],
+              )
+            : const Center(
+                child: MyProgressIndicator(),
+              ),
+      ),
     );
   }
 }

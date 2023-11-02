@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/Screens/department_introduction/1.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';
@@ -15,6 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     String imageLightThemeAsset = 'assets/images/cats_.svg';
     String imageDarkThemeAsset = 'assets/images/cats_darkMode.svg';
+    String getFont = FontProvider.defaultFont;
 
     return ListView(
       physics: const BouncingScrollPhysics(),
@@ -55,8 +58,10 @@ class HomePage extends StatelessWidget {
                 child: Text(
                   'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: getFont != "uniQaidar" ? 17 : 18,
                     color: Theme.of(context).colorScheme.onBackground,
+                    fontFamily:
+                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -121,7 +126,7 @@ class HomePage extends StatelessWidget {
                           CupertinoPageRoute<bool>(
                             fullscreenDialog: false,
                             builder: (BuildContext context) =>
-                                const DepartmentIntroductionScreen(),
+                                const DepartmentIntroductionScreenTemp(),
                           ),
                         );
                       } else {
@@ -129,7 +134,7 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const DepartmentIntroductionScreen();
+                              return const DepartmentIntroductionScreenTemp();
                             },
                           ),
                         );

@@ -27,21 +27,20 @@ class _FontScreenState extends State<FontScreen> {
 
   List<Map<String, String>> fontOptions = [
     {
-      "title": "فۆنتی ڕابەر",
-      "subtitle": "فۆنتی سەرەکی ئەپڵیکەیشن.",
-      "family": "rabarBold",
+      "title": "فۆنتی یونی قەیدار",
+      "family": "uniQaidar",
+      "subtitle": "فۆنتی سەرەکی ئەپڵیکەیشن",
     },
     {
       "title": "فۆنتی سان فرانسیسکۆ",
+      "family": "sanFranciscoUITextBold",
       "subtitle":
           "فۆنتی سان فرانسیسکۆ فۆنتێکی مۆدێرنە، سادەیە و ئاسانە بۆ خوێندنەوە، درووستکراوی کۆمپانیای ئەپڵە تایبەت بە ئامێرەکانی خۆی.",
-      "family": "sanFranciscoUITextBold",
     },
     {
-      "title": "فۆنتی یونی قەیدار",
-      "subtitle":
-          "فۆنتی یونی قەیدار دیزاینێکی جوانی هەیە و گونجاوە بۆ خوێندنەوە.",
-      "family": "uniQaidar",
+      "title": "فۆنتی ڕابەر",
+      "family": "rabarBold",
+      "subtitle": "فۆنتی ڕابەر دیزاینێکی جوانی هەیە و گونجاوە بۆ خوێندنەوە.",
     },
   ];
   @override
@@ -76,12 +75,7 @@ class _FontScreenState extends State<FontScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
-                          bottom: Platform.isIOS
-                              ? 0
-                              : getDeviceType() == "phone"
-                                  ? 40
-                                  : 0),
+                      padding: EdgeInsets.only(bottom: _iconBottomPadding()),
                       child: Icon(
                         Platform.isIOS
                             ? CupertinoIcons.exclamationmark_triangle_fill
@@ -98,37 +92,29 @@ class _FontScreenState extends State<FontScreen> {
                             child: Text(
                               deviceIsIOSContainerText,
                               style: TextStyle(
-                                fontSize: _containerTextFontSize(),
-                                overflow: TextOverflow.fade,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiaryContainer,
-                                fontFamily: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.fontFamily,
-                              ),
+                                  fontSize: _containerTextFontSize(),
+                                  overflow: TextOverflow.fade,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onTertiaryContainer,
+                                  fontFamily: selectedFont),
                             ),
                           )
                         : Flexible(
                             child: Text(
                               deviceIsAndroidContainerText,
                               style: TextStyle(
-                                height: selectedFont == "rabarBold"
-                                    ? 1.8
-                                    : selectedFont == "sanFranciscoUITextBold"
-                                        ? 1.6
-                                        : null,
-                                fontSize: _containerTextFontSize(),
-                                overflow: TextOverflow.fade,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiaryContainer,
-                                fontFamily: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.fontFamily,
-                              ),
+                                  height: selectedFont == "rabarBold"
+                                      ? 1.8
+                                      : selectedFont == "sanFranciscoUITextBold"
+                                          ? 1.6
+                                          : null,
+                                  fontSize: _containerTextFontSize(),
+                                  overflow: TextOverflow.fade,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onTertiaryContainer,
+                                  fontFamily: selectedFont),
                             ),
                           )
                   ],
@@ -156,15 +142,18 @@ class _FontScreenState extends State<FontScreen> {
                             RadioListTile<String>(
                               title: Padding(
                                 padding: const EdgeInsets.only(bottom: 5),
-                                child: Text(option["title"]!),
+                                child: Text(
+                                  option["title"]!,
+                                  style: TextStyle(fontFamily: selectedFont),
+                                ),
                               ),
                               value: option["family"]!,
                               subtitle: Text(
                                 option["subtitle"]!,
                                 style: TextStyle(
-                                  fontSize:
-                                      selectedFont == "rabarBold" ? 13 : null,
-                                ),
+                                    fontSize:
+                                        selectedFont == "rabarBold" ? 13 : null,
+                                    fontFamily: selectedFont),
                               ),
                               groupValue: selectedFont,
                               onChanged: (value) {
@@ -243,6 +232,18 @@ class _FontScreenState extends State<FontScreen> {
         ],
       ),
     );
+  }
+
+  double _iconBottomPadding() {
+    if (getDeviceType() == 'tablet') {
+      return 0;
+    } else if (Platform.isIOS && getDeviceType() == "phone") {
+      return 20;
+    } else if (getDeviceType() == "phone") {
+      return 40;
+    }
+
+    return 0;
   }
 
   double _containerTextFontSize() {

@@ -1,4 +1,5 @@
 // ignore_for_file: slash_for_doc_comments
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,11 @@ class MyCupertinoListSection extends StatelessWidget {
       header: Text(
         headerText,
         style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
-            fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
-            fontWeight: FontWeight.w100,
-            fontSize: 15),
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+          fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
+          fontWeight: FontWeight.w100,
+          fontSize: 15,
+        ),
       ),
       children: [
         ...tiles,
@@ -48,13 +50,15 @@ class MyCupertinoListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String getFont = FontProvider.defaultFont;
+
     return CupertinoListTile.notched(
       backgroundColor: Theme.of(context).colorScheme.surface,
       title: Text(
         titleText,
         style: TextStyle(
           fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
-          fontSize: 15,
+          fontSize: getFont != "uniQaidar" ? 15 : 16,
           color: Theme.of(context).colorScheme.onBackground,
         ),
       ),
