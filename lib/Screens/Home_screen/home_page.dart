@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
-import 'package:bashakam_barawzanko/Screens/department_introduction/1.dart';
+import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';

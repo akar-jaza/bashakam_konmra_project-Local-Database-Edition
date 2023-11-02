@@ -57,7 +57,6 @@ void main() async {
       : systemUiOverlayHelper.setLightModeSystemUiOverlayStyle();
 
   runApp(MyApp(isDark: isDark, getFont: getFont));
-  print(getFont);
 }
 
 class MyApp extends StatefulWidget {

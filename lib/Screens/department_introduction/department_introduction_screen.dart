@@ -1,48 +1,53 @@
+// ignore_for_file: avoid_print
+
+import 'dart:async';
 
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';
-import '../../color/theme_colors.dart';
 import 'department_introduction_list_item.dart';
 
 //! 1
-//* ئەم سکرینیە بریتیە لە ناساندنی بەشەکان 
+//* ئەم سکرینیە بریتیە لە ناساندنی بەشەکان
 //* لیستی بەشەکان پیشان دەدرێت
 //* یوزەر دەتوانێت سێرچ بۆ بەش بکات
 
-class DepartmentIntroductionScreen extends StatefulWidget {
-  const DepartmentIntroductionScreen({super.key});
+class DepartmentIntroductionScreenTemp extends StatefulWidget {
+  const DepartmentIntroductionScreenTemp({super.key});
 
   @override
-  State<DepartmentIntroductionScreen> createState() =>
-      _DepartmentIntroductionScreenState();
+  State<DepartmentIntroductionScreenTemp> createState() =>
+      _DepartmentIntroductionScreenTempState();
 }
 
-class _DepartmentIntroductionScreenState
-    extends State<DepartmentIntroductionScreen> {
+class _DepartmentIntroductionScreenTempState
+    extends State<DepartmentIntroductionScreenTemp> {
+  //* fetchData
+  Future<List<Map<String, dynamic>>?> fetchData() async {
+    try {
+      return await ImportDepartmentIntroduction.importDataFromCsv(
+          'assets/data/bashakan_info(CSV).csv');
+    } catch (error) {
+      print('fetch data error: $error');
+      return null;
+    }
+  }
+
   final TextEditingController _textEditingController = TextEditingController();
+  // Remove departmentIntroduction, departmentName, introduction, and isLoading from your state as they will be managed by FutureBuilder.
 
-  List<Map<String, dynamic>> departmentIntroduction = [];
+  Future<List<Map<String, dynamic>>?>? _data; // Store the future data.
   List<Map<String, dynamic>> _foundDepartment = [];
-  List<String> departmentName = [];
-  List<String> introduction = [];
+  bool isFoundDepartmentFethed = false;
 
-  bool isLoading = false;
-  bool _isScreenLoaded = false;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 400), () {
-      _fetchData();
-      setState(() {
-        _isScreenLoaded = true;
-      });
-    });
-    _fetchData();
+    _data = fetchData();
+    _fetchFoundDepartment();
   }
 
   @override
@@ -51,45 +56,29 @@ class _DepartmentIntroductionScreenState
     _textEditingController.dispose();
   }
 
-  Future<void> _fetchData() async {
-    isLoading = true;
-
-    try {
-      departmentIntroduction =
-          await ImportDepartmentIntroduction.importDataFromCsv(
-              'assets/data/bashakan_info(CSV).csv');
-
-      departmentName = departmentIntroduction
-          .map((data) => data['departmentName'] as String)
-          .toList();
-      introduction = departmentIntroduction
-          .map((data) => data['introduction'] as String)
-          .toList();
-
-      setState(() {
-        _foundDepartment = List.from(departmentIntroduction);
+  _fetchFoundDepartment() {
+    Timer(const Duration(milliseconds: 200), () {
+      fetchData().then((value) {
+        _foundDepartment = value!;
+        isFoundDepartmentFethed = true; // Set it to true after data is fetched.
+        setState(() {}); // Trigger a rebuild to update the UI.
       });
-    } catch (error) {
-      print('fetch data error: $error');
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
+    });
   }
 
-  void _runFilter(String enteredKeyword) {
+  void _runFilter(String enteredKeyword, List<Map<String, dynamic>> data) {
     if (enteredKeyword.isEmpty) {
       setState(() {
-        _foundDepartment = List.from(departmentIntroduction);
+        // If the keyword is empty, display all data.
+        _foundDepartment = List.from(data);
+        print("is empty");
       });
     } else {
-      List<Map<String, dynamic>> filteredList =
-          departmentIntroduction.where((data) {
+      List<Map<String, dynamic>> filteredList = data.where((data) {
         final departmentName = data['departmentName'] as String;
         return departmentName.contains(enteredKeyword);
       }).toList();
-
+      print(enteredKeyword);
       setState(() {
         _foundDepartment =
             filteredList; // Update the filtered list with the matching items.
@@ -97,13 +86,13 @@ class _DepartmentIntroductionScreenState
     }
   }
 
+  final svgPicture = SvgPicture.asset(
+    'assets/images/ListIsEmpty.svg',
+    height: 300,
+  );
+
   @override
   Widget build(BuildContext context) {
-    final svgPicture = SvgPicture.asset(
-      'assets/images/ListIsEmpty.svg',
-      height: 300,
-    );
-
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -112,8 +101,43 @@ class _DepartmentIntroductionScreenState
           enableLeading: true,
           middleText: 'ناساندنی بەشەکان',
         ),
-        body: _isScreenLoaded
-            ? Column(
+        body: FutureBuilder<List<Map<String, dynamic>>?>(
+          future: _data,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: MyProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(
+                child: Column(
+                  children: [
+                    svgPicture,
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text(
+                        '!هیچ بەشێک نەدۆزرایەوە',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              // Data is loaded, you can now use the snapshot.data to build your list.
+              final departmentIntroduction = snapshot.data!;
+              final departmentName = departmentIntroduction
+                  .map((data) => data['departmentName'] as String)
+                  .toList();
+
+              return Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -121,60 +145,55 @@ class _DepartmentIntroductionScreenState
                     child: MyTextField(
                       textController: _textEditingController,
                       labelText: 'ناوی بەش بنووسە',
-                      onChanged: (value) => _runFilter(value),
+                      onChanged: (value) => _runFilter(value, snapshot.data!),
                       onPressed: () {},
                     ),
                   ),
-                  if (isLoading)
-                    const SizedBox(
-                      height: 40,
-                      child: Center(
-                        child: CupertinoActivityIndicator(
-                          color: ThemeColors.kBodyTextColor,
-                        ),
-                      ),
-                    ),
-                  if (!isLoading)
-                    Expanded(
-                      child: _foundDepartment.isNotEmpty
-                          ? ListView.builder(
-                              keyboardDismissBehavior:
-                                  ScrollViewKeyboardDismissBehavior.onDrag,
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (context, index) =>
-                                  DepartmentIntroductionListItem(
-                                departments: _foundDepartment,
-                                index: index,
-                              ),
-                              itemCount: _foundDepartment.length,
-                            )
-                          : Center(
-                              child: Column(
-                                children: [
-                                  svgPicture,
-                                  Directionality(
-                                    // To ensure correct text ordering in Kurdish (RTL), we're using Directionality widget.
-                                    textDirection: TextDirection.ltr,
-                                    child: Text(
-                                      '!هیچ بەشێک نەدۆزرایەوە',
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontSize: 18,
-                                      ),
+                  if (!isFoundDepartmentFethed) // found department not fetched yet
+                    const MyProgressIndicator()
+                  else
+                    _foundDepartment.isNotEmpty
+                        ? Expanded(
+                            child: _buildList(_foundDepartment),
+                          )
+                        : Center(
+                            // if user searchs for something and not found
+                            child: Column(
+                              children: [
+                                svgPicture,
+                                Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    '!هیچ بەشێک نەدۆزرایەوە',
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
+                                      fontSize: 18,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                    ),
+                          ),
                 ],
-              )
-            : const Center(
-                child: MyProgressIndicator(),
-              ),
+              );
+            }
+          },
+        ),
       ),
+    );
+  }
+
+  Widget _buildList(List<Map<String, dynamic>> departmentIntroduction) {
+    return ListView.builder(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) => DepartmentIntroductionListItem(
+        departments: departmentIntroduction,
+        index: index,
+      ),
+      itemCount: _foundDepartment.length,
     );
   }
 }

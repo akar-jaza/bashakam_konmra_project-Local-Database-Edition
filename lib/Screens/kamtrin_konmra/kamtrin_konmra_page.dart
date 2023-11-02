@@ -42,22 +42,21 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     super.initState();
 
     // Delay loading data by 500 milliseconds
-    Future.delayed(Duration(milliseconds: duruationTime), () {
-      _fetchSlemaniData();
-      _fetchHawlerData();
-      _fetchDuhokData();
 
-      var keyboardVisibilityController = KeyboardVisibilityController();
-      keyboardSubscription =
-          keyboardVisibilityController.onChange.listen((bool visible) {
-        _isKeyboardVisible = visible;
-      });
-      _isKeyboardVisible = false;
+    _fetchSlemaniData();
+    _fetchHawlerData();
+    _fetchDuhokData();
 
-      // Mark the screen as fully loaded
-      setState(() {
-        _isScreenLoaded = true;
-      });
+    var keyboardVisibilityController = KeyboardVisibilityController();
+    keyboardSubscription =
+        keyboardVisibilityController.onChange.listen((bool visible) {
+      _isKeyboardVisible = visible;
+    });
+    _isKeyboardVisible = false;
+
+    // Mark the screen as fully loaded
+    setState(() {
+      _isScreenLoaded = true;
     });
   }
 
@@ -534,7 +533,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                   highlightColor: Platform.isIOS ? Colors.transparent : null,
                   fontFamily:
                       Theme.of(context).textTheme.bodyMedium?.fontFamily,
-
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
