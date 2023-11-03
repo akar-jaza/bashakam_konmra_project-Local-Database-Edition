@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
-import 'package:provider/provider.dart';
 
 class MyThemes extends ChangeNotifier {
   String getFont = FontProvider.defaultFont;
@@ -50,7 +49,6 @@ class MyThemes extends ChangeNotifier {
       ),
       useMaterial3: true,
       fontFamily: getFont,
-      
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness:
             ThemeProvider().isDarkMode ? Brightness.dark : Brightness.light,
@@ -91,7 +89,8 @@ class MyThemes extends ChangeNotifier {
   }
 
   ThemeData darkTheme(BuildContext context) {
-    final getFont = Provider.of<FontProvider>(context).getFont;
+    String getFont = FontProvider.defaultFont;
+
     return ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
         brightness: Brightness.dark,

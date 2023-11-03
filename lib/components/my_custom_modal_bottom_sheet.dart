@@ -82,7 +82,7 @@ Text pleaseReadMeText(BuildContext context) {
     "لەکاتی بوونی کێشە لە نمرە، ئەپڵیکەیشن یاخود هەرشتێکی تر، پەیوەندی بە گەشەپێدەرەوە بکە.\n\n",
     style: TextStyle(
       color: Theme.of(context).colorScheme.onBackground,
-      fontFamily: "rabar_009",
+      // fontFamily: "rabar_009",
       fontSize: 16,
     ),
   );

@@ -60,8 +60,8 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: getFont != "uniQaidar" ? 17 : 18,
                     color: Theme.of(context).colorScheme.onBackground,
-                    fontFamily:
-                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                    // fontFamily:
+                    //     Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   ),
                   textAlign: TextAlign.center,
                 ),

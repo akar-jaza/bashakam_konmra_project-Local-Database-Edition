@@ -1,4 +1,5 @@
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/Providers/font_size_controller.dart';
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
 import 'package:bashakam_barawzanko/color/theme_colors.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
@@ -89,7 +90,10 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(create: (BuildContext context) {
           return FontProvider(widget.getFont);
-        })
+        }),
+        ChangeNotifierProvider(
+          create: (_) => FontSizeController(),
+        ),
       ],
       child: ChangeNotifierProvider(
         create: (BuildContext context) {

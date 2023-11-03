@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 //! 2
 //* ئەم لیست ڤیو بیوڵدەرە بریتیە لە لیشتی هەموو بەشەکان
-//* یوزەر کاتێک کلیک لە ئایتمی لیستێک دەکات دەڕوات بۆ زانیاری لەسەر ئەو بەشە
-//*
+//* یوزەر کاتێک کلیک لە ئایتمی لیستێک دەکات دەڕوات بۆ زانیاری لەسەر ئەو بەشە 
+//*   
 
 class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
@@ -105,6 +105,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
               ),
             ),
           ),
+          
         ],
       );
     }

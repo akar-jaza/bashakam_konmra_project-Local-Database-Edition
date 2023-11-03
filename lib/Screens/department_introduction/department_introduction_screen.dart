@@ -57,12 +57,10 @@ class _DepartmentIntroductionScreenTempState
   }
 
   _fetchFoundDepartment() {
-    Timer(const Duration(milliseconds: 200), () {
-      fetchData().then((value) {
-        _foundDepartment = value!;
-        isFoundDepartmentFethed = true; // Set it to true after data is fetched.
-        setState(() {}); // Trigger a rebuild to update the UI.
-      });
+    fetchData().then((value) {
+      _foundDepartment = value!;
+      isFoundDepartmentFethed = true; // Set it to true after data is fetched.
+      setState(() {}); // Trigger a rebuild to update the UI.
     });
   }
 
