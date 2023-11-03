@@ -122,48 +122,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
       duhokgParallel = [],
       duhokgEwaran = [];
 
-  // Future<void> fetchDataBasedOnCheckboxes() async {
-  //   isLoading = true;
-
-  //   konmra.clear();
-  //   _foundUsers.clear();
-
-  //   try {
-  //     if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
-  //       // await _fetchSlemaniData();
-  //       // konmra.addAll(slemaniKonmra);
-  //       // await _fetchHawlerData();
-  //       // konmra.addAll(hawlerKonmra);
-  //       // await _fetchDuhokData();
-  //       // konmra.addAll(duhokKonmra);
-  //       // _foundUsers = List.from(konmra);
-  //       print("first true");
-  //     } else if (_slemaniIsChecked) {
-  //       // await _fetchSlemaniData();
-  //       // konmra.addAll(slemaniKonmra);
-  //       print("slemani running");
-  //     } else if (_hawlerIsChecked) {
-  //       // await _fetchHawlerData();
-  //       // konmra.addAll(hawlerKonmra);
-  //       print("hawler running");
-  //     } else if (_duhokIsChecked) {
-  //       // await _fetchDuhokData();
-  //       // konmra.addAll(duhokKonmra);
-  //       print("duhok running");
-  //     } else if (_textEditingController.text.isNotEmpty) {
-  //       // _runFilter(_textEditingController.text);
-  //     } else {
-  //       // _foundUsers = List.from(konmra);
-  //     }
-  //   } catch (error) {
-  //     print('fetch data error: $error');
-  //   } finally {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   }
-  // }
-
   Future<void> _fetchSlemaniData() async {
     _isLoading = true;
 
@@ -296,6 +254,10 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> filteredList = [];
 
+    bool isNumeric(String enteredKeyword) {
+      return double.tryParse(enteredKeyword) != null;
+    }
+
     if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
       filteredList.addAll(slemaniKonmra);
       filteredList.addAll(hawlerKonmra);
@@ -312,25 +274,25 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     }
 
     // Apply the text filter if needed
-    if (enteredKeyword.isNotEmpty) {
-      filteredList = filteredList.where((data) {
-        final departmentName = data['department'] as String;
-        final pZankoline = data['p_zankoline'] as String;
-        final pParallel = data['p_parallel'] as String;
-        final pEwaran = data['p_ewaran'] as String;
-        final gZankoline = data['g_zankoline'] as String;
-        final gParallel = data['g_parallel'] as String;
-        final gEwaran = data['g_ewaran'] as String;
 
-        return departmentName.contains(enteredKeyword) ||
-            pZankoline.contains(enteredKeyword) ||
-            pParallel.contains(enteredKeyword) ||
-            pEwaran.contains(enteredKeyword) ||
-            gZankoline.contains(enteredKeyword) ||
-            gParallel.contains(enteredKeyword) ||
-            gEwaran.contains(enteredKeyword);
-      }).toList();
-    }
+    filteredList = filteredList.where((data) {
+      final departmentName = data['department'] as String;
+      final pZankoline = data['p_zankoline'] as String;
+      final pParallel = data['p_parallel'] as String;
+      final pEwaran = data['p_ewaran'] as String;
+      final gZankoline = data['g_zankoline'] as String;
+      final gParallel = data['g_parallel'] as String;
+      final gEwaran = data['g_ewaran'] as String;
+
+      return departmentName.contains(enteredKeyword) ||
+          (pZankoline.contains(enteredKeyword)) ||
+          (pParallel.contains(enteredKeyword)) ||
+          (pEwaran.contains(enteredKeyword)) ||
+          (gZankoline.contains(enteredKeyword)) ||
+          (gParallel.contains(enteredKeyword)) ||
+          (gEwaran.contains(enteredKeyword));
+    }).toList();
+
 
     setState(() {
       _foundUsers = filteredList;
