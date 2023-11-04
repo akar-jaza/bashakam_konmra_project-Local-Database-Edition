@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FontProvider extends ChangeNotifier {
   static String defaultFont = "uniQaidar"; // Default font
-  String? getFont; // Initialize getFont with a default font
+  String get getFont => defaultFont; // Initialize getFont with a default font
 
   FontProvider(String getFont) {
     if (getFont == "rabarBold") {

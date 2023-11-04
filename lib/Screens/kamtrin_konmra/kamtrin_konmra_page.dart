@@ -2,6 +2,8 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/Providers/font_size_controller.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';
@@ -254,10 +256,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> filteredList = [];
 
-    bool isNumeric(String enteredKeyword) {
-      return double.tryParse(enteredKeyword) != null;
-    }
-
     if (!_slemaniIsChecked && !_hawlerIsChecked && !_duhokIsChecked) {
       filteredList.addAll(slemaniKonmra);
       filteredList.addAll(hawlerKonmra);
@@ -272,8 +270,6 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
     if (_duhokIsChecked) {
       filteredList.addAll(duhokKonmra);
     }
-
-    // Apply the text filter if needed
 
     filteredList = filteredList.where((data) {
       final departmentName = data['department'] as String;
@@ -292,18 +288,23 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
           (gParallel.contains(enteredKeyword)) ||
           (gEwaran.contains(enteredKeyword));
     }).toList();
-
-
     setState(() {
       _foundUsers = filteredList;
     });
+  }
+
+  String getDeviceType() {
+    final MediaQueryData data = MediaQueryData.fromView(
+        WidgetsBinding.instance.platformDispatcher.views.single);
+
+    return data.size.shortestSide < 380 ? 'SE_size' : 'phone';
   }
 
   @override
   Widget build(BuildContext context) {
     final svgPicture = SvgPicture.asset(
       'assets/images/ListIsEmpty.svg',
-      height: 300,
+      height: getDeviceType() == "SE_size" ? 200 : 300,
     );
 
     return GestureDetector(
@@ -343,18 +344,18 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                          bottom: 20,
+                          bottom: 0,
                           left: 20,
                           right: 20,
                           top: Platform.isIOS ? 10 : 15,
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: MyTextField(
+                        child: Expanded(
+                          flex: 2,
+                          child: Column(
+                            children: [
+                              MyTextField(
                                 textController: _textEditingController,
-                                labelText: 'ناوی بەش یاخود کۆنمرە بنووسە',
+                                labelText: 'ناوی بەش بنووسە',
                                 onChanged: (value) {
                                   setState(() {
                                     if (MediaQuery.of(context)
@@ -400,8 +401,24 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                         ),
                                       ),
                               ),
-                            ),
-                          ],
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8, right: 5, bottom: 5),
+                                  child: Text(
+                                    'دەتوانێت بەپێی کۆنمرە بەش بدۆزیتەوە، بەڵام ورد نیە!',
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       if (_isLoading)
@@ -438,7 +455,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onBackground,
-                                          fontSize: 18,
+                                          fontSize: getDeviceType() == "SE_size"
+                                              ? 16
+                                              : 18,
                                         ),
                                       ),
                                     ),
@@ -497,7 +516,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                       Theme.of(context).textTheme.bodyMedium?.fontFamily,
                 ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Center(
                       child: Padding(
@@ -506,7 +525,9 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                           "گەڕان بەپێی شار",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onBackground,
-                            fontSize: 16,
+                            fontSize: FontProvider.defaultFont == "uniQaidar"
+                                ? 18
+                                : 16,
                           ),
                         ),
                       ),

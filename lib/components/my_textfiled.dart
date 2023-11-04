@@ -39,6 +39,7 @@ class _MyTextFieldState extends State<MyTextField> {
         });
         widget.onChanged?.call(value); // Call the onChanged callback
       },
+      
       keyboardType: TextInputType.text,
       controller: widget._textController,
       cursorColor: Theme.of(context).colorScheme.primary,
