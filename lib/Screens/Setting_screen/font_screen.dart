@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restart_app/restart_app.dart';
@@ -248,9 +249,16 @@ class _FontScreenState extends State<FontScreen> {
   }
 
   double _containerTextFontSize() {
-    if (selectedFont == "rabarBold") {
+    if (selectedFont == Constants.rabarBold && getDeviceType() == "tablet") {
+      return 17;
+    } else if (selectedFont == Constants.sanFranciscoUITextBold &&
+        getDeviceType() == "tablet") {
+      return 18;
+    } else if (getDeviceType() == "tablet") {
+      return 18;
+    } else if (selectedFont == Constants.rabarBold) {
       return 13;
-    } else if (selectedFont == "sanFranciscoUITextBold") {
+    } else if (selectedFont == Constants.sanFranciscoUITextBold) {
       return 13;
     } else {
       return 15;

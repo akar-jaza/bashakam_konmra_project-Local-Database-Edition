@@ -34,21 +34,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    // double calculateTextFontSize(BuildContext context) {
-    //   final screenSize = MediaQuery.of(context).size;
-    //   final screenWidth = screenSize.width;
-    //   if (screenWidth < 300) {
-    //     return 14;
-    //   } else if (screenWidth < 400) {
-    //     return 16; // Small screen
-    //   } else if (screenWidth < 600) {
-    //     return 20; // Medium screen
-    //   } else {
-    //     return 20; // Large screen
-    //   }
-    // }
-    // uiOverlayFunc.setSystemUiOverlayStyle();
-
     return Scaffold(
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(

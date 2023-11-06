@@ -23,148 +23,147 @@ class HomePage extends StatelessWidget {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-        Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              GestureDetector(
-                  onTap: () {},
-                  child: FutureBuilder<bool>(
-                    future: SharedPreferences.getInstance().then(
-                        (sharedPrefs) =>
-                            sharedPrefs.getBool('_isDark') ?? false),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final isDark = snapshot.data ?? false;
+        const SizedBox(
+          height: 25,
+        ),
+        FutureBuilder<bool>(
+          future: SharedPreferences.getInstance()
+              .then((sharedPrefs) => sharedPrefs.getBool('_isDark') ?? false),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final isDark = snapshot.data ?? false;
 
-                        return SvgPicture.asset(
-                          isDark ? imageLightThemeAsset : imageDarkThemeAsset,
-                          width: MediaQuery.of(context).size.width < 700
-                              ? MediaQuery.of(context).size.width * 0.5
-                              : 270,
-                        );
-                      } else {
-                        // Handle loading state or error.
-                        return const MyProgressIndicator(); // or any other loading widget
-                      }
-                    },
-                  )),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
-                  style: TextStyle(
-                    fontSize: Constants.setHomePageTitleTextFontSize(getFont),
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontFamily: Provider.of<FontProvider>(context, listen: true)
-                        .getFont,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              // const SizedBox(height: 15),
-              // SizedBox(
-              //   width: width,
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 20),
-              //     child: Text(
-              //       'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
-              //       style: TextStyle(
-              //         color: ThemeColors.kLightGreyTextColor,
-              //         fontSize: textWidth < 380
-              //             ? 13
-              //             : 14, //calculateTextFontSize(context) - 4
-              //       ),
-              //       textAlign: TextAlign.center,
-              //     ),
-              //   ),
-              // ),
-              const SizedBox(
-                height: 15, //30
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyCard(
-                    imageAsset: 'assets/images/list3.svg',
-                    buttonTitle: 'ببینە',
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    text: 'کەمترین کۆنمرە',
-                    onTap: () {
-                      if (Platform.isIOS) {
-                        Navigator.of(context, rootNavigator: true).push(
-                          CupertinoPageRoute<bool>(
-                            fullscreenDialog: false,
-                            builder: (BuildContext context) =>
-                                const KamtrinKonmra(),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const KamtrinKonmra();
-                            },
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                  MyCard(
-                    imageAsset: 'assets/images/departments.svg',
-                    buttonTitle: 'ببینە',
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    text: 'بەشەکان',
-                    onTap: () {
-                      if (Platform.isIOS) {
-                        Navigator.of(context, rootNavigator: true).push(
-                          CupertinoPageRoute<bool>(
-                            fullscreenDialog: false,
-                            builder: (BuildContext context) =>
-                                const DepartmentIntroductionScreenTemp(),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const DepartmentIntroductionScreenTemp();
-                            },
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyCard(
-                    imageAsset: 'assets/images/zarabin.svg',
-                    buttonTitle: 'ببینە',
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    text: 'ڕیزبەندیەکانم',
-                  ),
-                  MyCard(
-                    imageAsset: 'assets/images/departments.svg',
-                    buttonTitle: 'ببینە',
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    text: 'بەشەکان',
-                  ),
-                ],
-              ),
-            ],
+              return SvgPicture.asset(
+                isDark ? imageLightThemeAsset : imageDarkThemeAsset,
+                width: homePageImageSize(context),
+              );
+            } else {
+              // Handle loading state or error.
+              return const MyProgressIndicator(); // or any other loading widget
+            }
+          },
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
+            style: TextStyle(
+              fontSize: Constants.setHomePageTitleTextFontSize(getFont),
+              color: Theme.of(context).colorScheme.onBackground,
+              fontFamily:
+                  Provider.of<FontProvider>(context, listen: true).getFont,
+            ),
+            textAlign: TextAlign.center,
           ),
+        ),
+        // const SizedBox(height: 15),
+        // SizedBox(
+        //   width: width,
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 20),
+        //     child: Text(
+        //       'کەمترین کۆنمرە ببینە، زانیاری لەسەر بەشەکان ببینە، داهاتووی بەشەکت ببینە',
+        //       style: TextStyle(
+        //         color: ThemeColors.kLightGreyTextColor,
+        //         fontSize: textWidth < 380
+        //             ? 13
+        //             : 14, //calculateTextFontSize(context) - 4
+        //       ),
+        //       textAlign: TextAlign.center,
+        //     ),
+        //   ),
+        // ),
+        const SizedBox(
+          height: 15, //30
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyCard(
+              imageAsset: 'assets/images/list3.svg',
+              buttonTitle: 'ببینە',
+              color: Theme.of(context).colorScheme.onPrimary,
+              text: 'کەمترین کۆنمرە',
+              onTap: () {
+                if (Platform.isIOS) {
+                  Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute<bool>(
+                      fullscreenDialog: false,
+                      builder: (BuildContext context) => const KamtrinKonmra(),
+                    ),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const KamtrinKonmra();
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+            MyCard(
+              imageAsset: 'assets/images/departments.svg',
+              buttonTitle: 'ببینە',
+              color: Theme.of(context).colorScheme.onTertiary,
+              text: 'بەشەکان',
+              onTap: () {
+                if (Platform.isIOS) {
+                  Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute<bool>(
+                      fullscreenDialog: false,
+                      builder: (BuildContext context) =>
+                          const DepartmentIntroductionScreenTemp(),
+                    ),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const DepartmentIntroductionScreenTemp();
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyCard(
+              imageAsset: 'assets/images/zarabin.svg',
+              buttonTitle: 'ببینە',
+              color: Theme.of(context).colorScheme.onPrimary,
+              text: 'ڕیزبەندیەکانم',
+            ),
+            MyCard(
+              imageAsset: 'assets/images/departments.svg',
+              buttonTitle: 'ببینە',
+              color: Theme.of(context).colorScheme.onPrimary,
+              text: 'بەشەکان',
+            ),
+          ],
         ),
       ],
     );
+  }
+
+  double homePageImageSize(BuildContext context) {
+    if (Constants.getDeviceType() == Constants.iphoneProSize ||
+        Constants.getDeviceType() == Constants.iphoneProMaxSize) {
+      return MediaQuery.of(context).size.width * 0.5;
+    } else if (Constants.getDeviceType() == Constants.tabletSize) {
+      return MediaQuery.of(context).size.width * 0.29;
+    } else {
+      return 270;
+    }
   }
 }
