@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
-import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     String imageLightThemeAsset = 'assets/images/cats_.svg';
     String imageDarkThemeAsset = 'assets/images/cats_darkMode.svg';
-    String getFont = FontProvider.defaultFont;
+    String getFont = Provider.of<FontProvider>(context, listen: true).getFont;
 
     return ListView(
       physics: const BouncingScrollPhysics(),
@@ -58,10 +59,10 @@ class HomePage extends StatelessWidget {
                 child: Text(
                   'لەگەڵ بەشەکەم، زانیاری لەسەر بەشەکەت ببینە',
                   style: TextStyle(
-                    fontSize: getFont != "uniQaidar" ? 17 : 18,
+                    fontSize: Constants.setHomePageTitleTextFontSize(getFont),
                     color: Theme.of(context).colorScheme.onBackground,
-                    // fontFamily:
-                    //     Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                    fontFamily: Provider.of<FontProvider>(context, listen: true)
+                        .getFont,
                   ),
                   textAlign: TextAlign.center,
                 ),

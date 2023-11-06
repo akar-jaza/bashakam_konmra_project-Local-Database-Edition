@@ -1,4 +1,5 @@
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class KonmraListItem extends StatelessWidget {
@@ -52,7 +53,7 @@ class KonmraListItem extends StatelessWidget {
           '${university ?? ''} / ${collage ?? ''} / ${department ?? ''}',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onTertiaryContainer,
-            fontSize: getFont != "uniQaidar" ? 19 : 20,
+            fontSize: Constants.kamtrinKonmraTitleFontSize(getFont),
             // letterSpacing: 0.0,
           ),
           textAlign: TextAlign.center,

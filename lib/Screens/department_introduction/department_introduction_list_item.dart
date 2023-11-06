@@ -1,13 +1,16 @@
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/Department_info_screen.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //! 2
 //* ئەم لیست ڤیو بیوڵدەرە بریتیە لە لیشتی هەموو بەشەکان
-//* یوزەر کاتێک کلیک لە ئایتمی لیستێک دەکات دەڕوات بۆ زانیاری لەسەر ئەو بەشە 
-//*   
+//* یوزەر کاتێک کلیک لە ئایتمی لیستێک دەکات دەڕوات بۆ زانیاری لەسەر ئەو بەشە
+//*
 
 class DepartmentIntroductionListItem extends StatelessWidget {
   final List<Map<String, dynamic>> departments;
@@ -33,6 +36,8 @@ class DepartmentIntroductionListItem extends StatelessWidget {
         return 18; // Large screen
       }
     }
+
+    String getFont = Provider.of<FontProvider>(context, listen: true).getFont;
 
     if (index.isOdd) {
       return Divider(
@@ -87,7 +92,7 @@ class DepartmentIntroductionListItem extends StatelessWidget {
                   departmentName,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: calculateTextFontSize(context),
+                    fontSize: Constants.departmentTitleFontSize(getFont),
                     letterSpacing: 0.0,
                     height: 1.5,
                   ),
@@ -105,7 +110,6 @@ class DepartmentIntroductionListItem extends StatelessWidget {
               ),
             ),
           ),
-          
         ],
       );
     }

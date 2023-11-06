@@ -80,6 +80,7 @@ class MyCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.primary,
                         fontFamily:
                             Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                        fontSize: getFont != "uniQaidar" ? 14 : 16,
                       ),
                     ),
                   )
@@ -92,7 +93,7 @@ class MyCard extends StatelessWidget {
                         buttonTitle,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
-                          fontSize: getFont != "uniQaidar" ? 14 : 15,
+                          fontSize: getFont != "uniQaidar" ? 14 : 16,
                           fontFamily: Theme.of(context)
                               .textTheme
                               .bodyMedium

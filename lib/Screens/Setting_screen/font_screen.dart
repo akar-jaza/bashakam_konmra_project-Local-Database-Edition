@@ -92,12 +92,13 @@ class _FontScreenState extends State<FontScreen> {
                             child: Text(
                               deviceIsIOSContainerText,
                               style: TextStyle(
-                                  fontSize: _containerTextFontSize(),
-                                  overflow: TextOverflow.fade,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onTertiaryContainer,
-                                  fontFamily: selectedFont),
+                                fontSize: _containerTextFontSize(),
+                                overflow: TextOverflow.fade,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onTertiaryContainer,
+                                fontFamily: selectedFont,
+                              ),
                             ),
                           )
                         : Flexible(

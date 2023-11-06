@@ -1,4 +1,5 @@
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
@@ -39,18 +40,18 @@ class _MyTextFieldState extends State<MyTextField> {
         });
         widget.onChanged?.call(value); // Call the onChanged callback
       },
-      
       keyboardType: TextInputType.text,
       controller: widget._textController,
       cursorColor: Theme.of(context).colorScheme.primary,
       style: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
         fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
-        fontSize: getFont != "uniQaidar" ? 14 : 15,
+        fontSize: getFont == Constants.uniQaidar ? 15 : 14,
         letterSpacing: 0.0,
       ),
       decoration: InputDecoration(
         labelText: widget.labelText,
+
         prefixIcon: AnimatedSwitcher(
           switchInCurve: Curves.linearToEaseOut,
           switchOutCurve: Curves.linearToEaseOut,

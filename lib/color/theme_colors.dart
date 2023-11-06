@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bashakam_barawzanko/Providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyThemes extends ChangeNotifier {
   String getFont = FontProvider.defaultFont;
+
   ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -48,7 +50,7 @@ class MyThemes extends ChangeNotifier {
         bodyLarge: TextStyle(color: ThemeColors.kBodyTextColor),
       ),
       useMaterial3: true,
-      fontFamily: getFont,
+      fontFamily: Provider.of<FontProvider>(context, listen: true).getFont,
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness:
             ThemeProvider().isDarkMode ? Brightness.dark : Brightness.light,
@@ -134,7 +136,7 @@ class MyThemes extends ChangeNotifier {
         surfaceTintColor: ThemeColors.kblueColor,
       ),
       useMaterial3: true,
-      fontFamily: getFont,
+      fontFamily: Provider.of<FontProvider>(context, listen: true).getFont,
       cupertinoOverrideTheme: CupertinoThemeData(
         textTheme: CupertinoTextThemeData(
           navTitleTextStyle: TextStyle(fontFamily: FontProvider.defaultFont),

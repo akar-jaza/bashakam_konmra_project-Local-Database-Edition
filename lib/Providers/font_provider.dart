@@ -1,23 +1,24 @@
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FontProvider extends ChangeNotifier {
-  static String defaultFont = "uniQaidar"; // Default font
+  static String defaultFont = Constants.uniQaidar; // Default font
   String get getFont => defaultFont; // Initialize getFont with a default font
 
   FontProvider(String getFont) {
-    if (getFont == "rabarBold") {
-      defaultFont = "rabarBold";
-    } else if (getFont == "sanFranciscoUITextRegular") {
-      defaultFont == "sanFranciscoUITextRegular";
-    } else if (getFont == "sanFranciscoUITextBold") {
-      defaultFont = "sanFranciscoUITextBold";
-    } else if (getFont == "sanFranciscoUITextHeavy") {
-      defaultFont = "sanFranciscoUITextHeavy";
-    } else if (getFont == "uniQaidar") {
-      defaultFont = "uniQaidar";
+    if (getFont == Constants.rabarBold) {
+      defaultFont = Constants.rabarBold;
+    } else if (getFont == Constants.sanFranciscoUITextRegular) {
+      defaultFont == Constants.sanFranciscoUITextRegular;
+    } else if (getFont == Constants.sanFranciscoUITextBold) {
+      defaultFont = Constants.sanFranciscoUITextBold;
+    } else if (getFont == Constants.sanFranciscoUITextHeavy) {
+      defaultFont = Constants.sanFranciscoUITextHeavy;
+    } else if (getFont == Constants.uniQaidar) {
+      defaultFont = Constants.uniQaidar;
     } else {
-      defaultFont = "uniQaidar";
+      defaultFont = Constants.uniQaidar;
     }
 
     getSelectedFont().then((font) {

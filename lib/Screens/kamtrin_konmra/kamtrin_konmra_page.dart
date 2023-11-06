@@ -349,76 +349,71 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                           right: 20,
                           top: Platform.isIOS ? 10 : 15,
                         ),
-                        child: Expanded(
-                          flex: 2,
-                          child: Column(
-                            children: [
-                              MyTextField(
-                                textController: _textEditingController,
-                                labelText: 'ناوی بەش بنووسە',
-                                onChanged: (value) {
-                                  setState(() {
-                                    if (MediaQuery.of(context)
-                                            .viewInsets
-                                            .bottom >
-                                        0.0) {
-                                    } else {
-                                      // _isFabVisible = true;
-                                    }
-                                  });
-                                  _runFilter(value);
-                                },
-                                onPressed: () {},
-                                suffixIcon: Platform.isIOS
-                                    ? CupertinoButton(
-                                        onPressed: (() =>
+                        child: Column(
+                          children: [
+                            MyTextField(
+                              textController: _textEditingController,
+                              labelText: 'ناوی بەش بنووسە',
+                              onChanged: (value) {
+                                setState(() {
+                                  if (MediaQuery.of(context).viewInsets.bottom >
+                                      0.0) {
+                                  } else {
+                                    // _isFabVisible = true;
+                                  }
+                                });
+                                _runFilter(value);
+                              },
+                              onPressed: () {},
+                              suffixIcon: Platform.isIOS
+                                  ? CupertinoButton(
+                                      onPressed: (() =>
+                                          filterByCityModalBottomSheet(
+                                            context,
+                                          )),
+                                      child: Icon(
+                                        CupertinoIcons.slider_horizontal_3,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant,
+                                      ),
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: IconButton(
+                                        onPressed: () =>
                                             filterByCityModalBottomSheet(
-                                              context,
-                                            )),
-                                        child: Icon(
+                                          context,
+                                        ),
+                                        icon: Icon(
                                           CupertinoIcons.slider_horizontal_3,
+                                          size: 26,
+                                          weight: 100,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onSurfaceVariant,
                                         ),
-                                      )
-                                    : Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5),
-                                        child: IconButton(
-                                          onPressed: () =>
-                                              filterByCityModalBottomSheet(
-                                            context,
-                                          ),
-                                          icon: Icon(
-                                            CupertinoIcons.slider_horizontal_3,
-                                            size: 26,
-                                            weight: 100,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onSurfaceVariant,
-                                          ),
-                                        ),
                                       ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8, right: 5, bottom: 5),
-                                  child: Text(
-                                    'دەتوانێت بەپێی کۆنمرە بەش بدۆزیتەوە، بەڵام ورد نیە!',
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                      fontSize: 12,
                                     ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8, right: 5, bottom: 5),
+                                child: Text(
+                                  'دەتوانێت بەپێی کۆنمرە بەش بدۆزیتەوە، بەڵام ورد نیە!',
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    fontSize: 12,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       if (_isLoading)
@@ -431,6 +426,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
                           ),
                         ),
                       Expanded(
+                        flex: 1,
                         child: _foundUsers.isNotEmpty
                             ? ListView.builder(
                                 physics: const BouncingScrollPhysics(),

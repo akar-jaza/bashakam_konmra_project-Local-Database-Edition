@@ -1,4 +1,5 @@
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,9 +33,7 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
         middle: Text(
           middleText,
           style: TextStyle(
-            color: textColor,
-            fontSize: getFont != "uniQaidar" ? 18 : 19,
-          ),
+              color: textColor, fontSize: Constants.appBarFontSize(getFont)),
         ),
         border: null,
         leading: enableLeading
