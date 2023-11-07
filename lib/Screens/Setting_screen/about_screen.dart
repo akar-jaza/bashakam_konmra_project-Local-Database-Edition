@@ -122,7 +122,33 @@ class AboutSectionContainer extends StatelessWidget {
                     textAlign:
                         isBodyTextCenter ? TextAlign.center : TextAlign.start,
                   ),
-                  showIcons ? RowsOfIcons() : Container(),
+                  showIcons
+                      ? RowsOfIcons(
+                          icons: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Image.asset(
+                                "assets/images/social_icons/facebook_dark_mode.png",
+                                height: 25,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Image.asset(
+                                "assets/images/social_icons/linkedin_dark_mode.png",
+                                height: 25,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Image.asset(
+                                "assets/images/social_icons/arroba_dark_mode.png",
+                                height: 25,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                 ],
               ),
             ),
@@ -134,7 +160,11 @@ class AboutSectionContainer extends StatelessWidget {
 }
 
 class RowsOfIcons extends StatefulWidget {
-  const RowsOfIcons({super.key});
+  const RowsOfIcons({
+    super.key,
+    required this.icons,
+  });
+  final List<Widget> icons;
 
   @override
   State<RowsOfIcons> createState() => _RowsOfIconsState();
@@ -144,39 +174,10 @@ class _RowsOfIconsState extends State<RowsOfIcons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          TextButton(
-            onPressed: () {},
-            child: Image.asset(
-              'assets/images/social_icons/arroba_dark_mode.png',
-              height: 30,
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Image.asset(
-              'assets/images/social_icons/arroba_dark_mode.png',
-              height: 30,
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Image.asset(
-              'assets/images/social_icons/arroba_dark_mode.png',
-              height: 30,
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Image.asset(
-              'assets/images/social_icons/arroba_dark_mode.png',
-              height: 30,
-            ),
-          ),
-        ],
+        children: widget.icons,
       ),
     );
   }
