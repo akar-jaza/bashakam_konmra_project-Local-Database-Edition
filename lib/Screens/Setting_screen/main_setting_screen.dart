@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/Screens/Setting_screen/about_screen.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/font_screen.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
@@ -75,7 +76,26 @@ class _IOSHomePageState extends State<IOSHomePage> {
                 MyCupertinoListTile(
                   titleText: 'دەربارەی بەشەکەم',
                   leadingIcon: CupertinoIcons.info,
-                  onTap: () {},
+                  onTap: () {
+                    if (Platform.isIOS) {
+                      Navigator.of(context, rootNavigator: true).push(
+                        CupertinoPageRoute<bool>(
+                          fullscreenDialog: false,
+                          builder: (BuildContext context) =>
+                              const AboutScreen(),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const AboutScreen();
+                          },
+                        ),
+                      );
+                    }
+                  },
                   trailing: const CupertinoListTileChevron(),
                 ),
               ],

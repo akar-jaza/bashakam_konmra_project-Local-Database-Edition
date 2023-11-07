@@ -73,4 +73,8 @@ class Constants {
     }
     return 17;
   }
+
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
 }

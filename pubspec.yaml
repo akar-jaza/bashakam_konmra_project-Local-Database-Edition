@@ -48,6 +48,7 @@ dependencies:
   modal_bottom_sheet: ^3.0.0-pre
   restart_app: ^1.2.1
   cupertino_back_gesture: ^0.1.0
+  dotted_border: ^2.1.0
 
 
 dev_dependencies:
@@ -93,6 +94,11 @@ flutter:
     - assets/data/bashakan_info(CSV).csv
     - assets/locales/ar.json
     - assets/images/ListIsEmpty.svg
+    - assets/images/eng_vege.png
+    - assets/images/facebook_pic.jpeg
+    - assets/images/MaterialIcon.png
+    - assets/images/social_icons/
+    
 
 
 

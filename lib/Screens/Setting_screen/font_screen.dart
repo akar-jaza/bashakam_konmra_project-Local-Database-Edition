@@ -14,7 +14,7 @@ class FontScreen extends StatefulWidget {
 }
 
 class _FontScreenState extends State<FontScreen> {
-  String selectedFont = FontProvider.defaultFont; // Default font
+  String selectedFont = FontProvider.defaultFont;
   @override
   void initState() {
     super.initState();
@@ -46,7 +46,6 @@ class _FontScreenState extends State<FontScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     String deviceIsAndroidContainerText =
         "ئەم بەشە تایبەتە بە گۆڕینی فۆنتی ئەپڵیکەیشن. گۆڕینی فۆنت پێویستی بە دەستپێکردنەوە (Restart)ـی ئەپڵیکەشنە!";
 
@@ -59,9 +58,9 @@ class _FontScreenState extends State<FontScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 0),
+            padding: const EdgeInsets.only(top: 15, bottom: 0),
             child: Container(
-              width: screenWidth * 0.876,
+              width: Constants.getScreenWidth(context) * 0.876,
               height: 115,
               decoration: BoxDecoration(
                 color: Platform.isIOS
@@ -130,7 +129,9 @@ class _FontScreenState extends State<FontScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      top: 20, left: screenWidth / 16, right: screenWidth / 16),
+                      top: 20,
+                      left: Constants.getScreenWidth(context) / 16,
+                      right: Constants.getScreenWidth(context) / 16),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.surface,
@@ -172,7 +173,9 @@ class _FontScreenState extends State<FontScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: 20, left: screenWidth / 16, right: screenWidth / 16),
+                      top: 20,
+                      left: Constants.getScreenWidth(context) / 16,
+                      right: Constants.getScreenWidth(context) / 16),
                   child: Container(
                     height: 90,
                     decoration: BoxDecoration(
