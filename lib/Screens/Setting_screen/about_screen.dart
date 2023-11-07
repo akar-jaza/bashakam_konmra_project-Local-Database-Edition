@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:bashakam_barawzanko/color/theme_colors.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,13 @@ class _AboutScreenState extends State<AboutScreen> {
               assetImage: 'assets/images/facebook_pic.jpeg',
               dottedBorderColor: Theme.of(context).colorScheme.tertiary,
             ),
+            AboutSectionContainer(
+                showIcons: true,
+                isBodyTextCenter: true,
+                titleText: portfolioTitle,
+                bodyText: portfolioBody,
+                assetImage: 'assets/images/eng_vege.png',
+                dottedBorderColor: ThemeColors.kYellowColor),
           ],
         ),
       ),
@@ -128,7 +136,7 @@ class AboutSectionContainer extends StatelessWidget {
                             TextButton(
                               onPressed: () {},
                               child: Image.asset(
-                                "assets/images/social_icons/facebook_dark_mode.png",
+                                "assets/images/social_icons/arroba_dark_mode.png",
                                 height: 25,
                               ),
                             ),
@@ -142,7 +150,14 @@ class AboutSectionContainer extends StatelessWidget {
                             TextButton(
                               onPressed: () {},
                               child: Image.asset(
-                                "assets/images/social_icons/arroba_dark_mode.png",
+                                "assets/images/social_icons/github_dark_mode.png",
+                                height: 25,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Image.asset(
+                                "assets/images/social_icons/facebook_dark_mode.png",
                                 height: 25,
                               ),
                             ),
