@@ -81,15 +81,16 @@ void launchEmailToDeveloper() async {
     scheme: 'mailto',
     path:
         'akar.jaza1212@gmail.com', // Replace with the developer's email address
-    query: 'subject=پێشنیار یاخود پرسیار', // Subject for the email
+    queryParameters: {
+      'subject': 'پێشنیار یاخود پرسیار', // Subject for the email
+    },
   );
 
   if (await canLaunchUrl(Uri.parse(emailLaunchUri.toString()))) {
     await launchUrl(Uri.parse(emailLaunchUri.toString()));
+  } else {
+    print('Could not launch email app.');
   }
-  const MySnackBar(
-    contentText: 'نەتوانرا بڕواتە سەر جیمەیڵ',
-  );
 }
 
 void launchlInstagramURL(BuildContext context) async {
