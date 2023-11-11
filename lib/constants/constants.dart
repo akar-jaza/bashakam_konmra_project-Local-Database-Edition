@@ -1,4 +1,6 @@
+import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Constants {
   static const String seSize = "se_size";
@@ -41,13 +43,13 @@ class Constants {
 
   static double kamtrinKonmraTitleFontSize(String getFont) {
     if (getFont == uniQaidar && getDeviceType() == iphoneProSize) {
-      return 18; // 18
+      return 19; // 18
     } else if (getFont == uniQaidar && getDeviceType() == iphoneProMaxSize) {
       return 20; // 19
     } else if (getDeviceType() == iphoneProSize) {
-      return 17;
-    } else if (getDeviceType() == iphoneProMaxSize) {
       return 18;
+    } else if (getDeviceType() == iphoneProMaxSize) {
+      return 19;
     }
     return 18;
   }
@@ -76,5 +78,9 @@ class Constants {
 
   static double getScreenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
+  }
+
+  static String getFont(BuildContext context) {
+    return Provider.of<FontProvider>(context, listen: false).getFont;
   }
 }

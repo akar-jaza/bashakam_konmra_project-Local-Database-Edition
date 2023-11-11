@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +9,20 @@ class MyAlertDialog extends StatelessWidget {
     required this.title,
     required this.content,
     required this.firstActionDialogText,
-    this.firstActionOnTap,
+    required this.firstActionOnTap,
+    required this.enableFirstActionDialog,
+    this.secondActionDialogText,
+    this.secondActionOnTap,
     this.iconData,
   }) : super(key: key);
   final IconData? iconData;
   final String title;
   final String content;
   final String firstActionDialogText;
-  final Function()? firstActionOnTap;
+  final String? secondActionDialogText;
+  final bool enableFirstActionDialog;
+  final Function() firstActionOnTap;
+  final Function()? secondActionOnTap;
   @override
   Widget build(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
@@ -47,10 +55,11 @@ class MyAlertDialog extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
+            //! بەهۆی ڕتڵ لەخوارەوە بۆ سەرەوە ڕیزبەندی دەکرێ
             CupertinoDialogAction(
-              onPressed: firstActionOnTap,
+              onPressed: secondActionOnTap,
               child: Text(
-                firstActionDialogText,
+                secondActionDialogText!,
                 style: TextStyle(
                   color: CupertinoColors.systemBlue,
                   fontFamily:
@@ -59,6 +68,21 @@ class MyAlertDialog extends StatelessWidget {
                 ),
               ),
             ),
+            enableFirstActionDialog
+                ? CupertinoDialogAction(
+                    isDefaultAction: true,
+                    onPressed: firstActionOnTap,
+                    child: Text(
+                      firstActionDialogText,
+                      style: TextStyle(
+                        color: CupertinoColors.systemBlue,
+                        fontFamily:
+                            Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                        fontSize: 15,
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       );
@@ -84,15 +108,28 @@ class MyAlertDialog extends StatelessWidget {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: firstActionOnTap,
+            onPressed: secondActionOnTap,
             child: Text(
-              firstActionDialogText,
+              secondActionDialogText!,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 // fontSize: 14,
               ),
             ),
           ),
+          //* close dialog button
+          enableFirstActionDialog //* do important actions with this button
+              ? TextButton(
+                  onPressed: firstActionOnTap,
+                  child: Text(
+                    firstActionDialogText,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      // fontSize: 14,
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       );
     }

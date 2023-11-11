@@ -3,6 +3,7 @@
 import 'package:bashakam_barawzanko/color/theme_colors.dart';
 import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+import 'package:bashakam_barawzanko/components/my_snack_bar.dart';
 import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:bashakam_barawzanko/util/launchers.dart';
 import 'package:flutter/material.dart';
@@ -46,16 +47,7 @@ class _AboutScreenState extends State<AboutScreen> {
               iconButtons: [
                 TextButton(
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: ((context) {
-                          return MyAlertDialog(
-                            title: 'پەیوەندی بکە بە گەشەپێدەرەوە',
-                            content:
-                                'ئەگەر کێشەیەکت هەیە یاخود پرسیارێکت هەیە پەیوەندی بکە لەڕێگەی ئیمەیڵەکەمەوە.',
-                            firstActionDialogText: 'باشە',
-                          );
-                        }));
+                    launchEmailToDeveloper(context);
                   },
                   child: Image.asset(
                     "assets/images/social_icons/arroba_dark_mode.png",
