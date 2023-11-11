@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -91,20 +92,40 @@ void launchEmailToDeveloper(BuildContext context) async {
   }
 
   final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path:
-          'akar.jaza1212@gmail.com', // Replace with the developer's email address
-      query: encodeQueryParameters(
-          <String, String>{'subjet': 'پێشنیار یاخود پرسیار'}));
+    scheme: 'mailto',
+    path:
+        'akar.jaza1212@gmail.com', // Replace with the developer's email address
+    query: encodeQueryParameters(<String, String>{
+      'subject': '.پێشنیار یاخود پرسیار',
+    }),
+  );
 
   if (await canLaunchUrl(emailLaunchUri)) {
-    launchUrl(emailLaunchUri);
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return MyAlertDialog(
+            enableIcon: false,
+            enableFirstActionDialog: true,
+            title: 'ئەپڵیکەیشنی "بەشەکەم" بەجێ دەهێڵیت',
+            content:
+                'بۆ پەیوەندی کردن بە گەشەپێدەرەوە تۆ ئەپڵیکەیشنی بەشەکەم بەجێدەهێڵیت.',
+            firstActionDialogText: 'باشە',
+            secondActionDialogText: 'داخستن',
+            firstActionOnTap: () {
+              launchUrl(emailLaunchUri);
+            },
+            secondActionOnTap: () => Navigator.pop(context),
+          );
+        }));
   } else {
     print("Couldn't launch: $emailLaunchUri");
     showDialog(
         context: context,
         builder: ((context) {
           return MyAlertDialog(
+            enableIcon: true,
+            iconData: CupertinoIcons.exclamationmark_triangle_fill,
             enableFirstActionDialog: true,
             title: 'کێشە هەیە لە کردنەوەی ئەپڵیکەشنی ئیمەیڵ!',
             content:

@@ -14,6 +14,7 @@ class MyAlertDialog extends StatelessWidget {
     this.secondActionDialogText,
     this.secondActionOnTap,
     this.iconData,
+    required this.enableIcon,
   }) : super(key: key);
   final IconData? iconData;
   final String title;
@@ -23,6 +24,7 @@ class MyAlertDialog extends StatelessWidget {
   final bool enableFirstActionDialog;
   final Function() firstActionOnTap;
   final Function()? secondActionOnTap;
+  final bool enableIcon;
   @override
   Widget build(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
@@ -88,10 +90,12 @@ class MyAlertDialog extends StatelessWidget {
       );
     } else {
       return AlertDialog(
-        icon: Icon(
-          iconData,
-          color: Theme.of(context).colorScheme.secondary,
-        ),
+        icon: enableIcon
+            ? Icon(
+                iconData,
+                color: Theme.of(context).colorScheme.secondary,
+              )
+            : null,
         title: Text(
           title,
           style: TextStyle(

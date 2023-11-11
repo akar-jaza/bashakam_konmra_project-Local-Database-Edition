@@ -27,6 +27,7 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
       body: Center(
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             AboutSectionContainer(
               showIcons: false,

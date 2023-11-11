@@ -56,5 +56,8 @@
       </dict>
     </array>
   </dict>
-
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>mailto</string>
+  </array>
 </plist>
