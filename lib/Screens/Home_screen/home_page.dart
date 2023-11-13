@@ -3,13 +3,11 @@ import 'package:bashakam_barawzanko/Providers/font_provider.dart';
 import 'package:bashakam_barawzanko/Screens/department_introduction/department_introduction_screen.dart';
 import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_card.dart';
-import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/constants/constants.dart';
+import 'package:bashakam_barawzanko/util/asynchronous_ui_update.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,29 +18,16 @@ class HomePage extends StatelessWidget {
     String imageDarkThemeAsset = 'assets/images/cats_darkMode.svg';
     String getFont = Provider.of<FontProvider>(context, listen: true).getFont;
 
+    AsynchronousUIUpdate asynchronousUIUpdate = AsynchronousUIUpdate();
+
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
         const SizedBox(
           height: 25,
         ),
-        FutureBuilder<bool>(
-          future: SharedPreferences.getInstance()
-              .then((sharedPrefs) => sharedPrefs.getBool('_isDark') ?? false),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final isDark = snapshot.data ?? false;
-
-              return SvgPicture.asset(
-                isDark ? imageLightThemeAsset : imageDarkThemeAsset,
-                width: homePageImageSize(context),
-              );
-            } else {
-              // Handle loading state or error.
-              return const MyProgressIndicator(); // or any other loading widget
-            }
-          },
-        ),
+        asynchronousUIUpdate.asyncHomePageImageUpdate(
+            imageLightThemeAsset, imageDarkThemeAsset),
         const SizedBox(
           height: 30,
         ),
@@ -154,16 +139,5 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  double homePageImageSize(BuildContext context) {
-    if (Constants.getDeviceType() == Constants.iphoneProSize ||
-        Constants.getDeviceType() == Constants.iphoneProMaxSize) {
-      return MediaQuery.of(context).size.width * 0.5;
-    } else if (Constants.getDeviceType() == Constants.tabletSize) {
-      return MediaQuery.of(context).size.width * 0.29;
-    } else {
-      return 270;
-    }
   }
 }

@@ -44,7 +44,7 @@ class MyThemes extends ChangeNotifier {
         shadow: const Color(0xFF000000),
         surfaceTint: const Color(0xFF315DA8),
         outlineVariant: const Color(0xFFC4C6D0),
-        scrim: const Color(0xFF000000),
+        scrim: const Color(0xff495E57),
       ),
       primaryTextTheme: const TextTheme(
         bodyLarge: TextStyle(color: ThemeColors.kBodyTextColor),
@@ -125,7 +125,7 @@ class MyThemes extends ChangeNotifier {
         shadow: const Color(0xFF000000),
         surfaceTint: const Color(0xFFADC6FF),
         outlineVariant: const Color(0xFF44474F),
-        scrim: const Color(0xFF000000),
+        scrim: const Color(0xffF4CE14),
       ),
       scaffoldBackgroundColor: ThemeColors.kBodyColor,
       primaryTextTheme: const TextTheme(
@@ -187,7 +187,7 @@ class ThemeColors {
   static const Color kLightGreyTextColor = Color(0xFFC5C6D1);
   static const Color kMyCardColor = Color(0xFF22232B);
   static const Color kOutlinedTextfieldColor = Color(0xFF948F9A);
-  static const Color kYellowColor = Color(0xFFF4CE14);
+
   // static const Color kTextfieledIsEmptyColor = Color(0xFFF2B9B6);
 }
 

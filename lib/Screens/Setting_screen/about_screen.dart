@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bashakam_barawzanko/color/theme_colors.dart';
-import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
-import 'package:bashakam_barawzanko/components/my_snack_bar.dart';
 import 'package:bashakam_barawzanko/constants/constants.dart';
+import 'package:bashakam_barawzanko/util/asynchronous_ui_update.dart';
 import 'package:bashakam_barawzanko/util/launchers.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -17,6 +15,7 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  AsynchronousUIUpdate asynchronousUIUpdate = AsynchronousUIUpdate();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,37 +49,25 @@ class _AboutScreenState extends State<AboutScreen> {
                   onPressed: () {
                     launchEmailToDeveloper(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/arroba_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncMailIconUpdate(),
                 ),
                 TextButton(
                   onPressed: () {
                     launchlinkdedInURL(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/linkedin_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncLinkdinIconUpdate(),
                 ),
                 TextButton(
                   onPressed: () {
                     launchGitHubURL(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/github_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncGitHubIconUpdate(),
                 ),
                 TextButton(
                   onPressed: () {
                     launchFacebookURL(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/facebook_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncFacebookIconUpdate(),
                 ),
               ],
             ),
@@ -90,25 +77,19 @@ class _AboutScreenState extends State<AboutScreen> {
               titleText: vevanTitle,
               bodyText: vevanBody,
               assetImage: 'assets/images/eng_vege.png',
-              dottedBorderColor: ThemeColors.kYellowColor,
+              dottedBorderColor: Theme.of(context).colorScheme.scrim,
               iconButtons: [
                 TextButton(
                   onPressed: () {
                     launchlTelegramURL(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/telegram_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncTelegramIconUpdate(),
                 ),
                 TextButton(
                   onPressed: () {
                     launchlInstagramURL(context);
                   },
-                  child: Image.asset(
-                    "assets/images/social_icons/instagram_dark_mode.png",
-                    height: 25,
-                  ),
+                  child: asynchronousUIUpdate.asyncInstagramIconUpdate(),
                 ),
               ],
             ),
@@ -195,6 +176,12 @@ class AboutSectionContainer extends StatelessWidget {
                     bodyText,
                     textAlign:
                         isBodyTextCenter ? TextAlign.center : TextAlign.start,
+                    style: TextStyle(
+                      fontSize:
+                          Constants.getFont(context) == Constants.uniQaidar
+                              ? 15
+                              : 14,
+                    ),
                   ),
                   showIcons
                       ? Padding(
