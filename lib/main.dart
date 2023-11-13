@@ -60,7 +60,7 @@ void main() async {
   runApp(MyApp(isDark: isDark, getFont: getFont));
 }
 
-  class MyApp extends StatefulWidget {
+class MyApp extends StatefulWidget {
   final bool isDark;
   final String getFont;
   const MyApp({

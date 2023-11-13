@@ -12,6 +12,7 @@ class Constants {
   static const String sanFranciscoUITextRegular = "sanFranciscoUITextRegular";
   static const String sanFranciscoUITextBold = "sanFranciscoUITextBold";
   static const String sanFranciscoUITextHeavy = "sanFranciscoUITextHeavy";
+  static const String sanFranciscoUITextMedium = "sanFranciscoUITextMedium";
   static const String uniQaidar = "uniQaidar";
 
   static String getDeviceType() {
@@ -19,13 +20,13 @@ class Constants {
         WidgetsBinding.instance.platformDispatcher.views.single);
     if (data.size.shortestSide < 380) {
       return seSize;
-    } else if (data.size.shortestSide < 430) {
+    } else if (data.size.shortestSide < 429) {
       return iphoneProSize;
     } else if (data.size.shortestSide < 600) {
-      return iphoneProMaxSize;
+      return iphoneProMaxSize; 
     } else {
       return tabletSize;
-    }
+    }  
   }
 
   static double setHomePageTitleTextFontSize(String getFont) {

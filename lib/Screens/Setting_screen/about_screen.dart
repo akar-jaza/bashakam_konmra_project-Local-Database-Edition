@@ -42,8 +42,8 @@ class _AboutScreenState extends State<AboutScreen> {
               isBodyTextCenter: true,
               titleText: portfolioTitle,
               bodyText: portfolioBody,
-              assetImage: 'assets/images/facebook_pic.jpeg',
-              dottedBorderColor: Theme.of(context).colorScheme.tertiary,
+              assetImage: 'assets/images/memoji.png',
+              dottedBorderColor: Theme.of(context).colorScheme.primary,
               iconButtons: [
                 TextButton(
                   onPressed: () {
@@ -157,7 +157,11 @@ class AboutSectionContainer extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: CircleAvatar(
-                        radius: 30.0,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        radius:
+                            Constants.getDeviceType() == Constants.tabletSize
+                                ? 30
+                                : 25,
                         backgroundImage: AssetImage(assetImage),
                       ),
                     ),
@@ -168,7 +172,7 @@ class AboutSectionContainer extends StatelessWidget {
                       titleText,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
-                        fontSize: 18,
+                        fontSize: _getTitleTextSize(),
                       ),
                     ),
                   ),
@@ -177,10 +181,12 @@ class AboutSectionContainer extends StatelessWidget {
                     textAlign:
                         isBodyTextCenter ? TextAlign.center : TextAlign.start,
                     style: TextStyle(
-                      fontSize:
-                          Constants.getFont(context) == Constants.uniQaidar
-                              ? 15
-                              : 14,
+                      fontSize: _getBodyTextSize(context),
+                      fontFamily: Constants.getFont(context) ==
+                              Constants.sanFranciscoUITextBold
+                          ? Constants.sanFranciscoUITextMedium
+                          : null,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   showIcons
@@ -199,5 +205,23 @@ class AboutSectionContainer extends StatelessWidget {
         )
       ],
     );
+  }
+
+  double _getTitleTextSize() {
+    if (Constants.getDeviceType() == Constants.tabletSize) {
+      return 20;
+    } else {
+      return 18;
+    }
+  }
+
+  double _getBodyTextSize(BuildContext context) {
+    if (Constants.getDeviceType() == Constants.tabletSize) {
+      return 16;
+    } else if (Constants.getFont(context) == Constants.uniQaidar) {
+      return 15;
+    } else {
+      return 14;
+    }
   }
 }

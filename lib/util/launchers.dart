@@ -11,13 +11,12 @@ import 'package:flutter/material.dart';
 
 void launchFacebookURL(BuildContext context) async {
   String fbProtocolUrl;
+  String fallbackUrl = 'https://www.facebook.com/akar.jaza011';
   if (Platform.isIOS) {
     fbProtocolUrl = 'fb://profile/akar.jaza011';
   } else {
-    fbProtocolUrl = 'fb://page/akar.jaza011';
+    fbProtocolUrl = fallbackUrl;
   }
-
-  String fallbackUrl = 'https://www.facebook.com/akar.jaza011';
 
   try {
     bool launched = await launchUrl(Uri.parse(fbProtocolUrl));
