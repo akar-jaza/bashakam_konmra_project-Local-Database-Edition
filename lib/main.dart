@@ -45,7 +45,6 @@ void main() async {
   await ImportDepartmentIntroduction.importDataFromCsv(
       'assets/data/bashakan_info(CSV).csv');
 
-  WidgetsFlutterBinding.ensureInitialized();
   await Locales.init(['ar']);
 
   final systemUiOverlayHelper = SystemUiOverlayHelper();

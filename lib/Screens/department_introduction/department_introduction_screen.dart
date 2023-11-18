@@ -1,10 +1,11 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, slash_for_doc_comments
 
 import 'dart:async';
 
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';
@@ -29,12 +30,25 @@ class _DepartmentIntroductionScreenTempState
   Future<List<Map<String, dynamic>>?> fetchData() async {
     try {
       return await ImportDepartmentIntroduction.importDataFromCsv(
-          'assets/data/bashakan_info(CSV).csv');
+        'assets/data/bashakan_info(CSV).csv',
+      );
     } catch (error) {
       print('fetch data error: $error');
       return null;
     }
   }
+
+  /**  Future<List<Map<String, dynamic>>?> fetchData() async {
+    try {
+      return await compute(
+        ImportDepartmentIntroduction.importDataFromCsv,
+        'assets/data/bashakan_info(CSV).csv',
+      );
+    } catch (error) {
+      print('fetch data error: $error');
+      return null;
+    }
+  } */
 
   final TextEditingController _textEditingController = TextEditingController();
   // Remove departmentIntroduction, departmentName, introduction, and isLoading from your state as they will be managed by FutureBuilder.
@@ -46,9 +60,15 @@ class _DepartmentIntroductionScreenTempState
   @override
   void initState() {
     super.initState();
-    _data = fetchData();
     _fetchFoundDepartment();
+    _data = fetchData();
   }
+
+  // //* ▷ didChangeDependencies runs if any data that this widget was relying on gets updated. Like initState, but used when dependencies might change.
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void dispose() {

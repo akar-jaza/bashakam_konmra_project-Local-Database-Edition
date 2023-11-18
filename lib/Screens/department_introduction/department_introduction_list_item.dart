@@ -24,19 +24,6 @@ class DepartmentIntroductionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double calculateTextFontSize(BuildContext context) {
-      final screenSize = MediaQuery.of(context).size;
-      final screenWidth = screenSize.width;
-
-      if (screenWidth < 375) {
-        return 12.5; // Small screen
-      } else if (screenWidth < 600) {
-        return 15; // Medium screen
-      } else {
-        return 18; // Large screen
-      }
-    }
-
     String getFont = Provider.of<FontProvider>(context, listen: true).getFont;
 
     if (index.isOdd) {
@@ -102,10 +89,13 @@ class DepartmentIntroductionListItem extends StatelessWidget {
               ),
               trailing: Padding(
                 padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5.0),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 14,
-                  color: Theme.of(context).colorScheme.onBackground,
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 14,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
               ),
             ),
