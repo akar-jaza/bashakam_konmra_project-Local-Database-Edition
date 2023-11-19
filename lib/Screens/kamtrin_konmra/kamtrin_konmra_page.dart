@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:bashakam_barawzanko/Providers/font_provider.dart';
-import 'package:bashakam_barawzanko/Providers/font_size_controller.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_textfiled.dart';
 import 'package:bashakam_barawzanko/csv_importers/fetch_konmra_cities/import_duhok_konmra_csv.dart';

@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';

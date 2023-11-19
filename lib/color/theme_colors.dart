@@ -67,6 +67,11 @@ class MyThemes extends ChangeNotifier {
           ),
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+        splashFactory:
+            Platform.isIOS ? NoSplash.splashFactory : InkSparkle.splashFactory,
+      )),
       splashFactory:
           Platform.isIOS ? NoSplash.splashFactory : InkSparkle.splashFactory,
       highlightColor: Platform.isIOS
