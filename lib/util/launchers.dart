@@ -95,7 +95,7 @@ void launchEmailToDeveloper(BuildContext context) async {
     path:
         'akar.jaza1212@gmail.com', // Replace with the developer's email address
     query: encodeQueryParameters(<String, String>{
-      'subject': '.پێشنیار یاخود پرسیار',
+      'subject': 'پێشنیار یاخود پرسیار دەربارەی ئەپڵیکەیشنی بەشەکەم',
     }),
   );
 
@@ -108,7 +108,7 @@ void launchEmailToDeveloper(BuildContext context) async {
             enableFirstActionDialog: true,
             title: 'ئەپڵیکەیشنی "بەشەکەم" بەجێ دەهێڵیت',
             content:
-                'بۆ پەیوەندی کردن بە گەشەپێدەرەوە تۆ ئەپڵیکەیشنی بەشەکەم بەجێدەهێڵیت.',
+                'بۆ پەیوەندی کردن بە ئیمەیڵی گەشەپێدەرەوە تۆ ئەپڵیکەیشنی بەشەکەم بەجێدەهێڵیت.',
             firstActionDialogText: 'باشە',
             secondActionDialogText: 'داخستن',
             firstActionOnTap: () {

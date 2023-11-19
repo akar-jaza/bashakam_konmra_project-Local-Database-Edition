@@ -3,9 +3,13 @@ import 'dart:io';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/about_screen.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/font_screen.dart';
 import 'package:bashakam_barawzanko/Screens/Setting_screen/theme_screen.dart';
+import 'package:bashakam_barawzanko/components/my_alert_dialog.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_list_section.dart';
+import 'package:bashakam_barawzanko/util/launchers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:share_plus/share_plus.dart';
 
 class IOSHomePage extends StatefulWidget {
   const IOSHomePage({super.key});
@@ -106,20 +110,50 @@ class _IOSHomePageState extends State<IOSHomePage> {
                 MyCupertinoListTile(
                   titleText: 'پەیوەندی',
                   leadingIcon: CupertinoIcons.mail,
-                  onTap: () {},
+                  onTap: () {
+                    launchEmailToDeveloper(context);
+                  },
                   trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هەڵسەنگاندن',
                   leadingIcon: CupertinoIcons.star,
-                  onTap: () {},
+                  onTap: () {
+                    try {
+                      //todo change iOSAppID after publishing beta
+                      LaunchReview.launch(
+                        writeReview: false,
+                        androidAppId: "com.akarfolio.bashakam_barawzanko",
+                        iOSAppId: "9365832",
+                      );
+                    } catch (e) {
+                      print(e);
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return MyAlertDialog(
+                              title:
+                                  'سەرکەوتوو نەبوو لە کردنەوەی ئەپستۆر یاخود پلەیستۆر',
+                              content:
+                                  'کێشەیەک بوونی هەیە، تکایە دواتر هەوڵبدەرەوە یاخود پەیوەندی بە گەشەپێدەرەوە بکە',
+                              firstActionDialogText: 'باشە',
+                              firstActionOnTap: () {},
+                              enableFirstActionDialog: false,
+                              enableIcon: false,
+                            );
+                          });
+                    }
+                  },
                   trailing: const CupertinoListTileChevron(),
                 ),
                 MyCupertinoListTile(
                   titleText: 'هاوبەشی بکە',
                   leadingIcon: CupertinoIcons.share,
-                  onTap: () {},
-                  trailing: const CupertinoListTileChevron(),
+                  onTap: () {
+                    Share.share(
+                        'check out my website https://example.com'); //todo change it bashakam domain
+                  },
+                  trailing: Container(),
                 ),
                 // Add more tiles as needed
               ],

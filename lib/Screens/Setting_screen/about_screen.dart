@@ -19,7 +19,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar:const MyCupertinoAppBar( 
+      appBar: const MyCupertinoAppBar(
         enableLeading: true,
         middleText: 'دەربارەی بەشەکەم',
       ),
@@ -114,5 +114,3 @@ class _AboutScreenState extends State<AboutScreen> {
   final String vevanBody =
       "سووپاس بۆ ئەندازیار ڤیڤان تریفە، کە یارمەتیدەرم بووە لە پێدانی تەواوی کۆنمرەی بەشەکان و گەلێ شتی تر. ";
 }
-
-

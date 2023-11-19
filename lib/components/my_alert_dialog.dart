@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:bashakam_barawzanko/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -64,22 +65,28 @@ class MyAlertDialog extends StatelessWidget {
                 secondActionDialogText!,
                 style: TextStyle(
                   color: CupertinoColors.systemBlue,
-                  fontFamily:
-                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                  fontFamily: Constants.getFont(context) ==
+                          Constants.sanFranciscoUITextBold
+                      ? Constants.sanFranciscoUITextMedium
+                      : Theme.of(context).textTheme.bodyMedium?.fontFamily,
                   fontSize: 15,
                 ),
               ),
             ),
             enableFirstActionDialog
                 ? CupertinoDialogAction(
-                    isDefaultAction: true,
                     onPressed: firstActionOnTap,
                     child: Text(
                       firstActionDialogText,
                       style: TextStyle(
                         color: CupertinoColors.systemBlue,
-                        fontFamily:
-                            Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                        fontFamily: Constants.getFont(context) ==
+                                Constants.sanFranciscoUITextBold
+                            ? Constants.sanFranciscoUITextMedium
+                            : Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.fontFamily,
                         fontSize: 15,
                       ),
                     ),
