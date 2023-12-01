@@ -33,7 +33,9 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
         middle: Text(
           middleText,
           style: TextStyle(
-              color: textColor, fontSize: Constants.appBarFontSize(getFont)),
+            color: textColor,
+            fontSize: Constants.appBarFontSize(getFont),
+          ),
         ),
         border: null,
         leading: enableLeading

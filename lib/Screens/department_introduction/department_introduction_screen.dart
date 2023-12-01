@@ -2,9 +2,12 @@
 
 import 'dart:async';
 
+import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
+import 'package:bashakam_barawzanko/components/my_custom_modal_bottom_sheet.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
 import 'package:bashakam_barawzanko/csv_importers/import_department_introduction_csv.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../components/my_textfiled.dart';
@@ -114,9 +117,19 @@ class _DepartmentIntroductionScreenTempState
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: const MyCupertinoAppBar(
+        appBar: MyCupertinoAppBar(
           enableLeading: true,
           middleText: 'ناساندنی بەشەکان',
+          trailing: IconButton(
+            onPressed: (() {
+              showCustomModalBottomSheet(context, _modalText, 0.20);
+            }),
+            icon: Icon(
+              CupertinoIcons.info_circle_fill,
+              color: Theme.of(context).colorScheme.primary,
+              size: 23,
+            ),
+          ),
         ),
         body: FutureBuilder<List<Map<String, dynamic>>?>(
           future: _data,
@@ -214,3 +227,6 @@ class _DepartmentIntroductionScreenTempState
     );
   }
 }
+
+String _modalText =
+    "سەرچاوەی ئەم بەشانە لە وێبسایتەکانی وەک زانیاری و پۆستی کەسانی خەلکی دی وەرگیراون، بە سووپاسەوە.";

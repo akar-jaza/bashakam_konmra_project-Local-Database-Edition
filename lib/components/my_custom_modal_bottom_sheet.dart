@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
-  return androidModalBottomSheet(context);
+Future<dynamic> showCustomModalBottomSheet(BuildContext context, String text, double heightFactor) {
+  return androidModalBottomSheet(context, text, heightFactor);
 }
 
 // Future<dynamic> cupertinoModalBottomSheet(BuildContext context) {
@@ -13,14 +13,14 @@ Future<dynamic> showCustomModalBottomSheet(BuildContext context) {
 //   );
 // }
 
-Future<dynamic> androidModalBottomSheet(BuildContext context) {
+Future<dynamic> androidModalBottomSheet(BuildContext context, String text, double? heightFactor) {
   return showModalBottomSheet(
     backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
     isScrollControlled: true,
     context: context,
     builder: ((context) {
       return FractionallySizedBox(
-        heightFactor: 0.75,
+        heightFactor: heightFactor,
         child: Scaffold(
           extendBody: true,
           backgroundColor: Colors
@@ -56,7 +56,7 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(18.0),
-                    child: pleaseReadMeText(context),
+                    child: pleaseReadMeText(context, text),
                   )
                 ],
               ),
@@ -68,18 +68,9 @@ Future<dynamic> androidModalBottomSheet(BuildContext context) {
   );
 }
 
-Text pleaseReadMeText(BuildContext context) {
+Text pleaseReadMeText(BuildContext context, String text) {
   return Text(
-    "• ئەم لیستی کۆنمرە هی ساڵی (2022-2023)ـە. ساڵانە نوێ دەکرێتەوە.\n\n"
-    "• وشەی (گشتی) واتە نمرەی پێویست بۆ قوتابیانی دەرەوی شار. ئەگەر تۆ لە سلێمانی دەژیت و دەتەوێت لە هەولێر یاخود دهۆک وەربگیرێیت ئەوا پێویستە سێری نمرەی (گشتی) بکەیت.\n\n"
-    "• وشەی (پارێزگا) واتە نمرەی پێویست بۆ قوتابیانی ئەو پارێزگایە(ئەو شارە). ئەگەر تۆ قوتابیەکی شاری سلێمانیت، وە خوودی بەشەکە لە سلێمانیە، ئەوا تۆ پێویستە سێری نمرەی (پارێزگا) بکەیت.\n\n"
-    "• ئەم ئەپڵیکەیشنە لە سەرەتای گەشەپێدان دایە، کاتێک بۆ بەشێک دەگەڕێیت تکایە چەند هەنگاوێک بگرە بەر:\n\n"
-    "• هەندێجار بۆ بەشێک دەگەڕێیت، وەک (ڕووپێوان)، ئەگەر بنووسیت (روبیوان) هیچ ئەنجامێک پیشان نادرێت.\n\n"
-    "• زیاتر لە ٥٠٠ بەش بوونی هەیە لەم ئەپڵیکەشینە، لە لایەن منی گەشەپێدەر نەنوسراون، من تەنها پیشانیان دەدەمەوە، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت لەناوی بەشەکاندا.\n\n"
-    "• کاتێک بۆ بەشێک دەگێڕیت وەک (پەرستاری) لەدوای وشەکەوە یەک سپەیس دابنێ دەرەنجامی زیاترت پێ نیشان دەدرێت.\n\n"
-    "• هەندێ بەشی هەیە وەک تەکنەلۆجیای زانیاری، تۆ بە ئایتی بیستووتە، ئەگەر بگەڕێیت بۆ وشەی ئایتی ئەکرێ دەرەنجامی نەبێت، بنووسە تەکنەلۆجیای زانیاری دەرەنجامێکی درووستتر پیشان دەدرێت .\n\n"
-    "• ئەگەر بێزاربوویت لە سێرچ کردن(نوسینی بەشەکان) بەڵام هیچ دەرەنجامێکی نەهێنا، ئەکرێ هەڵەی ڕێزمانی بوونی هەبێت، یاخود ئەو بەشە بە ڕێزمانێکی هەڵە نوسرابێت. پێشنیار دەکەم خۆت بگەڕێیت بەناو لیستەکەدا تاوەکوو بەشی دڵخوازت بدۆزیتەوە.\n\n"
-    "لەکاتی بوونی کێشە لە نمرە، ئەپڵیکەیشن یاخود هەرشتێکی تر، پەیوەندی بە گەشەپێدەرەوە بکە.\n\n",
+    text,
     style: TextStyle(
       color: Theme.of(context).colorScheme.onBackground,
       // fontFamily: "rabar_009",
