@@ -7,6 +7,7 @@ Future<void> filterByCityModalBottomSheet(
     bool hawlerIsChecked,
     bool duhokIsChecked,
     void Function(String) runFilter) {
+
   return showModalBottomSheet<void>(
     backgroundColor: Theme.of(context).colorScheme.surface,
     context: context,
@@ -43,6 +44,7 @@ Future<void> filterByCityModalBottomSheet(
                         "سلێمانی",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.surface,
+                          letterSpacing: 0,
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
@@ -71,6 +73,7 @@ Future<void> filterByCityModalBottomSheet(
                         "هەولێر",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.surface,
+                          letterSpacing: 0.0,
                         ),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
@@ -98,8 +101,8 @@ Future<void> filterByCityModalBottomSheet(
                       title: Text(
                         "دهۆک",
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.surface,
-                        ),
+                            color: Theme.of(context).colorScheme.surface,
+                            letterSpacing: 0),
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
                       value: duhokIsChecked,

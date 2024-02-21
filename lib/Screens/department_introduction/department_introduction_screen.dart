@@ -2,7 +2,6 @@
 
 import 'dart:async';
 
-import 'package:bashakam_barawzanko/Screens/kamtrin_konmra/kamtrin_konmra_page.dart';
 import 'package:bashakam_barawzanko/components/my_cupertino_appbar.dart';
 import 'package:bashakam_barawzanko/components/my_custom_modal_bottom_sheet.dart';
 import 'package:bashakam_barawzanko/components/my_progress_indicator.dart';
