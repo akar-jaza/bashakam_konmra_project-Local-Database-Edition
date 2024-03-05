@@ -9,10 +9,14 @@ class MyAlertDialog extends StatelessWidget {
     Key? key,
     required this.title,
     required this.content,
+
     required this.firstActionDialogText,
     required this.firstActionOnTap,
+
     required this.enableFirstActionDialog,
+    required this.enableSecondAcriotnDialog,
     this.secondActionDialogText,
+
     this.secondActionOnTap,
     this.iconData,
     required this.enableIcon,
@@ -20,11 +24,16 @@ class MyAlertDialog extends StatelessWidget {
   final IconData? iconData;
   final String title;
   final String content;
+
   final String firstActionDialogText;
   final String? secondActionDialogText;
+
   final bool enableFirstActionDialog;
+  final bool enableSecondAcriotnDialog;
+
   final Function() firstActionOnTap;
   final Function()? secondActionOnTap;
+
   final bool enableIcon;
   @override
   Widget build(BuildContext context) {
@@ -59,39 +68,38 @@ class MyAlertDialog extends StatelessWidget {
           ),
           actions: <Widget>[
             //! بەهۆی ڕتڵ لەخوارەوە بۆ سەرەوە ڕیزبەندی دەکرێ
-            CupertinoDialogAction(
-              onPressed: secondActionOnTap,
-              child: Text(
-                secondActionDialogText!,
-                style: TextStyle(
-                  color: CupertinoColors.systemBlue,
-                  fontFamily: Constants.getFont(context) ==
-                          Constants.sanFranciscoUITextBold
-                      ? Constants.sanFranciscoUITextMedium
-                      : Theme.of(context).textTheme.bodyMedium?.fontFamily,
-                  fontSize: 15,
+
+            if (enableFirstActionDialog)
+              CupertinoDialogAction(
+                onPressed: firstActionOnTap,
+                child: Text(
+                  firstActionDialogText,
+                  style: TextStyle(
+                    color: CupertinoColors.systemBlue,
+                    fontFamily: Constants.getFont(context) ==
+                            Constants.sanFranciscoUITextBold
+                        ? Constants.sanFranciscoUITextMedium
+                        : Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                    fontSize: 15,
+                  ),
                 ),
               ),
-            ),
-            enableFirstActionDialog
-                ? CupertinoDialogAction(
-                    onPressed: firstActionOnTap,
-                    child: Text(
-                      firstActionDialogText,
-                      style: TextStyle(
-                        color: CupertinoColors.systemBlue,
-                        fontFamily: Constants.getFont(context) ==
-                                Constants.sanFranciscoUITextBold
-                            ? Constants.sanFranciscoUITextMedium
-                            : Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.fontFamily,
-                        fontSize: 15,
-                      ),
-                    ),
-                  )
-                : Container(),
+            if (enableSecondAcriotnDialog)
+              CupertinoDialogAction(
+                onPressed: secondActionOnTap,
+                child: Text(
+                  secondActionDialogText!,
+                  style: TextStyle(
+                    color: CupertinoColors.systemBlue,
+                    fontFamily: Constants.getFont(context) ==
+                            Constants.sanFranciscoUITextBold
+                        ? Constants.sanFranciscoUITextMedium
+                        : Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            
           ],
         ),
       );
@@ -129,7 +137,7 @@ class MyAlertDialog extends StatelessWidget {
             ),
           ),
           //* close dialog button
-          enableFirstActionDialog //* do important actions with this button
+          enableFirstActionDialog 
               ? TextButton(
                   onPressed: firstActionOnTap,
                   child: Text(

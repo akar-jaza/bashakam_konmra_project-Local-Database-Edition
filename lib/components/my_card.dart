@@ -16,7 +16,7 @@ class MyCard extends StatelessWidget {
   }) : super(key: key);
 
   final double? verticalMargin;
-  final String imageAsset;
+  final Widget imageAsset;
   final String buttonTitle;
   final Color color;
   final String text;
@@ -58,10 +58,7 @@ class MyCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15),
-            SvgPicture.asset(
-              imageAsset,
-              height: 50,
-            ),
+            imageAsset,
             const SizedBox(height: 10),
             isIOS
                 ? CupertinoButton(

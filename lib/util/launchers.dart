@@ -106,6 +106,7 @@ void launchEmailToDeveloper(BuildContext context) async {
           return MyAlertDialog(
             enableIcon: false,
             enableFirstActionDialog: true,
+            enableSecondAcriotnDialog: true,
             title: 'ئەپڵیکەیشنی "بەشەکەم" بەجێ دەهێڵیت',
             content:
                 'بۆ پەیوەندی کردن بە ئیمەیڵی گەشەپێدەرەوە تۆ ئەپڵیکەیشنی بەشەکەم بەجێدەهێڵیت.',
@@ -126,6 +127,7 @@ void launchEmailToDeveloper(BuildContext context) async {
             enableIcon: true,
             iconData: CupertinoIcons.exclamationmark_triangle_fill,
             enableFirstActionDialog: true,
+            enableSecondAcriotnDialog: true,
             title: 'کێشە هەیە لە کردنەوەی ئەپڵیکەشنی ئیمەیڵ!',
             content:
                 'وادیارە بەڕێزتان ئەپڵیکەیشنی جیمەیڵتان نیە یاخود کێشەیەک هەیە لە کردنەوەیدا. تکایە ئیمەیڵەکەم کۆپی بکە و بەڕێگایەکی تر ئیمەیڵم بۆ بنێرە.',

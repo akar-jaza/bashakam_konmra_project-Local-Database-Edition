@@ -139,6 +139,7 @@ class _IOSHomePageState extends State<IOSHomePage> {
                               firstActionDialogText: 'باشە',
                               firstActionOnTap: () {},
                               enableFirstActionDialog: false,
+                              enableSecondAcriotnDialog: false,
                               enableIcon: false,
                             );
                           });

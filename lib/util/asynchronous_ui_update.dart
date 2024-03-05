@@ -18,6 +18,7 @@ class AsynchronousUIUpdate {
 
   String imageLightThemeAsset = 'assets/images/cats_.svg';
   String imageDarkThemeAsset = 'assets/images/cats_darkMode.svg';
+
   FutureBuilder<bool> asyncHomePageImageUpdate(
       String imageLightThemeAsset, String imageDarkThemeAsset) {
     return FutureBuilder<bool>(
@@ -35,6 +36,51 @@ class AsynchronousUIUpdate {
         } else {
           // Handle loading state or error.
           return const MyProgressIndicator(); // or any other loading widget
+        }
+      },
+    );
+  }
+
+  //* home page icons
+  FutureBuilder<bool> asyncHomePageCollegeIconUpdate() {
+    return FutureBuilder<bool>(
+      future: SharedPreferences.getInstance().then(
+        (sharedPrefs) => sharedPrefs.getBool('_isDark') ?? false,
+      ),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final isDark = snapshot.data ?? false;
+
+          return Image.asset(
+            isDark
+                ? "assets/images/288ppi/college_dark_mode.png"
+                : "assets/images/288ppi/college_light_mode.png",
+            height: 50,
+          );
+        } else {
+          return const MyProgressIndicator();
+        }
+      },
+    );
+  }
+
+  FutureBuilder<bool> asyncHomePageReordarableIconUpdate() {
+    return FutureBuilder<bool>(
+      future: SharedPreferences.getInstance().then(
+        (sharedPrefs) => sharedPrefs.getBool('_isDark') ?? false,
+      ),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final isDark = snapshot.data ?? false;
+
+          return Image.asset(
+            isDark
+                ? "assets/images/288ppi/reorderable_dark_mode.png"
+                : "assets/images/288ppi/reorderable_light_mode.png",
+            height: 50,
+          );
+        } else {
+          return const MyProgressIndicator();
         }
       },
     );

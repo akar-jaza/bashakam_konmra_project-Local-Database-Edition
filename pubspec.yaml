@@ -35,14 +35,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
-  flutter_typeahead: ^4.8.0
+  flutter_typeahead: ^5.2.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   path_provider: ^2.1.1
-  csv: ^5.0.2
-  flutter_locales: ^3.0.1 
+  csv: ^6.0.0
+  flutter_locales: ^3.0.1
   theme_provider: ^0.6.0
-  flutter_keyboard_visibility: ^5.4.1
+  flutter_keyboard_visibility: ^6.0.0
   provider: ^6.0.5
   shared_preferences: ^2.2.2
   modal_bottom_sheet: ^3.0.0-pre
@@ -53,7 +53,6 @@ dependencies:
   launch_review: ^3.0.1
   share_plus: ^7.2.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,14 +60,12 @@ dev_dependencies:
   build_runner: ^2.4.6
   flutter_launcher_icons: ^0.13.1
 
-
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.3
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,6 +80,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/images/
+    - assets/images/288ppi/
+    - assets/images/288ppi/college_light_mode.png
+    - assets/images/288ppi/college_dark_mode.png 
+    - assets/images/288ppi/reorderable_light_mode.png 
+    - assets/images/288ppi/reorderable_dark_mode.png
+    - assets/images/reorderable_light_mode.svg
+    - assets/images/reorderable_dark_mode.svg
+    - assets/images/college_dark_mode.svg
+    - assets/images/college_light_mode.svg
     - assets/images/cats_.svg
     - assets/images/cats_darkMode.svg
     - assets/images/zarabin.svg
@@ -102,10 +109,6 @@ flutter:
     - assets/images/MaterialIcon.png
     - assets/images/social_icons/
     - assets/images/memoji.png
-    
-
-
-
 
   #   - images/a_dot_ham.jpeg
 
@@ -143,13 +146,6 @@ flutter:
       fonts:
         - asset: assets/fonts/ArabicUITextBold.ttf
 
-        
-        
-    
-    
-        
-    
-        
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
