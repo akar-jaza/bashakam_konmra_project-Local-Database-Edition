@@ -4,24 +4,24 @@ Bashakam is a mobile application designed to help students in Iraqi Kurdistan de
 
 ## Features
 
-- User-friendly interface for entering exam grades
-- Calculates and sorts eligible university departments based on grades
-- Provides information about each department, including minimum grade requirements
-- Allows users to save and compare different sets of grades
+- Ranks university departments by eligibility according to grades
+- Furnishes details about each department, such as minimum grade prerequisites
+- Enables users to store and contrast various grade sets [future updates]
+- Intuitive interface for inputting exam grades [future updates]
 
 ## Warning ⚠️
 This application is in early development ！
 <img src="https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/6bd2e574-66b1-49ab-8a6b-e6ff8cee5472" width="200" height="400" />
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 24](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/4470e289-3550-424f-b4ae-c3c195cffa13)
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 19](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/ff827d57-d57c-4b03-8240-9c3f67281220)
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 16](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/d59d6198-0348-48ff-bd2e-fc09a14eaa61)
+<img src="https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/4470e289-3550-424f-b4ae-c3c195cffa13)" width="200" height="400" />
+<img src="https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/ff827d57-d57c-4b03-8240-9c3f67281220" width="200" height="400" />
+<img src="https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/d59d6198-0348-48ff-bd2e-fc09a14eaa61" width="200" height="400" />
 
 
 
 ## Technologies Used
 
 - Flutter for Android (Frontend)
-- Firebase Authentication (Backend)
+- Hive (Database)
 
 ## Installation
 1. Clone the repository:
