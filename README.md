@@ -12,11 +12,11 @@ Bashakam is a mobile application designed to help students in Iraqi Kurdistan de
 ## Warning ⚠️
 This application is in early development ！
 
-## Screenshots
-<img src="![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 12](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/6c3b8eb8-1cd0-4c30-9d9b-adc6577f6c8a)
-" width="200" height="400" />
-<img src="https://github.com/akar-jaza/bashakam/assets/64991287/42acaba6-b80b-444a-ba5b-c8001ea938bb" width="200" height="400" />
-<img src="https://github.com/akar-jaza/bashakam/assets/64991287/50058993-8459-43e6-9020-4d6c05e50428" width="200" height="400" />
+![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 12](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/6bd2e574-66b1-49ab-8a6b-e6ff8cee5472)
+![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 24](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/4470e289-3550-424f-b4ae-c3c195cffa13)
+![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 19](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/ff827d57-d57c-4b03-8240-9c3f67281220)
+![Simulator Screenshot - iPhone 15 Pro - 2024-03-06 at 01 01 16](https://github.com/akar-jaza/bashakam_konmra_project-Local-Database-Edition/assets/64991287/d59d6198-0348-48ff-bd2e-fc09a14eaa61)
+
 
 
 ## Technologies Used
