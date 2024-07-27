@@ -28,6 +28,7 @@ class _KamtrinKonmraState extends State<KamtrinKonmra> {
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   late StreamSubscription<bool> keyboardSubscription;
+  // ignore: unused_field
   bool _isKeyboardVisible = false;
   bool _isLoading = false;
   bool _slemaniIsChecked = false;

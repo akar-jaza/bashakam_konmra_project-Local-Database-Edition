@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           height: Platform.isIOS ? 60 : 70,
-          labelTextStyle: MaterialStateProperty.all(
+          labelTextStyle: WidgetStateProperty.all(
             TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
             ),
@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
       ),
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 150),
-        switchInCurve: standardEasing,
+        switchInCurve: Easing.legacy,
         child: screens[selectedIndex],
       ),
     );
