@@ -20,7 +20,7 @@ This application is in early development ！
 
 ## Technologies Used
 
-- Flutter for Android (Frontend)
+- Flutter (Frontend)
 - Firebase Authentication (Backend)
 
 ## Installation
